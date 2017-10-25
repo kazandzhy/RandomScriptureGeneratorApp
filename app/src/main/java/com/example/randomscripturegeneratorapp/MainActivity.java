@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 //you are awesome!
 
+//vlad conflict:)
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
