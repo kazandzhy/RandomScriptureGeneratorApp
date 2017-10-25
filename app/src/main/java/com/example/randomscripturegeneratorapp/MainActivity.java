@@ -3,6 +3,8 @@ package com.example.randomscripturegeneratorapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+//CHANGE: Hi Vlad!
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
