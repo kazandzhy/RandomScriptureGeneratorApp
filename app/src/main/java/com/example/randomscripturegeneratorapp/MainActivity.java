@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 //you are awesome!
 
+//Merge test
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
