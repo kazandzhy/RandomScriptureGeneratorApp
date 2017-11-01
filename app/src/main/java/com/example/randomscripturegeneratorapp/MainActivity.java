@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 //you are awesome!
 
-//Merge test
+//vlad conflict:)
 
 public class MainActivity extends AppCompatActivity {
 
