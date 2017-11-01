@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
-        <activity android:name=".FilterWorkActivity"></activity>
+        <activity android:name=".FilterWorkActivity" />
+        <activity android:name=".BookFilter"></activity>
     </application>
 
 </manifest>
