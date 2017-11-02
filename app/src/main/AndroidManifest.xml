@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Settings" />
         <activity android:name=".FilterWorkActivity" />
-        <activity android:name=".BookFilter"></activity>
+        <activity android:name=".BookFilter" />
+        <activity android:name=".activity_favorites"></activity>
     </application>
 
 </manifest>
