@@ -19,7 +19,8 @@
         <activity android:name=".Settings" />
         <activity android:name=".FilterWorkActivity" />
         <activity android:name=".BookFilter" />
-        <activity android:name=".activity_favorites"></activity>
+        <activity android:name=".ShowScriptureActivity"/>
+        <activity android:name=".activity_favorites"/>
     </application>
 
 </manifest>
