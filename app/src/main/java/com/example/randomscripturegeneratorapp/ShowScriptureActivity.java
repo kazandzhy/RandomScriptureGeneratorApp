@@ -8,6 +8,6 @@ public class ShowScriptureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_scripture);
+        setContentView(R.layout.show_scripture_activity);
     }
 }

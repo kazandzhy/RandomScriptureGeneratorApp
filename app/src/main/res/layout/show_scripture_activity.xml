@@ -47,7 +47,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/scripture_verse_view"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@android:drawable/btn_star_big_on"
+        android:layout_marginLeft="8dp" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -57,6 +58,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/scripture_title_view"
         app:layout_constraintTop_toBottomOf="@+id/scripture_verse_view"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
+        app:srcCompat="@android:drawable/ic_popup_sync"
+        android:layout_marginLeft="8dp" />
 
 </android.support.constraint.ConstraintLayout>

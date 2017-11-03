@@ -3,11 +3,11 @@ package com.example.randomscripturegeneratorapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class BookFilter extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_filter_activity);
+        setContentView(R.layout.login_activity);
     }
 }

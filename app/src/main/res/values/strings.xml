@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Random Scripture Generator App</string>
+    <string name="title_activity_login">activity_login</string>
 </resources>
