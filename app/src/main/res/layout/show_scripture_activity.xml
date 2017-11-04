@@ -56,9 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="randomizeAgain"
         app:layout_constraintStart_toEndOf="@+id/scripture_title_view"
         app:layout_constraintTop_toBottomOf="@+id/scripture_verse_view"
-        app:srcCompat="@android:drawable/ic_popup_sync"
-        android:layout_marginLeft="8dp" />
+        app:srcCompat="@android:drawable/ic_popup_sync" />
 
 </android.support.constraint.ConstraintLayout>
