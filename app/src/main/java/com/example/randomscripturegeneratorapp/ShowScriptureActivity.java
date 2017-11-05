@@ -3,8 +3,12 @@ package com.example.randomscripturegeneratorapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ShowScriptureActivity extends AppCompatActivity {
 
@@ -32,9 +36,10 @@ public class ShowScriptureActivity extends AppCompatActivity {
     }
 
     private void displayScripture(String scripture_text, String verse_title) {
-        TextView scripture_verse_view = (TextView) findViewById(R.id.scripture_verse_view);
+        TextView scripture_verse_view = (TextView) findViewById(R.id.scripture_text_view);
         TextView scripture_title_view = (TextView) findViewById(R.id.scripture_title_view);
 
+        scripture_verse_view.setMovementMethod(new ScrollingMovementMethod());
         scripture_verse_view.setText(scripture_text);
         scripture_title_view.setText(verse_title);
     }
