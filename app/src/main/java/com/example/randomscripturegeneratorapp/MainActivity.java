@@ -46,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToFilterBookActivity(View view) {
-        Intent goToFilterBookIntent = new Intent(this, BookFilter.class);
+        Intent goToFilterBookIntent = new Intent(this, FilterBookActivity.class);
         startActivity(goToFilterBookIntent);
     }
 
     public void goToFavoritesActivity(View view) {
-        Intent goToFavoritesIntent = new Intent(this, activity_favorites.class);
+        Intent goToFavoritesIntent = new Intent(this, FavoritesActivity.class);
         startActivity(goToFavoritesIntent);
     }
 

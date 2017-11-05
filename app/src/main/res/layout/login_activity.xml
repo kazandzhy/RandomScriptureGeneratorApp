@@ -7,17 +7,6 @@
     tools:context="com.example.randomscripturegeneratorapp.LoginActivity">
 
     <Button
-        android:id="@+id/home_settingsButton2"
-        android:layout_width="88dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="goToSignupActivity"
-        android:text="Sign Up"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_settingsButton6" />
-
-    <Button
         android:id="@+id/home_settingsButton6"
         android:layout_width="106dp"
         android:layout_height="60dp"

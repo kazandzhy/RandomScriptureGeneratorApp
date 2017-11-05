@@ -3,11 +3,11 @@ package com.example.randomscripturegeneratorapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class activity_favorites extends AppCompatActivity {
+public class FilterBookActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.favorites_activity);
+        setContentView(R.layout.book_filter_activity);
     }
 }
