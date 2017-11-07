@@ -17,4 +17,9 @@ public class SettingsActivity extends AppCompatActivity {
         Intent goToLoginIntent = new Intent(this, LoginActivity.class);
         startActivity(goToLoginIntent);
     }
+
+    public void goToSignupActivity(View view) {
+        Intent goToSignupIntent = new Intent(this, SignupActivity.class);
+        startActivity(goToSignupIntent);
+    }
 }
