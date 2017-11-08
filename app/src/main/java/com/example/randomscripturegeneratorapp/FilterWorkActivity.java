@@ -1,6 +1,8 @@
 package com.example.randomscripturegeneratorapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,11 +55,23 @@ public class FilterWorkActivity extends AppCompatActivity {
             Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
             displayIntent.putExtra("verse_title", verse.getVerse_title());
             displayIntent.putExtra("scripture_text", verse.getScripture_text());
+
+
+            SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+
+            editor.putString("activity", "FilterWorkActivity");
+            editor.putInt("volume_id", volume_id);
+            editor.apply();
+
+
             startActivity(displayIntent);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select at least one option.", Toast.LENGTH_SHORT);
             toast.show();
         }
+
+
     }
 
     public void onCheckboxClicked(View view) {
