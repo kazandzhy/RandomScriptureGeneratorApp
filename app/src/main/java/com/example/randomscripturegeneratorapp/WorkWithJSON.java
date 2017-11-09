@@ -42,7 +42,6 @@ public class WorkWithJSON {
         //fill array of objects
         scriptureArray = gson.fromJson(JSONData, ScriptureData[].class);
 
-        Log.i("first verse: ", scriptureArray[0].getVerse_title());
     }
 
     //getter for working with private array of objects in other classes

@@ -1,15 +1,22 @@
 package com.example.randomscripturegeneratorapp;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.example.randomscripturegeneratorapp.MainActivity.APP_PREFS;
 
@@ -30,16 +37,20 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
     }
 
+    @TargetApi(21)
     public void randomizeAgain(View view) {
 
         SharedPreferences sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE);
         String activity = sharedPrefs.getString("activity", "No activity");
-        Integer volume_id = sharedPrefs.getInt("volume_id", 0);
 
         RandomizeVerse randomizeVerse = new RandomizeVerse();
         ScriptureData verse;
 
-        if (activity == "FilterWorkActivity") {
+        if (activity.equals("FilterWorkActivity")) {
+            List<Integer> userChoices = FilterWorkActivity.getUserChoices();
+            int randomSpot = ThreadLocalRandom.current().nextInt(0, userChoices.size());
+            int volume_id = userChoices.get(randomSpot);
+
             verse = randomizeVerse.randomizeFromWork(volume_id);
         } else {
             verse = randomizeVerse.randomizeFromAllWorks();
