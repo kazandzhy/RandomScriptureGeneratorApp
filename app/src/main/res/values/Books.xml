@@ -1,18 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ot">
-        <item>old</item>
+        <item>Genesis</item>
+        <item>Exodus</item>
+        <item>Leviticus</item>
+        <item>Numbers</item>
+        <item>Deuteronomy</item>
+        <item>Joshua</item>
+        <item>Judges</item>
+        <item>Ruth</item>
+        <item>1 Samuel</item>
+        <item>2 Samuel</item>
+        <item>1 Kings</item>
+        <item>2 Kings</item>
+        <item>1 Chronicles</item>
+        <item>2 Chronicles</item>
+        <item>Ezra</item>
+        <item>Nehemiah</item>
+        <item>Esther</item>
+        <item>Job</item>
+        <item>Psalms</item>
+        <item>Proverbs</item>
+        <item>Ecclesiastes</item>
+        <item>Song of Solomon</item>
+        <item>Isaiah</item>
+        <item>Jeremiah</item>
+        <item>Lamentations</item>
+        <item>Ezekiel</item>
+        <item>Daniel</item>
+        <item>Hosea</item>
+        <item>Joel</item>
+        <item>Amos</item>
+        <item>Obadiah</item>
+        <item>Jonah</item>
+        <item>Micah</item>
+        <item>Nahum</item>
+        <item>Habakkuk</item>
+        <item>Zephaniah</item>
+        <item>Haggai</item>
+        <item>Zechariah</item>
+        <item>Malachi</item>
     </string-array>
     <string-array name="nt">
-        <item>new</item>
+        <item>Matthew</item>
+        <item>Mark</item>
+        <item>Luke</item>
+        <item>John</item>
+        <item>Acts</item>
+        <item>Romans</item>
+        <item>1 Corinthians</item>
+        <item>2 Corinthians</item>
+        <item>Galatians</item>
+        <item>Ephesians</item>
+        <item>Philippians</item>
+        <item>Colossians</item>
+        <item>1 Thessalonians</item>
+        <item>2 Thessalonians</item>
+        <item>1 Timothy</item>
+        <item>2 Timothy</item>
+        <item>Titus</item>
+        <item>Philemon</item>
+        <item>Hebrews</item>
+        <item>James</item>
+        <item>1 Peter</item>
+        <item>2 Peter</item>
+        <item>1 John</item>
+        <item>2 John</item>
+        <item>3 John</item>
+        <item>Jude</item>
+        <item>Revelations</item>
     </string-array>
     <string-array name="bom">
-        <item>mormon</item>
+        <item>1 Nephi</item>
+        <item>2 Nephi</item>
+        <item>Jacob</item>
+        <item>Enos</item>
+        <item>Jarom</item>
+        <item>Omni</item>
+        <item>Words of Mormon</item>
+        <item>Mosiah</item>
+        <item>Alma</item>
+        <item>Helaman</item>
+        <item>3 Nephi</item>
+        <item>4 Nephi</item>
+        <item>Mormon</item>
+        <item>Ether</item>
+        <item>Moroni</item>
     </string-array>
     <string-array name="doc">
-        <item>doctrine</item>
+        <item>Section 1</item>
+        <item>Section 2</item>
+        <item>Section 3</item>
+        <item>Section 4</item>
+        <item>Section 5</item>
+        <item>Section 6</item>
+        <item>Section 7</item>
+        <item>Section 8</item>
+        <item>Section 9</item>
+        <item>Section 10</item>
+        <item>Section 11</item>
+        <item>Section 12</item>
+        <item>Section 13</item>
+        <item>Section 14</item>
+        <item>Section 15</item>
+        <item>Section 16</item>
+        <item>Section 17</item>
+        <item>Section 18</item>
+        <item>Section 19</item>
+        <item>Section 20</item>
+        <item>Section 21</item>
+        <item>Section 22</item>
+        <item>Section 23</item>
+        <item>Section 24</item>
+        <item>Section 25</item>
+        <item>Section 26</item>
+        <item>Section 27</item>
+        <item>Section 28</item>
+        <item>Section 29</item>
+        <item>Section 30</item>
+        <item>Section 31</item>
+        <item>Section 32</item>
+        <item>Section 33</item>
+        <item>Section 34</item>
+        <item>Section 35</item>
+        <item>Section 36</item>
+        <item>Section 37</item>
+        <item>Section 38</item>
+        <item>Section 39</item>
+        <item>Section 40</item>
+        <item>Section 41</item>
+        <item>Section 42</item>
+        <item>Section 43</item>
+        <item>Section 44</item>
+        <item>Section 45</item>
+        <item>Section 46</item>
+        <item>Section 47</item>
+        <item>Section 48</item>
+        <item>Section 49</item>
+        <item>Section 50</item>
+        <item>Section 51</item>
+        <item>Section 52</item>
+        <item>Section 53</item>
+        <item>Section 54</item>
+        <item>Section 55</item>
+        <item>Section 56</item>
+        <item>Section 58</item>
+        <item>Section 59</item>
+        <item>Section 60</item>
+        <item>Section 61</item>
+        <item>Section 62</item>
+        <item>Section 63</item>
+        <item>Section 64</item>
+        <item>Section 65</item>
+        <item>Section 66</item>
+        <item>Section 67</item>
+        <item>Section 68</item>
+        <item>Section 69</item>
+        <item>Section 70</item>
+        <item>Section 71</item>
+        <item>Section 72</item>
+        <item>Section 73</item>
+        <item>Section 74</item>
+        <item>Section 75</item>
+        <item>Section 76</item>
+        <item>Section 77</item>
+        <item>Section 78</item>
+        <item>Section 79</item>
+        <item>Section 80</item>
+        <item>Section 81</item>
+        <item>Section 82</item>
+        <item>Section 83</item>
+        <item>Section 84</item>
+        <item>Section 85</item>
+        <item>Section 86</item>
+        <item>Section 87</item>
+        <item>Section 88</item>
+        <item>Section 89</item>
+        <item>Section 90</item>
+        <item>Section 91</item>
+        <item>Section 92</item>
+        <item>Section 93</item>
+        <item>Section 94</item>
+        <item>Section 95</item>
+        <item>Section 96</item>
+        <item>Section 97</item>
+        <item>Section 98</item>
+        <item>Section 99</item>
+        <item>Section 100</item>
+        <item>Section 101</item>
+        <item>Section 102</item>
+        <item>Section 103</item>
+        <item>Section 104</item>
+        <item>Section 105</item>
+        <item>Section 106</item>
+        <item>Section 107</item>
+        <item>Section 108</item>
+        <item>Section 109</item>
+        <item>Section 110</item>
+        <item>Section 111</item>
+        <item>Section 112</item>
+        <item>Section 113</item>
+        <item>Section 114</item>
+        <item>Section 115</item>
+        <item>Section 116</item>
+        <item>Section 117</item>
+        <item>Section 118</item>
+        <item>Section 119</item>
+        <item>Section 120</item>
+        <item>Section 121</item>
+        <item>Section 122</item>
+        <item>Section 123</item>
+        <item>Section 124</item>
+        <item>Section 125</item>
+        <item>Section 126</item>
+        <item>Section 127</item>
+        <item>Section 128</item>
+        <item>Section 129</item>
+        <item>Section 130</item>
+        <item>Section 131</item>
+        <item>Section 132</item>
+        <item>Section 133</item>
+        <item>Section 134</item>
+        <item>Section 135</item>
+        <item>Section 136</item>
+        <item>Section 137</item>
+        <item>Section 138</item>
     </string-array>
     <string-array name="pogp">
-        <item>pearl</item>
+        <item>Moses</item>
+        <item>Abraham</item>
+        <item>Joseph Smith-Matthew</item>
+        <item>Joseph Smith-History</item>
+        <item>Articles of Faith</item>
     </string-array>
 </resources>
