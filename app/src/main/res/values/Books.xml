@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ot">
+        <item>old</item>
+    </string-array>
+    <string-array name="nt">
+        <item>new</item>
+    </string-array>
+    <string-array name="bom">
+        <item>mormon</item>
+    </string-array>
+    <string-array name="doc">
+        <item>doctrine</item>
+    </string-array>
+    <string-array name="pogp">
+        <item>pearl</item>
+    </string-array>
+</resources>
