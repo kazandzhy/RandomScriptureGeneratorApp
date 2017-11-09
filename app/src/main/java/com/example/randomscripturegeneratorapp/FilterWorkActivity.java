@@ -1,5 +1,6 @@
 package com.example.randomscripturegeneratorapp;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,13 +11,26 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class FilterWorkActivity extends AppCompatActivity {
 
-    Boolean ot_checked;
-    Boolean nt_checked;
-    Boolean bom_checked;
-    Boolean dc_checked;
-    Boolean pogp_checked;
+    private static List<Integer> userChoices;
+    private Boolean ot_checked;
+    private Boolean nt_checked;
+    private Boolean bom_checked;
+    private Boolean dc_checked;
+    private Boolean pogp_checked;
+
+    public FilterWorkActivity() {
+        userChoices = new ArrayList<>();
+    }
+
+    public static List<Integer> getUserChoices() {
+        return userChoices;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +43,30 @@ public class FilterWorkActivity extends AppCompatActivity {
         pogp_checked = false;
     }
 
+    @TargetApi(21)
     public void sendVerseToDisplay(View view) {
+        userChoices.clear();
         int volume_id = -1;
         if (ot_checked) {
-            volume_id = 1;
+            userChoices.add(1);
         }
         if (nt_checked) {
-            volume_id = 2;
+            userChoices.add(2);
         }
         if (bom_checked) {
-            volume_id = 3;
+            userChoices.add(3);
         }
         if (dc_checked) {
-            volume_id = 4;
+            userChoices.add(4);
         }
         if (pogp_checked) {
-            volume_id = 5;
+            userChoices.add(5);
         }
-        Log.i("volume_id is: ", Integer.toString(volume_id));
 
-        if (volume_id > 0) {
+        if (!userChoices.isEmpty()) {
+            int randomSpot = ThreadLocalRandom.current().nextInt(0, userChoices.size());
+            volume_id = userChoices.get(randomSpot);
+
             RandomizeVerse randomizeVerse = new RandomizeVerse();
             ScriptureData verse = randomizeVerse.randomizeFromWork(volume_id);
 
@@ -56,21 +74,17 @@ public class FilterWorkActivity extends AppCompatActivity {
             displayIntent.putExtra("verse_title", verse.getVerse_title());
             displayIntent.putExtra("scripture_text", verse.getScripture_text());
 
-
             SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPrefs.edit();
 
             editor.putString("activity", "FilterWorkActivity");
-            editor.putInt("volume_id", volume_id);
             editor.apply();
-
 
             startActivity(displayIntent);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select at least one option.", Toast.LENGTH_SHORT);
             toast.show();
         }
-
 
     }
 
