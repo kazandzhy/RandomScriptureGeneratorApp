@@ -8,9 +8,9 @@ public class ScriptureData {
     private int volume_id; // needed
     private int book_id; // needed
     int chapter_id;
-    int verse_id;
+    private int verse_id;
     String volume_title;
-    String book_title;
+    private String book_title;
     String volume_long_title;
     String book_long_title;
     String volume_subtitle;
@@ -25,11 +25,12 @@ public class ScriptureData {
     private String verse_title; // needed
     String verse_short_title;
 
-    public ScriptureData(int volume_id, int book_id, String scripture_text, String verse_title) {
+    public ScriptureData(int volume_id, int book_id, String scripture_text, String verse_title, String book_title) {
         this.volume_id = volume_id;
         this.book_id = book_id;
         this.scripture_text = scripture_text;
         this.verse_title = verse_title;
+        this.book_title = book_title;
     }
 
     public int getVolume_id() {
@@ -38,6 +39,10 @@ public class ScriptureData {
 
     public int getBook_id() {
         return book_id;
+    }
+
+    public String getBook_title() {
+        return book_title;
     }
 
     public String getScripture_text() {

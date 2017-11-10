@@ -3,8 +3,10 @@ package com.example.randomscripturegeneratorapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,11 +16,14 @@ import android.widget.Toast;
 public class FilterBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     Context context;
+    RandomizeVerse randomizeVerse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_filter_activity);
+
+        randomizeVerse = new RandomizeVerse();
 
         //Drop down menu for Works
         Spinner works = (Spinner) findViewById(R.id.dropDown_works);
@@ -32,6 +37,26 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
     }
 
+    public void sendVerseToDisplay(View view) {
+        Spinner bookSpinner =(Spinner) findViewById(R.id.dropDown_books);
+        String bookChoice = bookSpinner.getSelectedItem().toString();
+
+        ScriptureData verse = randomizeVerse.randomizeFromBook(bookChoice);
+
+        Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
+
+        displayIntent.putExtra("verse_title", verse.getVerse_title());
+        displayIntent.putExtra("scripture_text", verse.getScripture_text());
+        displayIntent.putExtra("book_title", verse.getBook_title());
+
+        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("activity", "FilterBookActivity");
+        editor.apply();
+
+        startActivity(displayIntent);
+    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
@@ -41,10 +66,6 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
             if(spinner.getId() == R.id.dropDown_works)
             {
                 updateBookSpinner(parent.getItemAtPosition(i).toString());
-            }
-            else if(spinner.getId() == R.id.dropDown_books)
-            {
-                //This is where the filter books function starts!
             }
     }
 

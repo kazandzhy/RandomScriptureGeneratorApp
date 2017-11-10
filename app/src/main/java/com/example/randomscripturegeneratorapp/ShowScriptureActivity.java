@@ -23,6 +23,8 @@ import static com.example.randomscripturegeneratorapp.MainActivity.APP_PREFS;
 public class ShowScriptureActivity extends AppCompatActivity {
 
     private String randomizeOption;
+    private String bookChoice;
+
 
 
     @Override
@@ -34,8 +36,9 @@ public class ShowScriptureActivity extends AppCompatActivity {
         String verse_title = intent.getStringExtra("verse_title");
         String scripture_text = intent.getStringExtra("scripture_text");
         randomizeOption = intent.getStringExtra("randomizeOption");
-        displayScripture(scripture_text, verse_title);
+        bookChoice = intent.getStringExtra("book_title");
 
+        displayScripture(scripture_text, verse_title);
 
     }
 
@@ -54,6 +57,8 @@ public class ShowScriptureActivity extends AppCompatActivity {
             int volume_id = userChoices.get(randomSpot);
 
             verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
+        } else if (activity.equals("FilterBookActivity")) {
+            verse = randomizeVerse.randomizeFromBook(bookChoice);
         } else {
             if (randomizeOption.equals("Weighted Random")) {
                 verse = randomizeVerse.weightedRandomizeFromAllWorks();

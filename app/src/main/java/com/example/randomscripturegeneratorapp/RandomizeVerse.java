@@ -1,6 +1,7 @@
 package com.example.randomscripturegeneratorapp;
 
 import android.annotation.TargetApi;
+import android.util.Log;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -78,7 +79,16 @@ public class RandomizeVerse {
         }
 
         int number = ThreadLocalRandom.current().nextInt(min, max + 1);
-        verse = randomizeFromBook(number);
+        String book_title = "";
+
+        for (ScriptureData verse : scriptureArray) {
+            // find book_title for the book_id that was randomly selected
+            if (verse.getBook_id() == number) {
+                book_title = verse.getBook_title();
+                break;
+            }
+        }
+        verse = randomizeFromBook(book_title);
 
         return verse;
     }
@@ -130,23 +140,26 @@ public class RandomizeVerse {
 
     @TargetApi(21)
     //function which give random verse from one book chosen by user
-    public ScriptureData randomizeFromBook(int input) {
+    public ScriptureData randomizeFromBook(String book_title) {
+        Log.i("book_title is ", book_title);
         //default range from min to max
         int min = -1;
         int max = -1;
+        int book_id = -1;
 
         //smart for loop through all array objects
         for (ScriptureData verse : scriptureArray) {
 
             //if min not found yet and book_id and input are the same
-            if (min == -1 && verse.getBook_id() == input) {
+            if (min == -1 && verse.getBook_title().equals(book_title)) {
 
+                book_id = verse.getBook_id();
 
                 //assign min to the first element of book_id = (verse_id - 1) because 0 position in array
                 min = verse.getVerse_id() - 1;
 
                 //if max not found yet - search for  next book_id
-            } else if (max == -1 && verse.getBook_id() == input + 1) {
+            } else if (max == -1 && verse.getBook_id() == book_id + 1) {
 
                 //assign max to the last element of book_id = (verse_id - 2) because 0 position in array
                 max = verse.getVerse_id() - 2;

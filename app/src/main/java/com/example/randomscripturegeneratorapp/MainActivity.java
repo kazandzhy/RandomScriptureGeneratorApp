@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
+
         displayIntent.putExtra("verse_title", verse.getVerse_title());
         displayIntent.putExtra("scripture_text", verse.getScripture_text());
         displayIntent.putExtra("randomizeOption", randomizeOption);
