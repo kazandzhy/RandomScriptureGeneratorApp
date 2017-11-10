@@ -3,6 +3,7 @@ package com.example.randomscripturegeneratorapp;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -26,6 +27,12 @@ public class ShowScriptureActivity extends AppCompatActivity {
     private String bookChoice;
 
 
+    // For holding the variables for the scripture in scope for other Activities and methods.
+    public String workId = "pgp";
+    public String bookId = "moses";
+    public String chapId = "1";
+    public String verseId= "39";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,37 @@ public class ShowScriptureActivity extends AppCompatActivity {
         bookChoice = intent.getStringExtra("book_title");
 
         displayScripture(scripture_text, verse_title);
+
+        SharedPreferences sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE);
+        String activity = sharedPrefs.getString("activity", "No activity");
+        RandomizeVerse randomizeVerse = new RandomizeVerse();
+        ScriptureData verse;
+        if (activity.equals("FilterWorkActivity")) {
+            List<Integer> userChoices = FilterWorkActivity.getUserChoices();
+            int randomSpot = 0;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                randomSpot = ThreadLocalRandom.current().nextInt(0, userChoices.size());
+            }
+            int volume_id = userChoices.get(randomSpot);
+            verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
+        } else {
+            if (randomizeOption.equals("Weighted Random")) {
+                verse = randomizeVerse.weightedRandomizeFromAllWorks();
+                Log.i("if option is ", randomizeOption);
+            } else {
+                verse = randomizeVerse.pureRandomizeFromAllWorks();
+                Log.i("else option is ", randomizeOption);
+            }
+        }
+
+        verse_title = verse.getVerse_title();
+        scripture_text = verse.getScripture_text();
+        displayScripture(scripture_text, verse_title);
+
+        workId = String.valueOf(verse.volume_lds_url);
+        bookId = String.valueOf(verse.book_lds_url);
+        chapId = String.valueOf(verse.chapter_number);
+        verseId = String.valueOf(verse.verse_number);
 
     }
 
@@ -69,6 +107,11 @@ public class ShowScriptureActivity extends AppCompatActivity {
             }
         }
 
+        workId = String.valueOf(verse.volume_lds_url);
+        bookId = String.valueOf(verse.book_lds_url);
+        chapId = String.valueOf(verse.chapter_number);
+        verseId = String.valueOf(verse.verse_number);
+
         String verse_title = verse.getVerse_title();
         String scripture_text = verse.getScripture_text();
         displayScripture(scripture_text, verse_title);
@@ -85,5 +128,16 @@ public class ShowScriptureActivity extends AppCompatActivity {
     public void goHome(View view) {
         Intent goHome = new Intent(this, MainActivity.class);
         startActivity(goHome);
+    }
+
+    public void openBrowser(View view) {
+        String  work = workId;
+        String  book = bookId;
+        String  chap = chapId;
+        String verse = verseId;
+        TextView debug = (TextView) findViewById(R.id.debug);
+        debug.setText("https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#38");
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#38"));
+        startActivity(browserIntent);
     }
 }

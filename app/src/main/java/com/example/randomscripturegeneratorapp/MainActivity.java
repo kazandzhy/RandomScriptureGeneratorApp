@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
