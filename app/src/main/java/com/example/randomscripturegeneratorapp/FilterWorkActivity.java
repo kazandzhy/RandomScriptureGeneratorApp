@@ -68,7 +68,7 @@ public class FilterWorkActivity extends AppCompatActivity {
             volume_id = userChoices.get(randomSpot);
 
             RandomizeVerse randomizeVerse = new RandomizeVerse();
-            ScriptureData verse = randomizeVerse.randomizeFromWork(volume_id);
+            ScriptureData verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
 
             Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
             displayIntent.putExtra("verse_title", verse.getVerse_title());

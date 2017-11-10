@@ -2,6 +2,7 @@ package com.example.randomscripturegeneratorapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         // we need to pass context to deserializeJSON in order to read file from the assets folder
         context = this.getApplicationContext();
         // deserialize JSON file to Java array
-        WorkWithJSON.deserializeJSON(context);
+        // the if statement ensures that the JSON is deserialized only the first time MainActivity is opened
+        ScriptureData[] scriptureArray = new WorkWithJSON().getScriptureArray();
+        if (scriptureArray == null) {
+            WorkWithJSON.deserializeJSON(context);
+        }
 
         //Drop down menu for Pure and Weighted random
         Spinner spinner = (Spinner) findViewById(R.id.pure_weighted_spinner);
@@ -41,16 +46,42 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
+
+        // this code recalls the user's randomizing option and sets the spinner accordingly
+        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        String randomizeOption = sharedPrefs.getString("randomizeOption", "No option");
+        if (randomizeOption.equals("Weighted Random")) {
+            spinner.setSelection(0);
+        } else if (randomizeOption.equals("Pure Random")) {
+            spinner.setSelection(1);
+        }
     }
 
     public void sendVerseToDisplay(View view) {
+        Spinner mySpinner=(Spinner) findViewById(R.id.pure_weighted_spinner);
+        String randomizeOption = mySpinner.getSelectedItem().toString();
+
         RandomizeVerse randomizeVerse = new RandomizeVerse();
 
-        ScriptureData verse = randomizeVerse.randomizeFromAllWorks();
+        ScriptureData verse;
+        if (randomizeOption.equals("Weighted Random")) {
+            verse = randomizeVerse.weightedRandomizeFromAllWorks();
+        } else {
+            verse = randomizeVerse.pureRandomizeFromAllWorks();
+        }
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
         displayIntent.putExtra("verse_title", verse.getVerse_title());
         displayIntent.putExtra("scripture_text", verse.getScripture_text());
+        displayIntent.putExtra("randomizeOption", randomizeOption);
+
+        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        editor.putString("activity", "MainActivity");
+        editor.putString("randomizeOption", randomizeOption);
+        editor.apply();
+
         startActivity(displayIntent);
     }
 
