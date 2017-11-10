@@ -2,6 +2,7 @@ package com.example.randomscripturegeneratorapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -91,6 +92,10 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         }
         books.getOnItemSelectedListener();
 
+    }
+    public void goHome(View view) {
+        Intent goHome = new Intent(this, MainActivity.class);
+        startActivity(goHome);
     }
 }
 

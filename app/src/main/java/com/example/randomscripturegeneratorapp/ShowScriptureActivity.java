@@ -68,4 +68,9 @@ public class ShowScriptureActivity extends AppCompatActivity {
         scripture_verse_view.setText(scripture_text);
         scripture_title_view.setText(verse_title);
     }
+
+    public void goHome(View view) {
+        Intent goHome = new Intent(this, MainActivity.class);
+        startActivity(goHome);
+    }
 }

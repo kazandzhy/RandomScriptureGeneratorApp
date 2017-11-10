@@ -12,5 +12,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
     }
+    public void goHome(View view) {
+        Intent goHome = new Intent(this, MainActivity.class);
+        startActivity(goHome);
+    }
 
 }

@@ -126,4 +126,8 @@ public class FilterWorkActivity extends AppCompatActivity {
                 break;
         }
     }
+    public void goHome(View view) {
+        Intent goHome = new Intent(this, MainActivity.class);
+        startActivity(goHome);
+    }
 }

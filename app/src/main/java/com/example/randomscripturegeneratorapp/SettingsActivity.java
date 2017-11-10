@@ -22,4 +22,9 @@ public class SettingsActivity extends AppCompatActivity {
         Intent goToSignupIntent = new Intent(this, SignupActivity.class);
         startActivity(goToSignupIntent);
     }
+
+    public void goHome(View view) {
+        Intent goHome = new Intent(this, MainActivity.class);
+        startActivity(goHome);
+    }
 }
