@@ -47,6 +47,8 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
         displayScripture(scripture_text, verse_title);
 
+
+        // This code is necessary to make it so that the READ MORE functionality works
         SharedPreferences sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE);
         String activity = sharedPrefs.getString("activity", "No activity");
         RandomizeVerse randomizeVerse = new RandomizeVerse();
@@ -79,6 +81,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         bookId = String.valueOf(verse.book_lds_url);
         chapId = String.valueOf(verse.chapter_number);
         verseId = String.valueOf(verse.verse_number);
+        // PLEASE don't touch this code ^^
 
     }
 
@@ -117,6 +120,10 @@ public class ShowScriptureActivity extends AppCompatActivity {
         String verse_title = verse.getVerse_title();
         String scripture_text = verse.getScripture_text();
         displayScripture(scripture_text, verse_title);
+    }
+
+    public void addToFavorites(View view) {
+        Log.v("added to favorites: ", "scripture");
     }
 
     private void displayScripture(String scripture_text, String verse_title) {

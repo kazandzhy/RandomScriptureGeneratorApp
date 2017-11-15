@@ -23,10 +23,10 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="addToFavorites"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_marginLeft="8dp" />
+        app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <ImageButton
         android:id="@+id/imageButton2"

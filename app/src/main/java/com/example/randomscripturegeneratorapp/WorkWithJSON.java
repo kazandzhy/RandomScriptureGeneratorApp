@@ -33,8 +33,10 @@ public class WorkWithJSON {
             is.read(buffer);
             is.close();
             JSONData = new String(buffer, "UTF-8");
+            Log.v("JSON", "loaded JSON file");
         } catch (IOException ex) {
             ex.printStackTrace();
+            Log.e("JSON", "ERROR loading JSON file");
         }
 
         //create Gson instance
