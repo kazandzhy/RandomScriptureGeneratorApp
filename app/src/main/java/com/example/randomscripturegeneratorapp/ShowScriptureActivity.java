@@ -139,7 +139,9 @@ public class ShowScriptureActivity extends AppCompatActivity {
         String verse = verseId;
         TextView debug = (TextView) findViewById(R.id.debug);
         debug.setText("https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#38");
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#p"+ verse));
+        String url = "https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#p"+ verse;
+        Log.d("url", url);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(browserIntent);
     }
 }
