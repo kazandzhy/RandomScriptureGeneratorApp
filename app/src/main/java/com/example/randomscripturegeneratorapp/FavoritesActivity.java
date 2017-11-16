@@ -11,6 +11,7 @@ public class FavoritesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorites_activity);
+
     }
     public void goHome(View view) {
         Intent goHome = new Intent(this, MainActivity.class);

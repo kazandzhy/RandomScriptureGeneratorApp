@@ -39,6 +39,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_scripture_activity);
 
+
         Intent intent = getIntent();
         String verse_title = intent.getStringExtra("verse_title");
         String scripture_text = intent.getStringExtra("scripture_text");

@@ -7,17 +7,6 @@
     tools:context="com.example.randomscripturegeneratorapp.FilterBookActivity">
 
     <Button
-        android:id="@+id/home_workfilter_button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="goHome"
-        android:text="Home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/randomWork_button"
         android:layout_width="215dp"
         android:layout_height="123dp"
