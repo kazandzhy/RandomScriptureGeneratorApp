@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -41,6 +43,13 @@ public class FilterWorkActivity extends AppCompatActivity {
         bom_checked = false;
         dc_checked = false;
         pogp_checked = false;
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
     @TargetApi(21)
