@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -65,8 +65,30 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu_home_loggedout, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_login:
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            case R.id.action_signup:
+                startActivity(new Intent(this, SignupActivity.class));
+                return true;
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_logout:
+                // code for logout goes here
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     public void sendVerseToDisplay(View view) {
@@ -110,11 +132,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToFavoritesActivity(View view) {
         Intent goToFavoritesIntent = new Intent(this, FavoritesActivity.class);
         startActivity(goToFavoritesIntent);
-    }
-
-    public void goToSettingsActivity(View view) {
-        Intent goToSettingsIntent = new Intent(this, SettingsActivity.class);
-        startActivity(goToSettingsIntent);
     }
 
 }
