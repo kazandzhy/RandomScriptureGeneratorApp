@@ -9,6 +9,7 @@
 
     <Button
         android:id="@+id/home_workfilter_button4"
+        android:background="#eac67a"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -20,6 +21,7 @@
 
     <Button
         android:id="@+id/home_workfilter_button7"
+        android:background="#4b874e"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -32,6 +34,7 @@
 
     <Button
         android:id="@+id/home_workfilter_button6"
+        android:background="#486872"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -43,6 +46,7 @@
 
     <Button
         android:id="@+id/randomWork_button2"
+        android:background="#af5e56"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"

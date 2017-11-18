@@ -151,6 +151,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         String verse_title = verse.getVerse_title();
         String scripture_text = verse.getScripture_text();
         displayScripture(scripture_text, verse_title);
+
     }
 
     public void addToFavorites(View view) {
