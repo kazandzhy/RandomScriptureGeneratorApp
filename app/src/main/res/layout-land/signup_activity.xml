@@ -46,17 +46,6 @@
         app:layout_constraintTop_toBottomOf="@+id/etPassword_signup" />
 
     <Button
-        android:id="@+id/bHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="goHome"
-        android:text="Home"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/bSignup"
         android:layout_width="106dp"
         android:layout_height="60dp"

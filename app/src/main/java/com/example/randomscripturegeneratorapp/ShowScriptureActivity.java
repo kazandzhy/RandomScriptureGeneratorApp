@@ -10,14 +10,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -91,8 +87,33 @@ public class ShowScriptureActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu_other_loggedout, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.action_login:
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            case R.id.action_signup:
+                startActivity(new Intent(this, SignupActivity.class));
+                return true;
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_logout:
+                // code for logout goes here
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     @TargetApi(21)
@@ -142,11 +163,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         scripture_verse_view.setMovementMethod(new ScrollingMovementMethod());
         scripture_verse_view.setText(scripture_text);
         scripture_title_view.setText(verse_title);
-    }
-
-    public void goHome(View view) {
-        Intent goHome = new Intent(this, MainActivity.class);
-        startActivity(goHome);
+        scripture_verse_view.scrollTo(0,0);
     }
 
     public void openBrowser(View view) {
