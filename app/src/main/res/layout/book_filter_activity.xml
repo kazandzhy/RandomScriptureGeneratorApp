@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bgmain"
     tools:context="com.example.randomscripturegeneratorapp.FilterBookActivity">
 
     <Button
         android:id="@+id/randomWork_button"
         android:layout_width="215dp"
         android:layout_height="123dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="88dp"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
         app:layout_constraintHorizontal_bias="0.502"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="48dp"
+        android:background="@color/settings_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/dropDown_books"
         app:layout_constraintTop_toBottomOf="@+id/randomWork_button" />
@@ -32,6 +34,7 @@
         android:layout_width="185dp"
         android:layout_height="47dp"
         android:layout_marginTop="48dp"
+        android:background="@color/settings_bg"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
