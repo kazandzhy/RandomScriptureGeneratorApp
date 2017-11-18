@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,6 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), "Welcome back, " + email + "!", Toast.LENGTH_LONG);
                         toast.show();
 
+                        Intent goHome = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(goHome);
+
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                         builder.setMessage("Login failed, please try again.")
@@ -85,9 +90,12 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
             }
+
         };
 
         LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+        queue.add(loginRequest);
 
     }
 
