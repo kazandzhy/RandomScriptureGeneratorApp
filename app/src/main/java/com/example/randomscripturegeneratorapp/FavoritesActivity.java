@@ -18,7 +18,6 @@ public class FavoritesActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_other_loggedin, menu);
         return true;

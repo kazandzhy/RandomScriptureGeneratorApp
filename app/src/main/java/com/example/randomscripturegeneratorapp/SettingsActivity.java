@@ -1,12 +1,17 @@
 package com.example.randomscripturegeneratorapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -14,12 +19,23 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("randomizeOption", "Weighted Random");
+        editor.apply();
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_settings_loggedout, menu);
+        if (MainActivity.userId == null) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_settings_loggedout, menu);
+        } else {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_settings_loggedin, menu);
+        }
         return true;
     }
 
@@ -42,6 +58,10 @@ public class SettingsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+    }
+
+    public void onRadioButtonClicked(View view) {
 
     }
 

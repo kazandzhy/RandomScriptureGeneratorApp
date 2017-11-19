@@ -1,6 +1,8 @@
 package com.example.randomscripturegeneratorapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,7 +72,14 @@ public class LoginActivity extends AppCompatActivity {
                     if (success) {
                         String email = jsonResponse.getString("email");
                         String userId = jsonResponse.getString("user_id");
-                        MainActivity.userId = userId;
+                        //MainActivity.userId = userId;
+
+                        // save userId to sharedPreferences
+                        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPrefs.edit();
+                        editor.putString("userId", userId);
+                        editor.apply();
+
                         Toast toast = Toast.makeText(getApplicationContext(), "Welcome back, " + email + "!", Toast.LENGTH_LONG);
                         toast.show();
 

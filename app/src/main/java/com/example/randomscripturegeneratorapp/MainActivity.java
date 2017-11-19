@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 //CHANGE: Hi Vlad!
 
@@ -28,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static String userId;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             WorkWithJSON.deserializeJSON(context);
         }
 
+        /*
         //Drop down menu for Pure and Weighted random
         Spinner spinner = (Spinner) findViewById(R.id.pure_weighted_spinner);
 
@@ -56,18 +57,26 @@ public class MainActivity extends AppCompatActivity {
 
         // this code recalls the user's randomizing option and sets the spinner accordingly
         SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+
+        userId = sharedPrefs.getString("userId", null);
+
         String randomizeOption = sharedPrefs.getString("randomizeOption", "No option");
         if (randomizeOption.equals("Weighted Random")) {
             spinner.setSelection(0);
         } else if (randomizeOption.equals("Pure Random")) {
             spinner.setSelection(1);
         }
+        */
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_home_loggedout, menu);
+        if (userId == null) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_home_loggedout, menu);
+        } else {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_home_loggedin, menu);
+        }
         return true;
     }
 
@@ -94,28 +103,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendVerseToDisplay(View view) {
-        Spinner mySpinner=(Spinner) findViewById(R.id.pure_weighted_spinner);
-        String randomizeOption = mySpinner.getSelectedItem().toString();
+        //Spinner mySpinner=(Spinner) findViewById(R.id.pure_weighted_spinner);
+        //String randomizeOption = mySpinner.getSelectedItem().toString();
 
         RandomizeVerse randomizeVerse = new RandomizeVerse();
 
         ScriptureData verse;
+        // temporarily set to call weightedRandom until we get SharedPreferences figured out
+        verse = randomizeVerse.weightedRandomizeFromAllWorks();
+        /*
         if (randomizeOption.equals("Weighted Random")) {
             verse = randomizeVerse.weightedRandomizeFromAllWorks();
         } else {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
+        */
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
         displayIntent.putExtra("verse_title", verse.getVerse_title());
         displayIntent.putExtra("scripture_text", verse.getScripture_text());
-        displayIntent.putExtra("randomizeOption", randomizeOption);
+
+        // temporarily set to Weighted Random until we get SharedPreferences figured out
+        displayIntent.putExtra("randomizeOption", "Weighted Random");
 
         SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
         editor.putString("activity", "MainActivity");
-        editor.putString("randomizeOption", randomizeOption);
+        //editor.putString("randomizeOption", randomizeOption);
         editor.apply();
 
         startActivity(displayIntent);
@@ -132,8 +147,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToFavoritesActivity(View view) {
-        Intent goToFavoritesIntent = new Intent(this, FavoritesActivity.class);
-        startActivity(goToFavoritesIntent);
+        if (userId == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please log in to access this feature.", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            Intent goToFavoritesIntent = new Intent(this, FavoritesActivity.class);
+            startActivity(goToFavoritesIntent);
+        }
     }
 
 }

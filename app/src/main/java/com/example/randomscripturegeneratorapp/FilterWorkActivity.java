@@ -47,8 +47,13 @@ public class FilterWorkActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_other_loggedout, menu);
+        if (MainActivity.userId == null) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_other_loggedout, menu);
+        } else {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_other_loggedin, menu);
+        }
         return true;
     }
 
