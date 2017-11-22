@@ -21,7 +21,7 @@
 
     <Spinner
         android:id="@+id/dropDown_works"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="48dp"
         android:layout_marginTop="48dp"
         android:background="@color/settings_bg"
@@ -31,7 +31,7 @@
 
     <Spinner
         android:id="@+id/dropDown_books"
-        android:layout_width="185dp"
+        android:layout_width="200dp"
         android:layout_height="47dp"
         android:layout_marginTop="48dp"
         android:background="@color/settings_bg"

@@ -110,13 +110,14 @@ public class FilterWorkActivity extends AppCompatActivity {
             ScriptureData verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
 
             Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
-            displayIntent.putExtra("verse_title", verse.getVerse_title());
-            displayIntent.putExtra("scripture_text", verse.getScripture_text());
 
-            SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPrefs.edit();
+            SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
 
+            editor.putString("verse_title", verse.getVerse_title());
+            editor.putString("scripture_text", verse.getScripture_text());
+            editor.putString("url", URL.createURL(verse));
             editor.putString("activity", "FilterWorkActivity");
+            editor.putString("randomizeOption", "Weighted Random"); // temporary code until moved to Settings
             editor.apply();
 
             startActivity(displayIntent);

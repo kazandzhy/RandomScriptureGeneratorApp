@@ -14,26 +14,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-//CHANGE: Hi Vlad!
 
-// jesse
-
-//you are awesome!
-
-//vlad conflict:)
 
 public class MainActivity extends AppCompatActivity {
 
     private Context context;
 
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
-
+    public static SharedPreferences sharedPrefs;
     public static String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+        userId = sharedPrefs.getString("userId", null);
 
         // we need to pass context to deserializeJSON in order to read file from the assets folder
         context = this.getApplicationContext();
@@ -120,17 +117,14 @@ public class MainActivity extends AppCompatActivity {
         */
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
-        displayIntent.putExtra("verse_title", verse.getVerse_title());
-        displayIntent.putExtra("scripture_text", verse.getScripture_text());
 
-        // temporarily set to Weighted Random until we get SharedPreferences figured out
-        displayIntent.putExtra("randomizeOption", "Weighted Random");
-
-        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
+        editor.putString("verse_title", verse.getVerse_title());
+        editor.putString("scripture_text", verse.getScripture_text());
+        editor.putString("url", URL.createURL(verse));
         editor.putString("activity", "MainActivity");
-        //editor.putString("randomizeOption", randomizeOption);
+        editor.putString("randomizeOption", "Weighted Random"); // temporary code until moved to Settings
         editor.apply();
 
         startActivity(displayIntent);

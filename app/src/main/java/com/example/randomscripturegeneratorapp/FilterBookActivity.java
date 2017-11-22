@@ -82,13 +82,14 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
-        displayIntent.putExtra("verse_title", verse.getVerse_title());
-        displayIntent.putExtra("scripture_text", verse.getScripture_text());
-        displayIntent.putExtra("book_title", verse.getBook_title());
+        SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
 
-        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("verse_title", verse.getVerse_title());
+        editor.putString("scripture_text", verse.getScripture_text());
+        editor.putString("book_title", verse.getBook_title());
+        editor.putString("url", URL.createURL(verse));
         editor.putString("activity", "FilterBookActivity");
+        editor.putString("randomizeOption", "Weighted Random"); // temporary code until moved to Settings
         editor.apply();
 
         startActivity(displayIntent);
@@ -121,30 +122,35 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
             case "Old Testament":
                 bookAdapter = ArrayAdapter.createFromResource(this,R.array.ot, android.R.layout.simple_spinner_dropdown_item);
                 bookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                books.setEnabled(true);
                 books.setAdapter(bookAdapter);
                 break;
             case "New Testament":
                 bookAdapter = ArrayAdapter.createFromResource(this,
                         R.array.nt, android.R.layout.simple_spinner_item);
                 bookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                books.setEnabled(true);
                 books.setAdapter(bookAdapter);
                 break;
             case "Book of Mormon":
                 bookAdapter = ArrayAdapter.createFromResource(this,
                         R.array.bom, android.R.layout.simple_spinner_item);
                 bookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                books.setEnabled(true);
                 books.setAdapter(bookAdapter);
                 break;
             case "Doctrine and Covenants":
                 bookAdapter = ArrayAdapter.createFromResource(this,
                         R.array.doc, android.R.layout.simple_spinner_item);
                 bookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                books.setEnabled(false);
                 books.setAdapter(bookAdapter);
                 break;
             case "Pearl of Great Price":
                 bookAdapter = ArrayAdapter.createFromResource(this,
                         R.array.pogp, android.R.layout.simple_spinner_item);
                 bookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                books.setEnabled(true);
                 books.setAdapter(bookAdapter);
                 break;
         }

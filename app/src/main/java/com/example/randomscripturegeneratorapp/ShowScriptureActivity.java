@@ -1,6 +1,7 @@
 package com.example.randomscripturegeneratorapp;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -23,64 +24,24 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
     private String randomizeOption;
     private String bookChoice;
-
-
-    // For holding the variables for the scripture in scope for other Activities and methods.
-    public String workId = "pgp";
-    public String bookId = "moses";
-    public String chapId = "1";
-    public String verseId= "39";
-
+    private String verse_url;
+    private String activity;
+    private SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_scripture_activity);
 
-
-        Intent intent = getIntent();
-        String verse_title = intent.getStringExtra("verse_title");
-        String scripture_text = intent.getStringExtra("scripture_text");
-        randomizeOption = intent.getStringExtra("randomizeOption");
-        bookChoice = intent.getStringExtra("book_title");
+        sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        String verse_title = sharedPrefs.getString("verse_title", "No verse");
+        String scripture_text = sharedPrefs.getString("scripture_text", "No scripture");
+        verse_url = sharedPrefs.getString("url", "No url");
+        activity = sharedPrefs.getString("activity", "No activity");
+        randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
+        bookChoice = sharedPrefs.getString("book_title", "No book");
 
         displayScripture(scripture_text, verse_title);
-
-
-        // This code is necessary to make it so that the READ MORE functionality works
-        SharedPreferences sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE);
-        String activity = sharedPrefs.getString("activity", "No activity");
-        RandomizeVerse randomizeVerse = new RandomizeVerse();
-        ScriptureData verse;
-        if (activity.equals("FilterWorkActivity")) {
-            List<Integer> userChoices = FilterWorkActivity.getUserChoices();
-            int randomSpot = 0;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                randomSpot = ThreadLocalRandom.current().nextInt(0, userChoices.size());
-            }
-            int volume_id = userChoices.get(randomSpot);
-            verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
-        } else if (activity.equals("FilterBookActivity")) {
-            verse = randomizeVerse.randomizeFromBook(bookChoice);
-        } else {
-            if (randomizeOption.equals("Weighted Random")) {
-                verse = randomizeVerse.weightedRandomizeFromAllWorks();
-                Log.i("if option is ", randomizeOption);
-            } else {
-                verse = randomizeVerse.pureRandomizeFromAllWorks();
-                Log.i("else option is ", randomizeOption);
-            }
-        }
-
-        verse_title = verse.getVerse_title();
-        scripture_text = verse.getScripture_text();
-        displayScripture(scripture_text, verse_title);
-
-        workId = String.valueOf(verse.volume_lds_url);
-        bookId = String.valueOf(verse.book_lds_url);
-        chapId = String.valueOf(verse.chapter_number);
-        verseId = String.valueOf(verse.verse_number);
-        // PLEASE don't touch this code ^^
 
     }
 
@@ -124,9 +85,6 @@ public class ShowScriptureActivity extends AppCompatActivity {
     @TargetApi(21)
     public void randomizeAgain(View view) {
 
-        SharedPreferences sharedPrefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE);
-        String activity = sharedPrefs.getString("activity", "No activity");
-
         RandomizeVerse randomizeVerse = new RandomizeVerse();
         ScriptureData verse;
 
@@ -148,13 +106,16 @@ public class ShowScriptureActivity extends AppCompatActivity {
             }
         }
 
-        workId = String.valueOf(verse.volume_lds_url);
-        bookId = String.valueOf(verse.book_lds_url);
-        chapId = String.valueOf(verse.chapter_number);
-        verseId = String.valueOf(verse.verse_number);
-
         String verse_title = verse.getVerse_title();
         String scripture_text = verse.getScripture_text();
+        verse_url = URL.createURL(verse);
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("verse_title", verse_title);
+        editor.putString("scripture_text", scripture_text);
+        editor.putString("url", verse_url);
+        editor.apply();
+
         displayScripture(scripture_text, verse_title);
 
     }
@@ -173,15 +134,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
     }
 
     public void openBrowser(View view) {
-        String  work = workId;
-        String  book = bookId;
-        String  chap = chapId;
-        String verse = verseId;
-        TextView debug = (TextView) findViewById(R.id.debug);
-        debug.setText("https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#38");
-        String url = "https://www.lds.org/scriptures/" + work + "/" + book + "/" + chap + "." + verse + "?lang=eng#p"+ verse;
-        Log.d("url", url);
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(verse_url));
         startActivity(browserIntent);
     }
 }
