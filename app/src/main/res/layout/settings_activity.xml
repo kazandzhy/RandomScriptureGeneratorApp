@@ -43,7 +43,6 @@
             android:id="@+id/radio_weighted"
             android:layout_width="156dp"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:onClick="onRadioButtonClicked"
             android:text="Weighted Random" />
 
@@ -54,16 +53,6 @@
             android:onClick="onRadioButtonClicked"
             android:text="Pure Random" />
     </RadioGroup>
-
-    <Spinner
-        android:id="@+id/pure_weighted_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="24dp"
-        android:background="@color/settings_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/RandomizeView"

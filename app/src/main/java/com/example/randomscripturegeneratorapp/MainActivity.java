@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private Context context;
@@ -40,30 +41,6 @@ public class MainActivity extends AppCompatActivity {
         if (scriptureArray == null) {
             WorkWithJSON.deserializeJSON(context);
         }
-
-        /*
-        //Drop down menu for Pure and Weighted random
-        Spinner spinner = (Spinner) findViewById(R.id.pure_weighted_spinner);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.pure_weighted_random, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-
-        // this code recalls the user's randomizing option and sets the spinner accordingly
-        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-
-        userId = sharedPrefs.getString("userId", null);
-
-        String randomizeOption = sharedPrefs.getString("randomizeOption", "No option");
-        if (randomizeOption.equals("Weighted Random")) {
-            spinner.setSelection(0);
-        } else if (randomizeOption.equals("Pure Random")) {
-            spinner.setSelection(1);
-        }
-        */
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                // code for logout goes here
+                UserSettings.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -100,21 +77,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendVerseToDisplay(View view) {
-        //Spinner mySpinner=(Spinner) findViewById(R.id.pure_weighted_spinner);
-        //String randomizeOption = mySpinner.getSelectedItem().toString();
 
+        String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         RandomizeVerse randomizeVerse = new RandomizeVerse();
 
         ScriptureData verse;
-        // temporarily set to call weightedRandom until we get SharedPreferences figured out
-        verse = randomizeVerse.weightedRandomizeFromAllWorks();
-        /*
+
         if (randomizeOption.equals("Weighted Random")) {
             verse = randomizeVerse.weightedRandomizeFromAllWorks();
         } else {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
-        */
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
@@ -124,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("scripture_text", verse.getScripture_text());
         editor.putString("url", URL.createURL(verse));
         editor.putString("activity", "MainActivity");
-        editor.putString("randomizeOption", "Weighted Random"); // temporary code until moved to Settings
         editor.apply();
 
         startActivity(displayIntent);

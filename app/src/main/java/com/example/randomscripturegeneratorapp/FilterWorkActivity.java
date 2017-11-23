@@ -73,7 +73,7 @@ public class FilterWorkActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                // code for logout goes here
+                UserSettings.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -117,7 +117,6 @@ public class FilterWorkActivity extends AppCompatActivity {
             editor.putString("scripture_text", verse.getScripture_text());
             editor.putString("url", URL.createURL(verse));
             editor.putString("activity", "FilterWorkActivity");
-            editor.putString("randomizeOption", "Weighted Random"); // temporary code until moved to Settings
             editor.apply();
 
             startActivity(displayIntent);

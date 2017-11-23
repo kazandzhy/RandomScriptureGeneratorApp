@@ -65,7 +65,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                // code for logout goes here
+                UserSettings.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -89,7 +89,6 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         editor.putString("book_title", verse.getBook_title());
         editor.putString("url", URL.createURL(verse));
         editor.putString("activity", "FilterBookActivity");
-        editor.putString("randomizeOption", "Weighted Random"); // temporary code until moved to Settings
         editor.apply();
 
         startActivity(displayIntent);

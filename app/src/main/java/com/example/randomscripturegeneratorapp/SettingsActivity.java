@@ -5,25 +5,36 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    private RadioButton radio_weighted;
+    private RadioButton radio_pure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString("randomizeOption", "Weighted Random");
-        editor.apply();
+        radio_weighted = (RadioButton) findViewById(R.id.radio_weighted);
+        radio_pure = (RadioButton) findViewById(R.id.radio_pure);
+
+        String randomizeOption = MainActivity.sharedPrefs.getString("randomizeOption", "Weighted Random");
+        Log.i("randomize option is ", randomizeOption);
+        if (randomizeOption.equals("Weighted Random")) {
+            radio_weighted.setChecked(true);
+        } else {
+            radio_pure.setChecked(true);
+        }
 
     }
 
@@ -52,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SignupActivity.class));
                 return true;
             case R.id.action_logout:
-                // code for logout goes here
+                UserSettings.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -63,6 +74,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void onRadioButtonClicked(View view) {
 
+        SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
+
+        if (radio_weighted.isChecked()) {
+            editor.putString("randomizeOption", "Weighted Random");
+        } else {
+            editor.putString("randomizeOption", "Pure Random");
+        }
+
+        editor.apply();
     }
 
 }
