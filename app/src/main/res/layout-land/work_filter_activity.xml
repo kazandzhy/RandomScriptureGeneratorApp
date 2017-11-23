@@ -9,65 +9,66 @@
 
     <Button
         android:id="@+id/RandomWork_button"
-        android:layout_width="215dp"
-        android:layout_height="123dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="8dp"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/OT_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
         android:checked="false"
         android:onClick="onCheckboxClicked"
         android:text="Old Testament"
-        app:layout_constraintStart_toStartOf="@+id/NT_check"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/NT_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
         android:text="New Testament"
-        app:layout_constraintStart_toStartOf="@+id/BOM_check"
+        app:layout_constraintStart_toStartOf="@+id/OT_check"
         app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
     <CheckBox
         android:id="@+id/BOM_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
         android:text="Book of Mormon"
-        app:layout_constraintStart_toStartOf="@+id/DC_check"
+        app:layout_constraintStart_toStartOf="@+id/NT_check"
         app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
     <CheckBox
         android:id="@+id/DC_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
         android:text="Doctrine and Covenants"
-        app:layout_constraintStart_toStartOf="@+id/POGP_check"
+        app:layout_constraintStart_toStartOf="@+id/BOM_check"
         app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
 
     <CheckBox
         android:id="@+id/POGP_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
         android:text="Pearl of Great Price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.798"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/DC_check"
         app:layout_constraintTop_toBottomOf="@+id/DC_check" />
 </android.support.constraint.ConstraintLayout>

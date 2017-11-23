@@ -10,51 +10,40 @@
     <Button
         android:id="@+id/home_workfilter_button4"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="70dp"
         android:onClick="goToFavoritesActivity"
         android:text="Favorites"
-        app:layout_constraintEnd_toStartOf="@+id/home_workfilter_button7"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomWork_button2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/randomWork_button2" />
 
     <Button
         android:id="@+id/home_workfilter_button7"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginTop="44dp"
+        android:layout_height="60dp"
         android:onClick="goToFilterBookActivity"
         android:text="Filter By Book"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_workfilter_button6" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/home_workfilter_button4"
+        app:layout_constraintStart_toStartOf="@+id/home_workfilter_button6" />
 
     <Button
         android:id="@+id/home_workfilter_button6"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="70dp"
         android:onClick="goToFilterWorkActivity"
         android:text="Filter By work"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/randomWork_button2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/randomWork_button2"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="70dp"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
-        app:layout_constraintEnd_toStartOf="@+id/home_workfilter_button6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
