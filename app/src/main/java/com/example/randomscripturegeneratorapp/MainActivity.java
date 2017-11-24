@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+
         sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         userId = sharedPrefs.getString("userId", null);
 
