@@ -6,5 +6,8 @@
     <color name="background_material_light">#ffd173</color>
     <color name="primary_text_default_material_dark">#ffffff</color>
     <color name="foreground_material_light">#92701414</color>
-    <color name="settings_bg">#96633420</color>
+    <color name="settings_bg">#82532a19</color>
+    <color name="book_dropdown">#b54b874e</color>
+    <color name="work_checkbox">#92618894</color>
+    <color name="showscripture_buttons">#7b766844</color>
 </resources>

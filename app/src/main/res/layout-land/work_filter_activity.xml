@@ -13,8 +13,10 @@
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:layout_marginTop="8dp"
         android:onClick="sendVerseToDisplay"
+        android:background="#486872"
         android:text="Random Scripture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,52 +24,58 @@
 
     <CheckBox
         android:id="@+id/OT_check"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="40dp"
         android:checked="false"
         android:onClick="onCheckboxClicked"
+        android:background="@color/work_checkbox"
         android:text="Old Testament"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/NT_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="190dp"
+        android:layout_height="27dp"
         android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
+        android:background="@color/work_checkbox"
         android:text="New Testament"
         app:layout_constraintStart_toStartOf="@+id/OT_check"
         app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
     <CheckBox
         android:id="@+id/BOM_check"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
+        android:background="@color/work_checkbox"
         android:text="Book of Mormon"
         app:layout_constraintStart_toStartOf="@+id/NT_check"
         app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
     <CheckBox
         android:id="@+id/DC_check"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
+        android:background="@color/work_checkbox"
         android:text="Doctrine and Covenants"
         app:layout_constraintStart_toStartOf="@+id/BOM_check"
         app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
 
     <CheckBox
         android:id="@+id/POGP_check"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:onClick="onCheckboxClicked"
+        android:background="@color/work_checkbox"
         android:text="Pearl of Great Price"
         app:layout_constraintStart_toStartOf="@+id/DC_check"
         app:layout_constraintTop_toBottomOf="@+id/DC_check" />

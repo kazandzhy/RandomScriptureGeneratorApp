@@ -30,10 +30,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
+        android:background="#eac67a"
         android:text="Randomize from Favorites"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.7"
