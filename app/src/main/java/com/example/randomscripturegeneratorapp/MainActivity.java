@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
+        editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
         editor.putString("scripture_text", verse.getScripture_text());
         editor.putString("url", URL.createURL(verse));

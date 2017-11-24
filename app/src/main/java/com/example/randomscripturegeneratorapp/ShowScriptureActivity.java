@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -14,6 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,6 +31,7 @@ import static com.example.randomscripturegeneratorapp.MainActivity.APP_PREFS;
 
 public class ShowScriptureActivity extends AppCompatActivity {
 
+    private String verse_id;
     private String randomizeOption;
     private String bookChoice;
     private String verse_url;
@@ -34,6 +44,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         setContentView(R.layout.show_scripture_activity);
 
         sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        verse_id = sharedPrefs.getString("verse_id", "No verse_id");
         String verse_title = sharedPrefs.getString("verse_title", "No verse");
         String scripture_text = sharedPrefs.getString("scripture_text", "No scripture");
         verse_url = sharedPrefs.getString("url", "No url");
@@ -109,8 +120,10 @@ public class ShowScriptureActivity extends AppCompatActivity {
         String verse_title = verse.getVerse_title();
         String scripture_text = verse.getScripture_text();
         verse_url = URL.createURL(verse);
+        verse_id = Integer.toString(verse.getVerse_id());
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("verse_id", verse_id);
         editor.putString("verse_title", verse_title);
         editor.putString("scripture_text", scripture_text);
         editor.putString("url", verse_url);
@@ -121,7 +134,32 @@ public class ShowScriptureActivity extends AppCompatActivity {
     }
 
     public void addToFavorites(View view) {
-        Log.v("added to favorites: ", "scripture");
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    String message = jsonResponse.getString("message");
+                    Log.i("jsonResponse is ", message);
+
+                    // user will see different type of message depending on if the verse was successfully added or not
+                    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+                    toast.show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        if (MainActivity.userId == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please log in to save Favorites.", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            AddToFavoritesRequest addToFavoritesRequest = new AddToFavoritesRequest(MainActivity.userId, verse_id, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(ShowScriptureActivity.this);
+            queue.add(addToFavoritesRequest);
+        }
     }
 
     private void displayScripture(String scripture_text, String verse_title) {
