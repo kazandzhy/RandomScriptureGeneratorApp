@@ -12,4 +12,20 @@
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:colorForeground">@android:color/black</item>
     </style>
+
+    <style name="BlueBackground" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#114454</item>
+    </style>
+
+    <style name="GreenBackground" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2b4f2d</item>
+    </style>
+
+    <style name="YellowBackground" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#775e29</item>
+    </style>
+
 </resources>

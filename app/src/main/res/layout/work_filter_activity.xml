@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgmain"
+    android:background="#486872"
     tools:context="com.example.randomscripturegeneratorapp.FilterWorkActivity">
 
     <Button
@@ -14,9 +14,9 @@
         android:layout_marginBottom="105dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="#b7b7b7"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
-        android:background="#486872"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,7 +31,7 @@
         android:checked="false"
         android:onClick="onCheckboxClicked"
         android:text="Old Testament"
-        android:background="@color/work_checkbox"
+        android:background="#c61d1d"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
         android:layout_marginTop="5dp"
         android:onClick="onCheckboxClicked"
         android:text="New Testament"
-        android:background="@color/work_checkbox"
+        android:background="#f7901b"
         app:layout_constraintStart_toStartOf="@+id/OT_check"
         app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
@@ -54,7 +54,7 @@
         android:layout_marginTop="5dp"
         android:onClick="onCheckboxClicked"
         android:text="Book of Mormon"
-        android:background="@color/work_checkbox"
+        android:background="#5569e0"
         app:layout_constraintStart_toStartOf="@+id/NT_check"
         app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="5dp"
         android:onClick="onCheckboxClicked"
         android:text="Doctrine and Covenants"
-        android:background="@color/work_checkbox"
+        android:background="#2c9627"
         app:layout_constraintStart_toStartOf="@+id/BOM_check"
         app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
 
@@ -76,7 +76,7 @@
         android:layout_marginTop="5dp"
         android:onClick="onCheckboxClicked"
         android:text="Pearl of Great Price"
-        android:background="@color/work_checkbox"
+        android:background="#7f3ea8"
         app:layout_constraintStart_toStartOf="@+id/DC_check"
         app:layout_constraintTop_toBottomOf="@+id/DC_check" />
 </android.support.constraint.ConstraintLayout>

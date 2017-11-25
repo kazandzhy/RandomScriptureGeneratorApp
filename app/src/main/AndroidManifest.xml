@@ -28,10 +28,12 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FilterWorkActivity"
+            android:theme="@style/BlueBackground"
             android:label="Filter By Work"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FilterBookActivity"
+            android:theme="@style/GreenBackground"
             android:label="Filter By Book"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -39,6 +41,7 @@
             android:label="Show Random Scripture" />
         <activity
             android:name=".FavoritesActivity"
+            android:theme="@style/YellowBackground"
             android:label="Favorites"
             android:parentActivityName=".MainActivity" />
         <activity

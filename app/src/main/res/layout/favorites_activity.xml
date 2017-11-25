@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="#EAC67A"
     tools:context="com.example.randomscripturegeneratorapp.FavoritesActivity">
 
     <ListView
@@ -34,7 +34,7 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:background="#eac67a"
+        android:background="#b7b7b7"
         android:text="Randomize from Favorites"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
