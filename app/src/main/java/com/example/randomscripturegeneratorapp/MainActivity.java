@@ -10,8 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -33,15 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         userId = sharedPrefs.getString("userId", null);
-
-        // we need to pass context to deserializeJSON in order to read file from the assets folder
-        context = this.getApplicationContext();
-        // deserialize JSON file to Java array
-        // the if statement ensures that the JSON is deserialized only the first time MainActivity is opened
-        ScriptureData[] scriptureArray = new WorkWithJSON().getScriptureArray();
-        if (scriptureArray == null) {
-            WorkWithJSON.deserializeJSON(context);
-        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
