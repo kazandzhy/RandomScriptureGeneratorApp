@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgmain"
+    android:background="#4b874e"
     tools:context="com.example.randomscripturegeneratorapp.FilterBookActivity">
 
     <Button
@@ -14,7 +14,7 @@
         android:layout_marginBottom="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/book_dropdown"
+        android:background="#b7b7b7"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="50dp"
-        android:background="@color/book_dropdown"
+        android:background="#dde8b9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +39,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:layout_marginTop="50dp"
-        android:background="@color/book_dropdown"
+        android:background="#dde8b9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
