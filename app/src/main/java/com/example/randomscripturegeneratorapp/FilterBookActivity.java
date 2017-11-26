@@ -37,6 +37,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
     }
 
+    /*
     public boolean onCreateOptionsMenu(Menu menu) {
 
         if (MainActivity.userId == null) {
@@ -73,6 +74,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         }
 
     }
+    */
 
     public void sendVerseToDisplay(View view) {
         Spinner bookSpinner =(Spinner) findViewById(R.id.dropDown_books);

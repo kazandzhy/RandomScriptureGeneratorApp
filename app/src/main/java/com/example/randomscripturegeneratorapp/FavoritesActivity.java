@@ -43,73 +43,6 @@ public class FavoritesActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-    private void populateFavoritesList() {
-        // Get the USER_ID
-        SharedPreferences prefs = getSharedPreferences(MainActivity.APP_PREFS, MODE_PRIVATE);
-        String userId = (prefs.getString("userId", ""));
-
-        // Get Items from Database
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                //create Gson instance
-                Gson gson = new Gson();
-                //fill array of objects
-                favoritesArray = gson.fromJson(response, ScriptureData[].class);
-
-                // Make the list of Items
-                List<String> verseTitles = new ArrayList<>();
-                for (int i = 0; i < favoritesArray.length; i++) {
-                    Log.i("favorite is ", favoritesArray[i].getVerse_title());
-                    verseTitles.add(favoritesArray[i].getVerse_title());
-                }
-
-                String[] verseList = new String[verseTitles.size()];
-                verseTitles.toArray(verseList);
-
-
-                // Build the adapter
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                        context,
-                        R.layout.list_item,
-                        verseList);
-
-                // Configure the list view
-                ListView favorites = (ListView) findViewById(R.id.favorites);
-                favorites.setAdapter(adapter);
-            }
-        };
-
-        LoadFavoritesRequest loadFavoritesRequest = new LoadFavoritesRequest(userId, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(FavoritesActivity.this);
-        queue.add(loadFavoritesRequest);
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_other_loggedin, menu);
@@ -132,6 +65,57 @@ public class FavoritesActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+    }
+
+    private void populateFavoritesList() {
+        // Get the USER_ID
+        SharedPreferences prefs = getSharedPreferences(MainActivity.APP_PREFS, MODE_PRIVATE);
+        String userId = (prefs.getString("userId", ""));
+
+        // Get Items from Database
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (response.equals("No favorites")) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "You have no Favorites saved yet.", Toast.LENGTH_LONG);
+                    toast.show();
+
+                    startActivity(new Intent(context, MainActivity.class));
+                } else {
+                    //create Gson instance
+                    Gson gson = new Gson();
+                    //fill array of objects
+                    favoritesArray = gson.fromJson(response, ScriptureData[].class);
+
+                    // Make the list of Items
+                    List<String> verseTitles = new ArrayList<>();
+                    for (int i = 0; i < favoritesArray.length; i++) {
+                        Log.i("favorite is ", favoritesArray[i].getVerse_title());
+                        verseTitles.add(favoritesArray[i].getVerse_title());
+                    }
+
+                    String[] verseList = new String[verseTitles.size()];
+                    verseTitles.toArray(verseList);
+
+
+                    // Build the adapter
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                            context,
+                            R.layout.list_item,
+                            verseList);
+
+                    // Configure the list view
+                    ListView favorites = (ListView) findViewById(R.id.favorites);
+                    favorites.setAdapter(adapter);
+                }
+            }
+        };
+
+        LoadFavoritesRequest loadFavoritesRequest = new LoadFavoritesRequest(userId, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(FavoritesActivity.this);
+        queue.add(loadFavoritesRequest);
 
     }
 
