@@ -3,6 +3,7 @@ package com.example.randomscripturegeneratorapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-
         sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         userId = sharedPrefs.getString("userId", null);
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         if (userId == null) {
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToFavoritesIntent);
         }
     }
+
 
 }
 
