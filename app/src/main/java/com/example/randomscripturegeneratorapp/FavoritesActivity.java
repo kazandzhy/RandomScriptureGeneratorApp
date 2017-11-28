@@ -28,7 +28,7 @@ import java.util.List;
 
 public class FavoritesActivity extends AppCompatActivity {
 
-    private static ScriptureData[] favoritesArray;
+    public static ScriptureData[] favoritesArray;
     private static Context context;
 
     @Override
@@ -117,6 +117,28 @@ public class FavoritesActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(FavoritesActivity.this);
         queue.add(loadFavoritesRequest);
 
+    }
+
+    public void randomizeFromFavorites(View view) {
+        if (favoritesArray != null) {
+            ScriptureData verse = RandomizeVerse.randomizeFromFavoriteArray(favoritesArray);
+
+            Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
+
+            SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
+
+            editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
+            editor.putString("verse_title", verse.getVerse_title());
+            editor.putString("scripture_text", verse.getScripture_text());
+            editor.putString("url", URL.createURL(verse));
+            editor.putString("activity", "FavoritesActivity");
+            editor.apply();
+
+            startActivity(displayIntent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please wait while Favorites load.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 }

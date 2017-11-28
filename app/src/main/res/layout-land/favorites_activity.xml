@@ -14,6 +14,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginTop="65dp"
         android:background="#b7b7b7"
+        android:onClick="randomizeFromFavorites"
         android:text="Randomize from Favorites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

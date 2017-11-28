@@ -184,4 +184,17 @@ public class RandomizeVerse {
 
         return verse;
     }
+
+    @TargetApi(21)
+    //function which give random verse from user favorites
+    public static ScriptureData randomizeFromFavoriteArray(ScriptureData[] favoritesArray) {
+
+        //random number in the range from 0 to the length of array of objects
+        int number = ThreadLocalRandom.current().nextInt(0, favoritesArray.length);
+
+        //random verse from all standard works
+        ScriptureData verse = favoritesArray[number];
+
+        return verse;
+    }
 }

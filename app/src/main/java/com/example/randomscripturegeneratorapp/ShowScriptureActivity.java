@@ -107,6 +107,8 @@ public class ShowScriptureActivity extends AppCompatActivity {
             verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
         } else if (activity.equals("FilterBookActivity")) {
             verse = randomizeVerse.randomizeFromBook(bookChoice);
+        } else if (activity.equals("FavoritesActivity")) {
+            verse = RandomizeVerse.randomizeFromFavoriteArray(FavoritesActivity.favoritesArray);
         } else {
             if (randomizeOption.equals("Weighted Random")) {
                 verse = randomizeVerse.weightedRandomizeFromAllWorks();
