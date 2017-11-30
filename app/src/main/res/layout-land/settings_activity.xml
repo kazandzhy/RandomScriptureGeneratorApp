@@ -16,6 +16,7 @@
         android:layout_marginTop="80dp"
         android:text="Scripture Text Size"
         android:textAlignment="center"
+        android:textColor="#542919"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,14 +46,16 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Weighted Random" />
+            android:text="Weighted Random"
+            android:textColor="#542919" />
 
         <RadioButton
             android:id="@+id/radio_pure"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
-            android:text="Pure Random" />
+            android:text="Pure Random"
+            android:textColor="#542919" />
     </RadioGroup>
 
     <TextView
@@ -60,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
         android:text="Randomize Method"
+        android:textColor="#542919"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/TextSizeView"

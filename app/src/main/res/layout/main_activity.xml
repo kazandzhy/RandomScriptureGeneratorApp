@@ -9,49 +9,53 @@
 
     <Button
         android:id="@+id/home_workfilter_button4"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="60dp"
         android:layout_marginTop="26dp"
         android:background="#eac67a"
         android:onClick="goToFavoritesActivity"
         android:text="Favorites"
         android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/home_workfilter_button7"
         app:layout_constraintTop_toBottomOf="@+id/home_workfilter_button7" />
 
     <Button
         android:id="@+id/home_workfilter_button7"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="60dp"
         android:layout_marginTop="26dp"
         android:background="#4b874e"
         android:onClick="goToFilterBookActivity"
         android:text="Filter By Book"
         android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/home_workfilter_button6"
         app:layout_constraintTop_toBottomOf="@+id/home_workfilter_button6" />
 
     <Button
         android:id="@+id/home_workfilter_button6"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="60dp"
         android:layout_marginTop="26dp"
         android:background="#486872"
         android:onClick="goToFilterWorkActivity"
         android:text="Filter By Work"
         android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/randomWork_button2"
         app:layout_constraintTop_toBottomOf="@+id/randomWork_button2" />
 
     <Button
         android:id="@+id/randomWork_button2"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:background="#af5e56"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
         android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
