@@ -44,18 +44,38 @@ public class FavoritesActivity extends AppCompatActivity {
         //Populate the listView
         populateFavoritesList();
 
-        final ListView favoritesList = (ListView) findViewById(R.id.favorites);
+        //Listen for clicks
+        registerCallBack();
 
+    }
+
+    private void registerCallBack() {
+        final ListView favoritesList = (ListView) findViewById(R.id.favorites);
         favoritesList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
                 String selectedFromList =(String) (favoritesList.getItemAtPosition(myItemInt));
                 registerForContextMenu(myView);
                 Log.i("selected is ", selectedFromList);
+
+                ScriptureData verse = favoritesArray[myItemInt];
+
+                SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
+
+                editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
+                editor.putString("verse_title", verse.getVerse_title());
+                editor.putString("scripture_text", verse.getScripture_text());
+                editor.putString("book_title", verse.getBook_title());
+                editor.putString("url", URL.createURL(verse));
+                editor.putString("activity", "FilterBookActivity");
+                editor.apply();
+
+                Intent displayIntent = new Intent(FavoritesActivity.this, ShowScriptureActivity.class);
+                startActivity(displayIntent);
+
                 return true;
 
             }
         });
-
     }
 
     @Override

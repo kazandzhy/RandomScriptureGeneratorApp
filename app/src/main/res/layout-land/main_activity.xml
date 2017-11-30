@@ -7,6 +7,7 @@
     android:background="@drawable/bgmain"
     tools:context="com.example.randomscripturegeneratorapp.MainActivity">
 
+
     <Button
         android:id="@+id/home_workfilter_button4"
         android:layout_width="200dp"
