@@ -24,58 +24,57 @@
 
     <CheckBox
         android:id="@+id/OT_check"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="40dp"
+        android:background="#c61d1d"
         android:checked="false"
         android:onClick="onCheckboxClicked"
-        android:background="#c61d1d"
         android:text="Old Testament"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/NT_check"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="27dp"
         android:layout_marginTop="15dp"
-        android:onClick="onCheckboxClicked"
         android:background="#f7901b"
+        android:onClick="onCheckboxClicked"
         android:text="New Testament"
         app:layout_constraintStart_toStartOf="@+id/OT_check"
         app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
     <CheckBox
         android:id="@+id/BOM_check"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:onClick="onCheckboxClicked"
         android:background="#5569e0"
+        android:onClick="onCheckboxClicked"
         android:text="Book of Mormon"
         app:layout_constraintStart_toStartOf="@+id/NT_check"
         app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
     <CheckBox
         android:id="@+id/DC_check"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:onClick="onCheckboxClicked"
         android:background="#2c9627"
+        android:onClick="onCheckboxClicked"
         android:text="Doctrine and Covenants"
         app:layout_constraintStart_toStartOf="@+id/BOM_check"
         app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
 
     <CheckBox
         android:id="@+id/POGP_check"
-        android:layout_width="190dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:onClick="onCheckboxClicked"
         android:background="#7f3ea8"
+        android:onClick="onCheckboxClicked"
         android:text="Pearl of Great Price"
         app:layout_constraintStart_toStartOf="@+id/DC_check"
         app:layout_constraintTop_toBottomOf="@+id/DC_check" />

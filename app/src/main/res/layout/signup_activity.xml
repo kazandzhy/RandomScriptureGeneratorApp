@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@drawable/bg"
     tools:context="com.example.randomscripturegeneratorapp.SignupActivity">
 
     <EditText
         android:id="@+id/etEmail_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -22,8 +22,8 @@
 
     <EditText
         android:id="@+id/etPassword_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
@@ -35,8 +35,8 @@
 
     <EditText
         android:id="@+id/etConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Confirm"
@@ -48,13 +48,12 @@
 
     <Button
         android:id="@+id/bSignup"
-        android:layout_width="106dp"
-        android:layout_height="60dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
         android:layout_marginTop="12dp"
         android:onClick="signupRequest"
         android:text="Sign up"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etConfirm"
         app:layout_constraintTop_toBottomOf="@+id/etConfirm" />
 
 </android.support.constraint.ConstraintLayout>

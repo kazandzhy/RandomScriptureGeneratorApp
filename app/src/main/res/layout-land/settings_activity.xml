@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
+    android:background="@drawable/bg"
     tools:context="com.example.randomscripturegeneratorapp.SettingsActivity">
 
     <TextView
@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="80dp"
         android:text="Scripture Text Size"
         android:textAlignment="center"
