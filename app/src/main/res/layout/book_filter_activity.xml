@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4b874e"
+    android:background="@drawable/bgmain"
     tools:context="com.example.randomscripturegeneratorapp.FilterBookActivity">
 
     <Button
         android:id="@+id/randomWork_button"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="95dp"
-        android:background="#b7b7b7"
+        android:layout_marginTop="70dp"
+        android:background="#542919"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/dropDown_books" />
+        android:textAllCaps="false"
+        android:textColor="#F4F0EF"
+        app:layout_constraintStart_toStartOf="@+id/dropDown_books"
+        app:layout_constraintTop_toBottomOf="@+id/dropDown_books" />
 
     <Spinner
         android:id="@+id/dropDown_works"
@@ -25,7 +27,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="95dp"
-        android:background="#dde8b9"
+        android:background="#f1e0d6"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +38,8 @@
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginTop="70dp"
-        android:background="#dde8b9"
+        android:background="#f1e0d6"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@+id/dropDown_works"
         app:layout_constraintTop_toBottomOf="@+id/dropDown_works" />
 

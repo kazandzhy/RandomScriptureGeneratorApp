@@ -27,6 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:text="Loading Scriptures"
+        android:textColor="#f1e0d6"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +43,7 @@
         android:layout_marginTop="25dp"
         android:text="This may take a few minutes,\ndepending on your connection."
         android:textAlignment="center"
+        android:textColor="#f1e0d6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pbJSON" />

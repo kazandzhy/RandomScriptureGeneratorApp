@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class FilterBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -118,7 +121,19 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
     {
         Spinner books = (Spinner) findViewById(R.id.dropDown_books);
         books.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> bookAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> bookAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item) {
+            public View getView(int position, View convertView,ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                ((TextView) v).setTextSize(16);
+                return v;
+            }
+
+            public View getDropDownView(int position, View convertView,ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView,parent);
+                ((TextView) v).setGravity(Gravity.CENTER);
+                return v;
+            }
+        };
         switch(position)
         {
             case "Old Testament":

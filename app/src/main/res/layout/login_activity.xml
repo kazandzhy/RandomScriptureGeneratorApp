@@ -14,6 +14,9 @@
         android:layout_marginTop="12dp"
         android:onClick="login"
         android:text="Log in"
+        android:textColor="#F4F0EF"
+        android:background="#542919"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/etPassword_login"
         app:layout_constraintTop_toBottomOf="@+id/etPassword_login" />
 
@@ -25,6 +28,8 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:background="#f1e0d6"
+        android:paddingLeft="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +43,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="@android:color/background_light"
+        android:background="#f1e0d6"
+        android:paddingLeft="10dp"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

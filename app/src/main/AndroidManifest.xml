@@ -22,21 +22,18 @@
         <activity
             android:name=".FilterWorkActivity"
             android:label="Filter By Work"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/BlueBackground" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FilterBookActivity"
             android:label="Filter By Book"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/GreenBackground" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ShowScriptureActivity"
             android:label="Show Random Scripture" />
         <activity
             android:name=".FavoritesActivity"
             android:label="Favorites"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/YellowBackground" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="Log In"

@@ -16,6 +16,7 @@
         android:onClick="goToFavoritesActivity"
         android:background="#eac67a"
         android:text="Favorites"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/randomWork_button2" />
 
@@ -26,6 +27,7 @@
         android:onClick="goToFilterBookActivity"
         android:background="#4b874e"
         android:text="Filter By Book"
+        android:textAllCaps="false"
         app:layout_constraintBaseline_toBaselineOf="@+id/home_workfilter_button4"
         app:layout_constraintStart_toStartOf="@+id/home_workfilter_button6" />
 
@@ -34,10 +36,10 @@
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:onClick="goToFilterWorkActivity"
         android:background="#486872"
-        android:text="Filter By work"
+        android:onClick="goToFilterWorkActivity"
+        android:text="Filter By Work"
+        android:textAllCaps="false"
         app:layout_constraintBaseline_toBaselineOf="@+id/randomWork_button2"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -51,6 +53,7 @@
         android:onClick="sendVerseToDisplay"
         android:background="#af5e56"
         android:text="Random Scripture"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
