@@ -78,30 +78,9 @@ public class FavoritesActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_favorites_longclick, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getItemId()) {
-            case R.id.action_deleteFavorite:
-                // code to delete favorite
-                Log.i("delete favorites ", "works");
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_other_loggedin, menu);
+        inflater.inflate(R.menu.menu_favorites, menu);
         return true;
     }
 
@@ -110,6 +89,12 @@ public class FavoritesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_home:
                 startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.action_randomize:
+                randomizeFromFavorites();
+                return true;
+            case R.id.action_delete:
+                // code to delete all favorites
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -174,7 +159,7 @@ public class FavoritesActivity extends AppCompatActivity {
 
     }
 
-    public void randomizeFromFavorites(View view) {
+    private void randomizeFromFavorites() {
         if (favoritesArray != null) {
             ScriptureData verse = RandomizeVerse.randomizeFromFavoriteArray(favoritesArray);
 

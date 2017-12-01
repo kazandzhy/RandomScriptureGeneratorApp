@@ -7,37 +7,16 @@
     android:background="@drawable/bgmain"
     tools:context="com.example.randomscripturegeneratorapp.FavoritesActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="65dp"
-        android:background="#b7b7b7"
-        android:onClick="randomizeFromFavorites"
-        android:text="Randomize from Favorites"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="65dp"
-        android:background="#b7b7b7"
-        android:text="DELETE FROM FAVORITES"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
     <ListView
         android:id="@+id/favorites"
-        android:layout_width="271dp"
-        android:layout_height="267dp"
+        android:layout_width="537dp"
+        android:layout_height="293dp"
         android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

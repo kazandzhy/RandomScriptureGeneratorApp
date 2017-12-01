@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/action_home"
+        android:title="Home"/>
+
+    <item android:id="@+id/action_randomize"
+        android:title="Randomize from Favorites"/>
+
+    <item android:id="@+id/action_delete"
+        android:title="Delete all Favorites"/>
+
+    <item android:id="@+id/action_logout"
+        android:title="Log Out"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="Settings"/>
+
+</menu>
