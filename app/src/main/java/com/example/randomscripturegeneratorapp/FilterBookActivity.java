@@ -20,6 +20,8 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
     Context context;
     RandomizeVerse randomizeVerse;
+    ArrayAdapter<CharSequence> workAdapter;
+    ArrayAdapter<CharSequence> bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,8 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         //Drop down menu for Works
         Spinner works = (Spinner) findViewById(R.id.dropDown_works);
         works.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> workAdapter = ArrayAdapter.createFromResource(this,
+        
+        workAdapter = ArrayAdapter.createFromResource(this,
                 R.array.works, android.R.layout.simple_spinner_item);
         workAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         works.setAdapter(workAdapter);
@@ -108,7 +111,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
             //Differentiate between which spinner was changed
             if(spinner.getId() == R.id.dropDown_works)
             {
-                updateBookSpinner(parent.getItemAtPosition(i).toString());
+                updateBookSpinner(work);
             }
     }
 
@@ -121,10 +124,10 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
     {
         Spinner books = (Spinner) findViewById(R.id.dropDown_books);
         books.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> bookAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item) {
+        /*ArrayAdapter<CharSequence> bookAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item) {
             public View getView(int position, View convertView,ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
-                ((TextView) v).setTextSize(16);
+                ((TextView) v).setTextSize(26);
                 return v;
             }
 
@@ -133,11 +136,11 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
                 ((TextView) v).setGravity(Gravity.CENTER);
                 return v;
             }
-        };
+        };*/
         switch(position)
         {
             case "Old Testament":
-                bookAdapter = ArrayAdapter.createFromResource(this,R.array.ot, android.R.layout.simple_spinner_dropdown_item);
+                bookAdapter = ArrayAdapter.createFromResource(this,R.array.ot, android.R.layout.simple_spinner_item);
                 bookAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 books.setEnabled(true);
                 books.setAdapter(bookAdapter);

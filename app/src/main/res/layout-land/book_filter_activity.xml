@@ -31,6 +31,8 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="50dp"
         android:background="#f1e0d6"
+        android:entries="@drawable/bg"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +43,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginTop="50dp"
         android:background="#f1e0d6"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
