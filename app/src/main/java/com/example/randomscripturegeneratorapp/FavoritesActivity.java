@@ -59,6 +59,8 @@ public class FavoritesActivity extends AppCompatActivity {
 
                 ScriptureData verse = favoritesArray[myItemInt];
 
+
+
                 SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
 
                 editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
@@ -66,7 +68,7 @@ public class FavoritesActivity extends AppCompatActivity {
                 editor.putString("scripture_text", verse.getScripture_text());
                 editor.putString("book_title", verse.getBook_title());
                 editor.putString("url", URL.createURL(verse));
-                editor.putString("activity", "FilterBookActivity");
+                editor.putString("activity", "FavoritesActivity");
                 editor.apply();
 
                 Intent displayIntent = new Intent(FavoritesActivity.this, ShowScriptureActivity.class);
@@ -130,7 +132,7 @@ public class FavoritesActivity extends AppCompatActivity {
                     favoritesArray = gson.fromJson(response, ScriptureData[].class);
 
                     // Make the list of Items
-                    List<String> verseTitles = new ArrayList<>();
+                    ArrayList<String> verseTitles = new ArrayList<>();
                     for (int i = 0; i < favoritesArray.length; i++) {
                         Log.i("favorite is ", favoritesArray[i].getVerse_title());
                         verseTitles.add(favoritesArray[i].getVerse_title());
@@ -139,16 +141,15 @@ public class FavoritesActivity extends AppCompatActivity {
                     String[] verseList = new String[verseTitles.size()];
                     verseTitles.toArray(verseList);
 
+                    //Fill the List
 
                     // Build the adapter
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                            context,
-                            R.layout.list_item,
-                            verseList);
+                    FavoritesListArrayAdapter adapter = new FavoritesListArrayAdapter(verseTitles, FavoritesActivity.this);
 
                     // Configure the list view
                     ListView favorites = (ListView) findViewById(R.id.favorites);
                     favorites.setAdapter(adapter);
+
                 }
             }
         };

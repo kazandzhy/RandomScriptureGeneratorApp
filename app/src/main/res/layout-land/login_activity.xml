@@ -14,6 +14,7 @@
         android:layout_marginTop="12dp"
         android:background="#542919"
         android:text="Log In"
+        android:onClick="login"
         android:textAllCaps="false"
         android:textColor="#F4F0EF"
         android:textSize="18sp"
