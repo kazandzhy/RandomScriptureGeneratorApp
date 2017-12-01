@@ -13,8 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".SettingsActivity"
             android:label="Settings"
@@ -42,7 +41,6 @@
             android:name=".SignupActivity"
             android:label="Sign Up"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".LoadJSONActivity"
             android:noHistory="true">
@@ -57,6 +55,15 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+        <activity android:name=".Alarm_clock"
+            android:label="Daily Scripture"
+            android:parentActivityName=".SettingsActivity"
+            android:screenOrientation="portrait"></activity>
+        <receiver android:name=".AlarmReceiver"
+            android:enabled ="true"
+            android:exported="true">
+
+        </receiver>
     </application>
 
 </manifest>

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Random Scripture Generator App</string>
     <string name="title_activity_login">activity_login</string>
+    <string name="AlarmTest">This is the Alarm</string>
 </resources>

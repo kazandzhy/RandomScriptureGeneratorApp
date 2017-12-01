@@ -85,4 +85,8 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    public void onDailyScriptureClicked(View view)
+    {
+        startActivity(new Intent( this, Alarm_clock.class));
+    }
 }
