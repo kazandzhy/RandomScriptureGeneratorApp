@@ -27,6 +27,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@color/showscripture_buttons"
+        android:onClick="addToFavorites"
         app:layout_constraintEnd_toEndOf="@+id/scripture_text_view"
         app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
         app:srcCompat="@android:drawable/btn_star_big_on" />

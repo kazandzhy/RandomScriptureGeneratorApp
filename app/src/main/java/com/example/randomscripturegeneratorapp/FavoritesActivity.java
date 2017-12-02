@@ -1,6 +1,7 @@
 package com.example.randomscripturegeneratorapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
@@ -96,7 +97,8 @@ public class FavoritesActivity extends AppCompatActivity {
                 randomizeFromFavorites();
                 return true;
             case R.id.action_delete:
-                // code to delete all favorites
+                //deleteAllFavorites();
+                confirmDeleteFavorites();
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -122,7 +124,7 @@ public class FavoritesActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 if (response.equals("No favorites")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "You have no Favorites saved yet.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), "You have no Favorites saved.", Toast.LENGTH_LONG);
                     toast.show();
                     noFavorites = true;
                 } else {
@@ -177,10 +179,94 @@ public class FavoritesActivity extends AppCompatActivity {
 
             startActivity(displayIntent);
         } else if (noFavorites) {
-            Toast toast = Toast.makeText(getApplicationContext(), "You have no Favorites saved yet.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "You have no Favorites saved.", Toast.LENGTH_SHORT);
             toast.show();
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Please wait while Favorites load.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    public static void deleteFavorite(String verse_title) {
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        Toast toast = Toast.makeText(context, "Verse removed successfully.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                    // for logging purposes only
+                    String message = jsonResponse.getString("message");
+                    Log.i("jsonResponse is ", message);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        DeleteFavoriteRequest deleteFavoriteRequest = new DeleteFavoriteRequest(MainActivity.userId, verse_title, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(deleteFavoriteRequest);
+
+    }
+
+    private void deleteAllFavorites() {
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    String message = jsonResponse.getString("message");
+                    Log.i("jsonResponse is ", message);
+
+                    Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    if (success) {
+                        favoritesArray = null;
+                        startActivity(new Intent(context, FavoritesActivity.class));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        DeleteAllFavoritesRequest deleteAllFavoritesRequest = new DeleteAllFavoritesRequest(MainActivity.userId, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(deleteAllFavoritesRequest);
+
+    }
+
+    private void confirmDeleteFavorites() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        deleteAllFavorites();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
+        if (favoritesArray != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Are you sure you'd like to delete all your Favorites?").setPositiveButton("Yes", dialogClickListener)
+                    .setNegativeButton("No", dialogClickListener).show();
+        } else {
+            Toast toast = Toast.makeText(context, "There are no Favorites to be deleted.", Toast.LENGTH_SHORT);
             toast.show();
         }
     }

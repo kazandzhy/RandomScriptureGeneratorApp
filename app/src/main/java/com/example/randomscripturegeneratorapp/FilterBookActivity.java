@@ -33,7 +33,8 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         //Drop down menu for Works
         Spinner works = (Spinner) findViewById(R.id.dropDown_works);
         works.setOnItemSelectedListener(this);
-        
+
+
         workAdapter = ArrayAdapter.createFromResource(this,
                 R.array.works, android.R.layout.simple_spinner_item);
         workAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

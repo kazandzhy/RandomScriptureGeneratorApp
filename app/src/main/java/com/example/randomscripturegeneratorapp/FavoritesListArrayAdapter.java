@@ -1,6 +1,7 @@
 package com.example.randomscripturegeneratorapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
+        final TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
@@ -58,7 +59,8 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
+                Log.i("verse is ", listItemText.getText().toString());
+                FavoritesActivity.deleteFavorite(listItemText.getText().toString());
                 list.remove(position); //or some other task
                 notifyDataSetChanged();
             }
