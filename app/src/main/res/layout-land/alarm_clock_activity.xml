@@ -9,17 +9,18 @@
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="381dp"
+        android:layout_width="442dp"
         android:layout_height="348dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="-15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:layout_marginRight="148dp"
+        android:layout_marginBottom="140dp"
+        android:layout_marginRight="44dp"
         android:onClick="alarmSwitch"
         android:showText="true"
         android:text="Alarm"

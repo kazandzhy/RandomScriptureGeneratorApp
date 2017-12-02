@@ -57,8 +57,7 @@
 
         <activity android:name=".Alarm_clock"
             android:label="Daily Scripture"
-            android:parentActivityName=".SettingsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:parentActivityName=".SettingsActivity"></activity>
         <receiver android:name=".AlarmReceiver"
             android:enabled ="true"
             android:exported="true">
