@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import java.util.Calendar;
 public class Alarm_clock extends AppCompatActivity {
 
     TimePicker timepicker;
-
+    Switch alarmSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,13 +27,20 @@ public class Alarm_clock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_clock_activity);
         timepicker = findViewById(R.id.timePicker);
+        alarmSwitch = findViewById((R.id.switch1));
+        SharedPreferences sharedpref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        timepicker.setCurrentHour(sharedpref.getInt("Hour", 12));
+        timepicker.setCurrentMinute(sharedpref.getInt("Minute", 00));
+        alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
+
     }
+
 
     public void alarmSwitch(View view)
     {
-        Switch alarm = findViewById((R.id.switch1));
+
         int x = 0;
-        if(alarm.isChecked())
+        if(alarmSwitch.isChecked())
         {
             x = 1;
         }
@@ -62,6 +70,12 @@ public class Alarm_clock extends AppCompatActivity {
                     0
             );
         }
+        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putInt("Hour",timepicker.getCurrentHour());
+        editor.putInt("Minute", timepicker.getCurrentMinute());
+        editor.putBoolean("Alarm", alarmSwitch.isChecked());
+        editor.apply();
 
         switch(x)
         {
@@ -82,11 +96,16 @@ public class Alarm_clock extends AppCompatActivity {
     }
 
     public void setAlarm(long timeInMillis) {
-        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlarmReceiver.class );
-        PendingIntent pendingintent = PendingIntent.getBroadcast(this,0, intent,0);
 
-        alarm.setRepeating(AlarmManager.RTC  ,timeInMillis,AlarmManager.INTERVAL_DAY, pendingintent);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingintent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        if (timeInMillis != 0) {
+            alarm.setRepeating(AlarmManager.RTC, timeInMillis, AlarmManager.INTERVAL_DAY, pendingintent);
+        } else
+        {
+            alarm.cancel(pendingintent);
+        }
     }
 
 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import static android.support.v4.content.ContextCompat.startActivity;
 import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
@@ -17,8 +18,6 @@ import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-
-
 
         String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         RandomizeVerse randomizeVerse = new RandomizeVerse();
