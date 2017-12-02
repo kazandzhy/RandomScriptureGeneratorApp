@@ -11,9 +11,8 @@
         android:id="@+id/TextSizeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="50dp"
         android:text="Scripture Text Size"
         android:textAlignment="center"
         android:textColor="#542919"
@@ -26,7 +25,7 @@
         android:id="@+id/seekBar"
         android:layout_width="217dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/TextSizeView" />
 
@@ -34,9 +33,8 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="73dp"
+        android:layout_marginBottom="125dp"
         android:layout_marginEnd="90dp"
-        android:layout_marginRight="90dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -62,24 +60,30 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginEnd="60dp"
         android:text="Randomize Method"
         android:textColor="#542919"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/TextSizeView"
-        app:layout_constraintStart_toEndOf="@+id/TextSizeView" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="#542919"
         android:onClick="onDailyScriptureClicked"
-        android:text="Set Daily Scripture Alarm"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Daily Scripture Alarm"
+        android:textAllCaps="false"
+        android:textColor="#F4F0EF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
