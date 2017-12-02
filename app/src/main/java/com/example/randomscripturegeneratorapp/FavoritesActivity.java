@@ -36,6 +36,7 @@ public class FavoritesActivity extends AppCompatActivity {
     public static ScriptureData[] favoritesArray;
     private static Context context;
     private Boolean noFavorites = false;
+    private ListView favorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class FavoritesActivity extends AppCompatActivity {
                     FavoritesListArrayAdapter adapter = new FavoritesListArrayAdapter(verseTitles, FavoritesActivity.this);
 
                     // Configure the list view
-                    ListView favorites = (ListView) findViewById(R.id.favorites);
+                    favorites = (ListView) findViewById(R.id.favorites);
                     favorites.setAdapter(adapter);
 
                 }
@@ -226,7 +227,8 @@ public class FavoritesActivity extends AppCompatActivity {
 
                     if (success) {
                         favoritesArray = null;
-                        startActivity(new Intent(context, FavoritesActivity.class));
+                        favorites.setAdapter(null);
+                        //startActivity(new Intent(context, FavoritesActivity.class));
                     }
 
                 } catch (JSONException e) {

@@ -48,7 +48,10 @@ public class LoadJSONActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            WorkWithJSON.deserializeJSON(context);
+            ScriptureData[] scriptureArray = new WorkWithJSON().getScriptureArray();
+                   if (scriptureArray == null) {
+                            WorkWithJSON.deserializeJSON(context);
+                      }
 
             return "";
         }
