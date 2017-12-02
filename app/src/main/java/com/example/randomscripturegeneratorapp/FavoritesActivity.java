@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -46,39 +48,37 @@ public class FavoritesActivity extends AppCompatActivity {
         populateFavoritesList();
 
         //Listen for clicks
-        registerCallBack();
+        //registerCallBack();
 
     }
 
-    private void registerCallBack() {
-        final ListView favoritesList = (ListView) findViewById(R.id.favorites);
-        favoritesList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
-                String selectedFromList =(String) (favoritesList.getItemAtPosition(myItemInt));
-                registerForContextMenu(myView);
-                Log.i("selected is ", selectedFromList);
+    public void displayFavorite(View view) {
 
-                ScriptureData verse = favoritesArray[myItemInt];
+        // Get the verse title
+        TextView t = (TextView)view;
+        String verseTitle = t.getText().toString();
+        Log.i("you selected", verseTitle);
 
-
-
-                SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
-
-                editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
-                editor.putString("verse_title", verse.getVerse_title());
-                editor.putString("scripture_text", verse.getScripture_text());
-                editor.putString("book_title", verse.getBook_title());
-                editor.putString("url", URL.createURL(verse));
-                editor.putString("activity", "FavoritesActivity");
-                editor.apply();
-
-                Intent displayIntent = new Intent(FavoritesActivity.this, ShowScriptureActivity.class);
-                startActivity(displayIntent);
-
-                return true;
-
+        // Find the verse from the favoritesArray
+        int position = 0;
+        for (int i = 0; i < favoritesArray.length; i++) {
+            if (favoritesArray[i].getVerse_title() == verseTitle){
+                position = i;
+                break;
             }
-        });
+        }
+        ScriptureData verse = favoritesArray[position];
+
+        // Display the Scripture
+        Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
+        SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
+        editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
+        editor.putString("verse_title", verse.getVerse_title());
+        editor.putString("scripture_text", verse.getScripture_text());
+        editor.putString("url", URL.createURL(verse));
+        editor.putString("activity", "FavoritesActivity");
+        editor.apply();
+        startActivity(displayIntent);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,11 +139,6 @@ public class FavoritesActivity extends AppCompatActivity {
                         Log.i("favorite is ", favoritesArray[i].getVerse_title());
                         verseTitles.add(favoritesArray[i].getVerse_title());
                     }
-
-                    String[] verseList = new String[verseTitles.size()];
-                    verseTitles.toArray(verseList);
-
-                    //Fill the List
 
                     // Build the adapter
                     FavoritesListArrayAdapter adapter = new FavoritesListArrayAdapter(verseTitles, FavoritesActivity.this);
