@@ -9,6 +9,9 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TimePicker;
@@ -16,7 +19,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 
-public class Alarm_clock extends AppCompatActivity {
+public class AlarmClockActivity extends AppCompatActivity {
 
     TimePicker timepicker;
     Switch alarmSwitch;
@@ -35,6 +38,44 @@ public class Alarm_clock extends AppCompatActivity {
         alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        if (MainActivity.userId == null) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_other_loggedout, menu);
+        } else {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_other_loggedin, menu);
+        }
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.action_login:
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            case R.id.action_signup:
+                startActivity(new Intent(this, SignupActivity.class));
+                return true;
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_logout:
+                UserSettings.logOut(getApplicationContext());
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
     public void turn_off(View view)
     {
         if(alarmSwitch.isChecked() == false) {

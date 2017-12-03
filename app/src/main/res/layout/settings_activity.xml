@@ -52,7 +52,8 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="Weighted Random"
-            android:textColor="#542919" />
+            android:textColor="#542919"
+            />
 
         <RadioButton
             android:id="@+id/radio_pure"

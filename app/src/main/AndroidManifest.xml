@@ -55,7 +55,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Alarm_clock"
+        <activity android:name=".AlarmClockActivity"
             android:label="Daily Scripture"
             android:parentActivityName=".SettingsActivity"></activity>
         <receiver android:name=".AlarmReceiver"

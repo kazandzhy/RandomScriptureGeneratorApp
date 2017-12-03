@@ -1,6 +1,5 @@
 package com.example.randomscripturegeneratorapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -87,6 +83,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void onDailyScriptureClicked(View view)
     {
-        startActivity(new Intent( this, Alarm_clock.class));
+        startActivity(new Intent( this, AlarmClockActivity.class));
     }
 }
