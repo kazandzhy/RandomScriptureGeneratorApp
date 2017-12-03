@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Context context;
+    private static Context context;
 
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
     public static SharedPreferences sharedPrefs;

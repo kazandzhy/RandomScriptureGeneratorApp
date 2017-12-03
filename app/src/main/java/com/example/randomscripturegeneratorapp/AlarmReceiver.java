@@ -11,14 +11,22 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import static android.support.v4.content.ContextCompat.checkSelfPermission;
+import static android.support.v4.content.ContextCompat.createDeviceProtectedStorageContext;
 import static android.support.v4.content.ContextCompat.startActivity;
 import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
 
 
 public class AlarmReceiver extends BroadcastReceiver {
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        NotificationManager mNotificationManager;
+        Intent displayIntent;
+        SharedPreferences.Editor editor;
+        NotificationCompat.Builder mBuilder;
         String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         RandomizeVerse randomizeVerse = new RandomizeVerse();
 
@@ -30,9 +38,9 @@ public class AlarmReceiver extends BroadcastReceiver {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
 
-        Intent displayIntent = new Intent(context, ShowScriptureActivity.class);
+        displayIntent = new Intent(context, ShowScriptureActivity.class);
 
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor = sharedPrefs.edit();
 
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
@@ -41,16 +49,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         editor.putString("activity", "AlarmReceiver");
         editor.apply();
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context)
+         mBuilder =
+                new NotificationCompat.Builder(context.getApplicationContext())
                         .setSmallIcon(R.drawable.rsgicon)
                         .setContentTitle("SCRIPTURE OF THE DAY!")
                         .setContentIntent(PendingIntent.getActivity(context, 0, displayIntent,0))
                         .setSound(Settings.System.DEFAULT_ALARM_ALERT_URI)
                         .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                        .setAutoCancel(true)
                         .setContentText("Tap to see");
 
-        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());
     }
 

@@ -20,6 +20,7 @@ public class Alarm_clock extends AppCompatActivity {
 
     TimePicker timepicker;
     Switch alarmSwitch;
+    PendingIntent pendingintent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,7 +35,16 @@ public class Alarm_clock extends AppCompatActivity {
         alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
 
     }
-
+    public void turn_off(View view)
+    {
+        if(alarmSwitch.isChecked() == false) {
+            setAlarm(0);
+            Toast.makeText(this,"Alarm off", Toast.LENGTH_SHORT).show();
+        }else
+        {
+            Toast.makeText(this,"Alarm on", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void alarmSwitch(View view)
     {
@@ -82,12 +92,11 @@ public class Alarm_clock extends AppCompatActivity {
             case 1:
             {
             setAlarm(calendar.getTimeInMillis());
-            Toast.makeText(this,"Alarm on", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Alarm set", Toast.LENGTH_SHORT).show();
             }
             break;
             case 0:
             {
-            Toast.makeText(this,"Alarm off", Toast.LENGTH_SHORT).show();
             setAlarm(0);
             }
             break;
@@ -99,9 +108,9 @@ public class Alarm_clock extends AppCompatActivity {
 
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingintent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        pendingintent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         if (timeInMillis != 0) {
-            alarm.setRepeating(AlarmManager.RTC, timeInMillis, AlarmManager.INTERVAL_DAY, pendingintent);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, AlarmManager.INTERVAL_DAY, pendingintent);
         } else
         {
             alarm.cancel(pendingintent);
