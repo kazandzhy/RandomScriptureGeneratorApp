@@ -3,7 +3,6 @@ package com.example.randomscripturegeneratorapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,17 +12,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-
-
-
+/**
+ * Activity to let user choose different options
+ *
+ * This activity gives the user the following options: Random Scripture (from all works) or go to
+ * Filter By Work, Filter By Book, or Favorites activities.
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
+ */
 public class MainActivity extends AppCompatActivity {
 
-    private static Context context;
-
+    // declare variables
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
     public static SharedPreferences sharedPrefs;
     public static String userId;
 
+    /**
+     * This function shows the layout on the screen and retrieves SharedPreferences
+     * to know if a user is logged in and retrieves userId to identify the user.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +42,30 @@ public class MainActivity extends AppCompatActivity {
         userId = sharedPrefs.getString("userId", null);
     }
 
-
+    /**
+     * This function creates a toolbar menu depending on user's status (logged in or logged out)
+     *
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
+        // if user is logged out
         if (userId == null) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_home_loggedout, menu);
-        } else {
+        } else { // if user is logged in
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_home_loggedin, menu);
         }
         return true;
     }
 
+    /**
+     * This function handles all possible menu options
+     *
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -67,23 +88,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This function directs user from MainActivity to ShowScriptureActivity. Depending on
+     * pure or weighted randomizing option, it shows a random scripture from all standard works.
+     *
+     * @param view
+     */
     public void sendVerseToDisplay(View view) {
 
+        // save current randomizing option
         String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         RandomizeVerse randomizeVerse = new RandomizeVerse();
-
         ScriptureData verse;
 
+        // generate random verse depending on randomizing option
         if (randomizeOption.equals("Weighted Random")) {
             verse = randomizeVerse.weightedRandomizeFromAllWorks();
         } else {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
 
-        Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
-
+        // save all necessary verse attributes to use them in ShowScriptureActivity
         SharedPreferences.Editor editor = sharedPrefs.edit();
-
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
         editor.putString("scripture_text", verse.getScripture_text());
@@ -91,24 +117,43 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activity", "MainActivity");
         editor.apply();
 
+        // direct user to ShowScriptureActivity
+        Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
         startActivity(displayIntent);
     }
 
+    /**
+     * Direct user from MainActivity to FilterWorkActivity
+     *
+     * @param view
+     */
     public void goToFilterWorkActivity(View view) {
         Intent goToFilterWorkIntent = new Intent(this, FilterWorkActivity.class);
         startActivity(goToFilterWorkIntent);
     }
 
+    /**
+     * Direct user from MainActivity to FilterBookActivity
+     *
+     * @param view
+     */
     public void goToFilterBookActivity(View view) {
         Intent goToFilterBookIntent = new Intent(this, FilterBookActivity.class);
         startActivity(goToFilterBookIntent);
     }
 
+    /**
+     * If user logged in, direct user from MainActivity to FavoritesActivity
+     * If user logged out, display toast inviting user to log in to use feature
+     * 
+     * @param view
+     */
     public void goToFavoritesActivity(View view) {
+        // If user logged out, display toast inviting user to log in to use feature
         if (userId == null) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please log in to access this feature.", Toast.LENGTH_SHORT);
             toast.show();
-        } else {
+        } else { // If user logged in, direct user from MainActivity to FavoritesActivity
             Intent goToFavoritesIntent = new Intent(this, FavoritesActivity.class);
             startActivity(goToFavoritesIntent);
         }
