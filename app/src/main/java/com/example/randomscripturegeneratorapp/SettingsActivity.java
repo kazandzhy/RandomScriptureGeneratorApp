@@ -48,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
         final SeekBar seekBar = (SeekBar) findViewById(R.id.textSize);
 
         // Set those views to whatever the previously specified values were
-        seekBar.setProgress(MainActivity.sharedPrefs.getInt("text_size", 30) * 2);
+        seekBar.setProgress((MainActivity.sharedPrefs.getInt("text_size", 15) - 12) * 3);
         abc.setTextSize(MainActivity.sharedPrefs.getInt("text_size", 15));
 
         // Listen for changes with the SeekBar
@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
                 // Change the shared Preferences
                 SharedPreferences sharedPreferences = MainActivity.sharedPrefs;
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("text_size", progress / 2);
+                editor.putInt("text_size", (progress / 3) + 12);
                 editor.apply();
 
                 // Show the user what the text size looks like
