@@ -8,6 +8,7 @@
     tools:context="com.example.randomscripturegeneratorapp.AlarmClockActivity">
 
     <TimePicker
+        android:theme="@style/TimePickerStyle"
         android:id="@+id/timePicker"
         android:layout_width="442dp"
         android:layout_height="348dp"
@@ -21,9 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
         android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
         android:onClick="turn_off"
         android:showText="true"
         android:text="Alarm"
+        android:textColor="#542919"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button2"
@@ -35,6 +38,7 @@
         android:layout_height="45dp"
         android:layout_marginBottom="86dp"
         android:layout_marginEnd="44dp"
+        android:layout_marginRight="55dp"
         android:background="#542919"
         android:onClick="alarmSwitch"
         android:text="Set New Alarm"

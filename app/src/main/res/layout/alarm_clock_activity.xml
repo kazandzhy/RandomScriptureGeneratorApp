@@ -11,7 +11,9 @@
         android:id="@+id/timePicker"
         android:layout_width="381dp"
         android:layout_height="348dp"
+        android:theme="@style/TimePickerStyle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +27,7 @@
         android:onClick="turn_off"
         android:showText="true"
         android:text="Alarm"
+        android:textColor="#542919"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

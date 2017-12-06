@@ -12,6 +12,7 @@
         android:paddingLeft="8dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#542919"
         android:onClick="displayFavorite"/>
 
     <Button

@@ -25,7 +25,6 @@ public class AlarmClockActivity extends AppCompatActivity {
     TimePicker timepicker;
     Switch alarmSwitch;
     PendingIntent pendingintent;
-    //TimePickerDialog.OnTimeSetListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +37,6 @@ public class AlarmClockActivity extends AppCompatActivity {
         timepicker.setCurrentHour(sharedpref.getInt("Hour", 12));
         timepicker.setCurrentMinute(sharedpref.getInt("Minute", 00));
         alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
-
-        /*
-        int hour = sharedpref.getInt("Hour", 12);
-        int minute = sharedpref.getInt("Minute", 00);
-        TimePickerDialog timepickerdialog = new TimePickerDialog(this, R.style.TimePickerTheme, listener, hour, minute, false);
-        */
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
