@@ -167,6 +167,10 @@ public class ShowScriptureActivity extends AppCompatActivity {
     private void displayScripture(String scripture_text, String verse_title) {
         TextView scripture_verse_view = (TextView) findViewById(R.id.scripture_text_view);
         TextView scripture_title_view = (TextView) findViewById(R.id.scripture_title_view);
+
+        // Get the size of the text from the Shared Preferences
+        scripture_verse_view.setTextSize(MainActivity.sharedPrefs.getInt("text_size", 15));
+
         scripture_verse_view.setMovementMethod(new ScrollingMovementMethod());
         scripture_verse_view.setText(scripture_text);
         scripture_title_view.setText(verse_title);

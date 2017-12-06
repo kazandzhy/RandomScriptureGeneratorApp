@@ -2,6 +2,7 @@ package com.example.randomscripturegeneratorapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +11,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private RadioButton radio_weighted;
     private RadioButton radio_pure;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,46 @@ public class SettingsActivity extends AppCompatActivity {
             radio_pure.setChecked(true);
         }
 
+        // Change the text size settings
+        listenForTextSize();
+
     }
+
+    // Changes the text size of the scripture
+    private void listenForTextSize() {
+
+        // Find the Views we want to mess with
+        final TextView abc = (TextView) findViewById(R.id.ABC);
+        final SeekBar seekBar = (SeekBar) findViewById(R.id.textSize);
+
+        // Set those views to whatever the previously specified values were
+        seekBar.setProgress(MainActivity.sharedPrefs.getInt("text_size", 30) * 2);
+        abc.setTextSize(MainActivity.sharedPrefs.getInt("text_size", 15));
+
+        // Listen for changes with the SeekBar
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Change the shared Preferences
+                SharedPreferences sharedPreferences = MainActivity.sharedPrefs;
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("text_size", progress / 2);
+                editor.apply();
+
+                // Show the user what the text size looks like
+                abc.setTextSize(sharedPreferences.getInt("text_size", 15));
+                editor.apply();
+            }
+
+            // these are useless for the most part but must be included.
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void  onStopTrackingTouch(SeekBar seekBar) {}
+        });
+    }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
 

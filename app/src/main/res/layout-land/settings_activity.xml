@@ -19,15 +19,31 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="60dp" />
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/textSize"
         android:layout_width="217dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/TextSizeView"
+        app:layout_constraintTop_toBottomOf="@+id/TextSizeView" />
+
+    <TextView
+        android:id="@+id/ABC"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/TextSizeView" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="ABC"
+        android:textAlignment="center"
+        android:textColor="#542919"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textSize"
+        app:layout_constraintStart_toStartOf="@+id/textSize"
+        app:layout_constraintTop_toBottomOf="@+id/textSize" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/radioGroup"
@@ -37,7 +53,8 @@
         android:layout_marginEnd="90dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="90dp">
 
         <RadioButton
             android:id="@+id/radio_weighted"
@@ -66,7 +83,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/TextSizeView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="60dp" />
 
     <Button
         android:id="@+id/button3"
