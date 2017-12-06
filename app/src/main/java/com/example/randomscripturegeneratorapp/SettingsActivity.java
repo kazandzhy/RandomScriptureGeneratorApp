@@ -2,7 +2,6 @@ package com.example.randomscripturegeneratorapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -102,7 +101,7 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SignupActivity.class));
                 return true;
             case R.id.action_logout:
-                UserSettings.logOut(getApplicationContext());
+                LogoutOption.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:

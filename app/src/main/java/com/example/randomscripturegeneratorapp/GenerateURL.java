@@ -1,11 +1,22 @@
 package com.example.randomscripturegeneratorapp;
 
 /**
- * Created by Vlad on 21.11.2017.
+ * Class to generate URL
+ *
+ * This class uses verse properties and generates a URL format in order to simplify the code
+ * in other classes. This URL opens the selected verse in Gospel Library or LDS.org.
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
  */
 
-public class URL {
+public class GenerateURL {
 
+    /**
+     * This function uses workId, bookId, chapId, and verseId to generate a specific URL
+     *
+     * @param verse
+     * @return the generated verse URL
+     */
     public static String createURL(ScriptureData verse) {
         String workId = String.valueOf(verse.volume_lds_url);
         String bookId = String.valueOf(verse.book_lds_url);

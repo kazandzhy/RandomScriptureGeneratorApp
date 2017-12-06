@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class FilterBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -73,7 +70,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                UserSettings.logOut(getApplicationContext());
+                LogoutOption.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -97,7 +94,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         editor.putString("verse_title", verse.getVerse_title());
         editor.putString("scripture_text", verse.getScripture_text());
         editor.putString("book_title", verse.getBook_title());
-        editor.putString("url", URL.createURL(verse));
+        editor.putString("url", GenerateURL.createURL(verse));
         editor.putString("activity", "FilterBookActivity");
         editor.apply();
 

@@ -11,42 +11,53 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Created by Vlad on 04.11.2017.
+ * Class to work with the JSON file
+ *
+ * This class deserializes a JSON file, which includes scriptures from all standard works, into
+ * a Java format in order to use the data in our app
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
  */
 
 public class WorkWithJSON {
-    //array of objects for storing data(verses)
+    // array of objects for storing data (verses)
     private static ScriptureData[] scriptureArray;
 
-    //function for converting data from json file to java objects
+    /**
+     * Function for converting data from JSON file to Java objects
+     *
+     * @param context
+     */
     public static void deserializeJSON(Context context) {
 
-        //string for loading file
+        // string for loading file contents
         String JSONData = null;
 
         // Load file
         try {
-            //path to the file
+            // path to the file in assets folder
             InputStream is = context.getAssets().open("lds-scriptures.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
             JSONData = new String(buffer, "UTF-8");
-            Log.v("JSON", "loaded JSON file");
         } catch (IOException ex) {
             ex.printStackTrace();
-            Log.e("JSON", "ERROR loading JSON file");
         }
 
-        //create Gson instance
+        // create Gson instance
         Gson gson = new Gson();
-        //fill array of objects
+        // fill array of objects
         scriptureArray = gson.fromJson(JSONData, ScriptureData[].class);
 
     }
 
-    //getter for working with private array of objects in other classes
+    /**
+     * Getter for working with private array of objects in other classes
+     *
+     * @return array of scripture verses
+     */
     public ScriptureData[] getScriptureArray() {
         return scriptureArray;
     }

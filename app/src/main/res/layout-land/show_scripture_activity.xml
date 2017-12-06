@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Scripture Title"
+        android:textColor="#542919"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/scripture_text_view"
         app:layout_constraintTop_toBottomOf="@+id/scripture_text_view" />
@@ -67,7 +68,7 @@
         android:lineSpacingExtra="4sp"
         android:scrollbars="vertical"
         android:text="TextView"
-        android:textColor="@color/colorAccent"
+        android:textColor="#542919"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"

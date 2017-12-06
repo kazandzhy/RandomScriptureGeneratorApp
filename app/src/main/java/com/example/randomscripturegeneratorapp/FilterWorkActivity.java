@@ -1,7 +1,6 @@
 package com.example.randomscripturegeneratorapp;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -73,7 +72,7 @@ public class FilterWorkActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                UserSettings.logOut(getApplicationContext());
+                LogoutOption.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -116,7 +115,7 @@ public class FilterWorkActivity extends AppCompatActivity {
             editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
             editor.putString("verse_title", verse.getVerse_title());
             editor.putString("scripture_text", verse.getScripture_text());
-            editor.putString("url", URL.createURL(verse));
+            editor.putString("url", GenerateURL.createURL(verse));
             editor.putString("activity", "FilterWorkActivity");
             editor.apply();
 

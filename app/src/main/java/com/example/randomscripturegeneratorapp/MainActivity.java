@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
      * This function creates a toolbar menu depending on user's status (logged in or logged out)
      *
      * @param menu
-     * @return
+     * @return true to create menu
      */
     public boolean onCreateOptionsMenu(Menu menu) {
         // if user is logged out
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
      * This function handles all possible menu options
      *
      * @param item
-     * @return
+     * @return true to handle action
      */
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                UserSettings.logOut(getApplicationContext());
+                LogoutOption.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
         editor.putString("scripture_text", verse.getScripture_text());
-        editor.putString("url", URL.createURL(verse));
+        editor.putString("url", GenerateURL.createURL(verse));
         editor.putString("activity", "MainActivity");
         editor.apply();
 
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * If user logged in, direct user from MainActivity to FavoritesActivity
      * If user logged out, display toast inviting user to log in to use feature
-     * 
+     *
      * @param view
      */
     public void goToFavoritesActivity(View view) {

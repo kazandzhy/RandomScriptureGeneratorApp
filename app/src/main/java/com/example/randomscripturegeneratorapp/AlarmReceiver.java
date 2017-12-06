@@ -9,11 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
-import static android.support.v4.content.ContextCompat.checkSelfPermission;
-import static android.support.v4.content.ContextCompat.createDeviceProtectedStorageContext;
-import static android.support.v4.content.ContextCompat.startActivity;
 import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
 
 
@@ -45,7 +41,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
         editor.putString("scripture_text", verse.getScripture_text());
-        editor.putString("url", URL.createURL(verse));
+        editor.putString("url", GenerateURL.createURL(verse));
         editor.putString("activity", "AlarmReceiver");
         editor.apply();
 

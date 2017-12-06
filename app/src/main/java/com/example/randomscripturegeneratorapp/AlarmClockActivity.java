@@ -3,6 +3,7 @@ package com.example.randomscripturegeneratorapp;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,9 +25,10 @@ public class AlarmClockActivity extends AppCompatActivity {
     TimePicker timepicker;
     Switch alarmSwitch;
     PendingIntent pendingintent;
+    //TimePickerDialog.OnTimeSetListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_clock_activity);
@@ -36,6 +38,13 @@ public class AlarmClockActivity extends AppCompatActivity {
         timepicker.setCurrentHour(sharedpref.getInt("Hour", 12));
         timepicker.setCurrentMinute(sharedpref.getInt("Minute", 00));
         alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
+
+        /*
+        int hour = sharedpref.getInt("Hour", 12);
+        int minute = sharedpref.getInt("Minute", 00);
+        TimePickerDialog timepickerdialog = new TimePickerDialog(this, R.style.TimePickerTheme, listener, hour, minute, false);
+        */
+
 
     }
 
@@ -67,7 +76,7 @@ public class AlarmClockActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                UserSettings.logOut(getApplicationContext());
+                LogoutOption.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:

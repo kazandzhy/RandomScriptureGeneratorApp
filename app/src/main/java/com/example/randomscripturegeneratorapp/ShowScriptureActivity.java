@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -26,8 +25,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static com.example.randomscripturegeneratorapp.MainActivity.APP_PREFS;
 
 public class ShowScriptureActivity extends AppCompatActivity {
 
@@ -84,7 +81,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.action_logout:
-                UserSettings.logOut(getApplicationContext());
+                LogoutOption.logOut(getApplicationContext());
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
@@ -121,7 +118,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
         String verse_title = verse.getVerse_title();
         String scripture_text = verse.getScripture_text();
-        verse_url = URL.createURL(verse);
+        verse_url = GenerateURL.createURL(verse);
         verse_id = Integer.toString(verse.getVerse_id());
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
