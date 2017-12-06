@@ -19,12 +19,11 @@
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
-        android:onClick="turn_off"
         android:showText="true"
         android:text="Alarm"
         android:textColor="#542919"

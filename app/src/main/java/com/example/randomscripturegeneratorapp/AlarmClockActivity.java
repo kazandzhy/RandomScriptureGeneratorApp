@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -37,6 +38,13 @@ public class AlarmClockActivity extends AppCompatActivity {
         timepicker.setCurrentHour(sharedpref.getInt("Hour", 12));
         timepicker.setCurrentMinute(sharedpref.getInt("Minute", 00));
         alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
+
+        alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                turn_off();
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,7 +84,7 @@ public class AlarmClockActivity extends AppCompatActivity {
 
     }
 
-    public void turn_off(View view)
+    public void turn_off()
     {
         if(alarmSwitch.isChecked() == false) {
             setAlarm(0);

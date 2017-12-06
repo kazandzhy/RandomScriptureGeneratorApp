@@ -25,7 +25,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder;
         String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         RandomizeVerse randomizeVerse = new RandomizeVerse();
-
         ScriptureData verse;
 
         if (randomizeOption.equals("Weighted Random")) {
@@ -34,10 +33,13 @@ public class AlarmReceiver extends BroadcastReceiver {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
 
+
         displayIntent = new Intent(context, ShowScriptureActivity.class);
+        displayIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        PendingIntent pending = PendingIntent.getActivity(context, 1, displayIntent,0);
 
         editor = sharedPrefs.edit();
-
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
         editor.putString("scripture_text", verse.getScripture_text());
@@ -45,18 +47,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         editor.putString("activity", "AlarmReceiver");
         editor.apply();
 
-         mBuilder =
-                new NotificationCompat.Builder(context.getApplicationContext())
-                        .setSmallIcon(R.drawable.rsgicon)
-                        .setContentTitle("SCRIPTURE OF THE DAY!")
-                        .setContentIntent(PendingIntent.getActivity(context, 0, displayIntent,0))
-                        .setSound(Settings.System.DEFAULT_ALARM_ALERT_URI)
-                        .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                        .setAutoCancel(true)
-                        .setContentText("Tap to see");
-
+        mBuilder = new NotificationCompat.Builder(context.getApplicationContext());
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+
+         mBuilder.setSmallIcon(R.drawable.rsgicon)
+                 .setContentTitle("SCRIPTURE OF THE DAY!")
+                 .setContentIntent(pending)
+                 .setSound(Settings.System.DEFAULT_ALARM_ALERT_URI)
+                 .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                 .setAutoCancel(true)
+                 .setContentText("Tap to see");
+
+        mNotificationManager.notify(9, mBuilder.build());
     }
 
 }
