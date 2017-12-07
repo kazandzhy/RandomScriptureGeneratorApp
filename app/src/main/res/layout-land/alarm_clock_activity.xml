@@ -28,6 +28,8 @@
         android:textColor="#542919"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:theme="@style/switchStyle"
+        android:switchTextAppearance="@style/SwitchTextAppearance"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent" />
 
