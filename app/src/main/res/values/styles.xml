@@ -23,6 +23,22 @@
         <item name="android:textColorSecondary">#542919</item>
     </style>
 
+    <style name="progressBarStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">#542919</item>
+    </style>
+
+    <style name="switchStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- active thumb & track color -->
+        <item name="colorControlActivated">#542919</item>
+
+        <!-- inactive track color -->
+        <item name="android:colorForeground">#542919</item>
+    </style>
+
+    <style name="SwitchTextAppearance" parent="@android:style/TextAppearance.Holo.Small">
+        <item name="android:textColor">#b28c75</item>
+    </style>
+
 
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

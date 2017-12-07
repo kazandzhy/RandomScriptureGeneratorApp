@@ -14,9 +14,9 @@
     </style>
 
     <style name="TimePickerStyle" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorAccent">#542919</item>
-        <item name="android:textColorPrimary">#542919</item>
-        <item name="android:textColorSecondary">#542919</item>
+        <item name="colorAccent">#4f2616</item>
+        <item name="android:textColorPrimary">#4f2616</item>
+        <item name="android:textColorSecondary">#4f2616</item>
     </style>
 
    </resources>
