@@ -3,6 +3,7 @@
     package="com.example.randomscripturegeneratorapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -58,10 +59,10 @@
         <activity android:name=".AlarmClockActivity"
             android:label="Daily Scripture"
             android:parentActivityName=".SettingsActivity"></activity>
+
         <receiver android:name=".AlarmReceiver"
             android:enabled ="true"
             android:exported="true">
-
         </receiver>
     </application>
 

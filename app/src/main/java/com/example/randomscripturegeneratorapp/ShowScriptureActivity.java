@@ -33,6 +33,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
     private String bookChoice;
     private String verse_url;
     private String activity;
+    public static final String APP_PREFS = "APPLICATION_PREFERENCES";
     private SharedPreferences sharedPrefs;
 
     @Override
@@ -40,7 +41,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_scripture_activity);
 
-        sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         verse_id = sharedPrefs.getString("verse_id", "No verse_id");
         String verse_title = sharedPrefs.getString("verse_title", "No verse");
         String scripture_text = sharedPrefs.getString("scripture_text", "No scripture");
@@ -166,7 +167,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         TextView scripture_title_view = (TextView) findViewById(R.id.scripture_title_view);
 
         // Get the size of the text from the Shared Preferences
-        scripture_verse_view.setTextSize(MainActivity.sharedPrefs.getInt("text_size", 15));
+        scripture_verse_view.setTextSize(sharedPrefs.getInt("text_size", 15));
 
         scripture_verse_view.setMovementMethod(new ScrollingMovementMethod());
         scripture_verse_view.setText(scripture_text);

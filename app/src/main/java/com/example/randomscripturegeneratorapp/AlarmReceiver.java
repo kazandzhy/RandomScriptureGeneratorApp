@@ -7,23 +7,38 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 
-import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
+//import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
 
 
 public class AlarmReceiver extends BroadcastReceiver {
 
+    public static final String APP_PREFS = "APPLICATION_PREFERENCES";
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        PowerManager pm=(PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        PowerManager.WakeLock wl= pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"My TAG");
+        wl.acquire();
         NotificationManager mNotificationManager;
         Intent displayIntent;
         SharedPreferences.Editor editor;
         NotificationCompat.Builder mBuilder;
+
+        SharedPreferences sharedPrefs = context.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
+
+        ScriptureData[] scriptureArray = new WorkWithJSON().getScriptureArray();
+
+        // we want to do this only if alarm is called when app is closed
+        if (scriptureArray == null) {
+            WorkWithJSON.deserializeJSON(context);
+        }
+
         RandomizeVerse randomizeVerse = new RandomizeVerse();
         ScriptureData verse;
 
@@ -32,6 +47,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         } else {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
+
 
 
         displayIntent = new Intent(context, ShowScriptureActivity.class);
@@ -51,7 +67,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
          mBuilder.setSmallIcon(R.drawable.rsgicon)
-                 .setContentTitle("SCRIPTURE OF THE DAY!")
+                 .setContentTitle("Scripture of the Day!")
                  .setContentIntent(pending)
                  .setSound(Settings.System.DEFAULT_ALARM_ALERT_URI)
                  .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
@@ -59,6 +75,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                  .setContentText("Tap to see");
 
         mNotificationManager.notify(9, mBuilder.build());
+        wl.release();
     }
 
 }
