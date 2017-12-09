@@ -129,6 +129,9 @@ public class AlarmClockActivity extends AppCompatActivity {
                     0
             );
         }
+        Calendar now = Calendar.getInstance();
+        if (now.after(calendar))
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putInt("Hour",timepicker.getCurrentHour());
