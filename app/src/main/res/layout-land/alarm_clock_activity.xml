@@ -41,7 +41,7 @@
         android:layout_marginEnd="44dp"
         android:layout_marginRight="55dp"
         android:background="@drawable/button_selector_brown"
-        android:onClick="alarmSwitch"
+        android:onClick="alarmSet"
         android:text="Set New Alarm"
         android:textAllCaps="false"
         android:textColor="#F4F0EF"

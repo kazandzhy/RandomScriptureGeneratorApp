@@ -16,6 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This Class randomizes a verse by filtering the standard works
+ *
+ * the user is able to check boxes of which standard work they
+ * wish to receive a random verse from. Unchecked works will not be randomized
+ *
+ * @ Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
+ */
 public class FilterWorkActivity extends AppCompatActivity {
 
     private static List<Integer> userChoices;
@@ -25,13 +33,16 @@ public class FilterWorkActivity extends AppCompatActivity {
     private Boolean dc_checked;
     private Boolean pogp_checked;
 
+    //load which boxes the user has checked
     public FilterWorkActivity() {
         userChoices = new ArrayList<>();
     }
 
+    //retrieve the boxes the user has checked
     public static List<Integer> getUserChoices() {
         return userChoices;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,12 @@ public class FilterWorkActivity extends AppCompatActivity {
         pogp_checked = false;
     }
 
+    /**
+     * determine if user is logged in or not
+     *
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         if (MainActivity.userId == null) {
@@ -56,6 +73,11 @@ public class FilterWorkActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * create options in menu toolbar
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -81,10 +103,17 @@ public class FilterWorkActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Randomize a verse from the selected standard works
+     * and send new verse to ShowScriptureActivity
+     *
+     * @param view
+     */
     @TargetApi(21)
     public void sendVerseToDisplay(View view) {
         userChoices.clear();
         int volume_id = -1;
+        //determine which works the user has checked
         if (ot_checked) {
             userChoices.add(1);
         }
@@ -101,15 +130,19 @@ public class FilterWorkActivity extends AppCompatActivity {
             userChoices.add(5);
         }
 
+        //if all check boxes aren't empty, randomize a verse
         if (!userChoices.isEmpty()) {
             int randomSpot = ThreadLocalRandom.current().nextInt(0, userChoices.size());
             volume_id = userChoices.get(randomSpot);
 
+            //randomize vesre from the selected works
             RandomizeVerse randomizeVerse = new RandomizeVerse();
             ScriptureData verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
 
+            //create intent to showScriptureActivity
             Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
+            //set new verse to shared prefs
             SharedPrefs.saveVerseData(verse, "FilterWorkActivity");
 
             /*
@@ -124,6 +157,8 @@ public class FilterWorkActivity extends AppCompatActivity {
             */
 
             startActivity(displayIntent);
+
+        //if user hasn't selected any works display Toast
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Please select at least one option.", Toast.LENGTH_SHORT);
             toast.show();
@@ -131,6 +166,10 @@ public class FilterWorkActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This is a listener for when a checkbox has been checked/unchecked
+     * @param view
+     */
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();

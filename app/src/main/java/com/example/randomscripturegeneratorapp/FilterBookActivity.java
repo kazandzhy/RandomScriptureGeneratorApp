@@ -13,12 +13,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+/**
+ * This class allows the user to get a random verse from a specific book of scripture
+ *
+ * the user can pick a specific work, and a book within that work and receive a random verse from it
+ *
+ * @author Vlad Kazandzhy, Tyler Braithwaite, Nathan Tagg
+ */
 public class FilterBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     Context context;
     RandomizeVerse randomizeVerse;
     ArrayAdapter<CharSequence> workAdapter;
     ArrayAdapter<CharSequence> bookAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,12 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
     }
 
 
+    /**
+     * Determine if user is logged in or not
+     *
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         if (MainActivity.userId == null) {
@@ -54,6 +68,12 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         return true;
     }
 
+    /**
+     * Create options in menu toolbar
+     *
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -79,15 +99,23 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
     }
 
-
+    /**
+     * Send Randomized verse to ShowScriptureActivity
+     *
+     * @param view
+     */
     public void sendVerseToDisplay(View view) {
+        //determine what book the user has picked
         Spinner bookSpinner =(Spinner) findViewById(R.id.dropDown_books);
         String bookChoice = bookSpinner.getSelectedItem().toString();
 
+        //get random verse from specified book
         ScriptureData verse = randomizeVerse.randomizeFromBook(bookChoice);
 
+        //create intent to ShowScriptureActivity
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
+        //Save verse in shared preferences
         SharedPrefs.saveVerseData(verse, "FilterBookActivity");
         /*
         SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
@@ -101,10 +129,19 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         editor.apply();
         */
 
+        //start intent
         startActivity(displayIntent);
     }
 
 
+    /**
+     * If a dropdown menu has changed, update menus accordingly
+     *
+     * @param parent
+     * @param view
+     * @param i
+     * @param l
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
             String work = parent.getItemAtPosition(i).toString();
@@ -116,11 +153,24 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
             }
     }
 
+    /**
+     * If nothing is selected, drop down menus are empty
+     *
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
+    /**
+     * When a standard work is selected update the BookSpinner
+     * BookSpinner will display books within the newly selected
+     * standard work
+     *
+     * The standard work that is currently selected
+     * @param position
+     */
     public void updateBookSpinner(String position)
     {
         Spinner books = (Spinner) findViewById(R.id.dropDown_books);
@@ -138,6 +188,8 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
                 return v;
             }
         };*/
+
+        //BookSpinner will update it's array adapter based on which standard work is selected
         switch(position)
         {
             case "Old Testament":

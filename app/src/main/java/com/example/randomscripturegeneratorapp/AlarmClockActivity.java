@@ -20,13 +20,25 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import java.util.Calendar;
 
-
+/**
+ * Class for creating a daily alarm set by the user
+ *
+ * This class will allow the user to create an alarm
+ * set by the user that repeats daily
+ *
+ * @author Tyler Braithwaite Nathan Tagg Vlad Kazandzhy
+ */
 public class AlarmClockActivity extends AppCompatActivity {
 
     TimePicker timepicker;
     Switch alarmSwitch;
     PendingIntent pendingintent;
 
+    /**
+     * retrieves sharepreferences and sets timepicker and on/off switch to them
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,19 +46,27 @@ public class AlarmClockActivity extends AppCompatActivity {
         setContentView(R.layout.alarm_clock_activity);
         timepicker = findViewById(R.id.timePicker);
         alarmSwitch = findViewById((R.id.switch1));
+
+        //retrieve shared preferences and set timepicker and switch to them
         SharedPreferences sharedpref = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         timepicker.setCurrentHour(sharedpref.getInt("Hour", 12));
         timepicker.setCurrentMinute(sharedpref.getInt("Minute", 00));
         alarmSwitch.setChecked(sharedpref.getBoolean("Alarm", false));
 
+        //create listener for when the switch is triggered
         alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                turn_off();
+                switch_change();
             }
         });
     }
 
+    /**
+     * Determines if User is logged in or not
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
 
         if (MainActivity.userId == null) {
@@ -59,6 +79,12 @@ public class AlarmClockActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Creates the options in the menu dropdown
+     *
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -84,9 +110,13 @@ public class AlarmClockActivity extends AppCompatActivity {
 
     }
 
-    public void turn_off()
+    /**
+     * Checks if alarm on/off Switch is set to on or off and displays method
+     */
+    public void switch_change()
     {
         if(alarmSwitch.isChecked() == false) {
+            //if alarm is off cancel pending alarm intent
             setAlarm(0);
             Toast.makeText(this,"Alarm off", Toast.LENGTH_SHORT).show();
         }else
@@ -95,10 +125,17 @@ public class AlarmClockActivity extends AppCompatActivity {
         }
     }
 
-    public void alarmSwitch(View view)
+    /**
+     * Creates an alarm with a pending intent when the setAlarm button is pressed
+     *
+     * @param view
+     */
+    public void alarmSet(View view)
     {
 
         int x = 0;
+
+        //check if alarm switch is on or off
         if(alarmSwitch.isChecked())
         {
             x = 1;
@@ -107,7 +144,11 @@ public class AlarmClockActivity extends AppCompatActivity {
         {
             x = 0;
         }
+
+        //creates a calendar instance
         Calendar calendar = Calendar.getInstance();
+
+        //determines android version and sets the calendar to timepicker
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             calendar.set(
                     calendar.get(Calendar.YEAR),
@@ -129,9 +170,15 @@ public class AlarmClockActivity extends AppCompatActivity {
                     0
             );
         }
+
+        //Creates a calendar instance and sets it to the current time
         Calendar now = Calendar.getInstance();
+
+        //if timepicker is set to a time earlier then the current time. Set alarm for following day
         if (now.after(calendar))
             calendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        //set hour, minute, and current state of on/off switch to sharedpreferences
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putInt("Hour",timepicker.getCurrentHour());
@@ -139,6 +186,7 @@ public class AlarmClockActivity extends AppCompatActivity {
         editor.putBoolean("Alarm", alarmSwitch.isChecked());
         editor.apply();
 
+        //if on/off switch is checked Call setAlarm function, if not, turn alarm off
         switch(x)
         {
             case 1:
@@ -156,15 +204,24 @@ public class AlarmClockActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates instance of alarmManager and creates the alarm
+     *
+     * @param timeInMillis
+     */
     public void setAlarm(long timeInMillis) {
 
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
         pendingintent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //if timeInMillis != 0 then set the alarm with a pending intent
         if (timeInMillis != 0) {
+            //create alarm to repeat daily
             alarm.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, AlarmManager.INTERVAL_DAY, pendingintent);
         } else
         {
+            //cancel pending intent and cancel any existing alarm
             alarm.cancel(pendingintent);
         }
     }

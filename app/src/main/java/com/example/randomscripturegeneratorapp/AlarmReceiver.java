@@ -11,21 +11,41 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 
+/**
+ * Class that recieves alarm broadcast from AlarmClockAcitivity
+ *
+ * This class creates a notification to alert user of of the daily
+ * alarm they set.
+ * This class also creates a random scripture for the user to view
+ * when they tap the notification
+ *
+ * @author Tyler Braithwaite, Nathan Tagg, Vlad Kazandzhy
+ */
 public class AlarmReceiver extends BroadcastReceiver {
 
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
 
+    /**
+     * This function recieves the broadcast from  AlarmClockAcivity
+     * and creates a notification and random scripture
+     *
+     * @param context
+     * @param intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        //PowerManager allows the alarm to run in the background
         PowerManager pm=(PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl= pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"My TAG");
         wl.acquire();
+
         NotificationManager mNotificationManager;
         Intent displayIntent;
         SharedPreferences.Editor editor;
         NotificationCompat.Builder mBuilder;
 
+        //determines if user has randomize option set to weighted or pure random in settings
         SharedPreferences sharedPrefs = context.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         String randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
 
@@ -36,6 +56,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             WorkWithJSON.deserializeJSON(context);
         }
 
+        //find a random verse
         RandomizeVerse randomizeVerse = new RandomizeVerse();
         ScriptureData verse;
 
@@ -46,12 +67,14 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
 
-
+        //create intent that leads to ShowScriptureActivity
         displayIntent = new Intent(context, ShowScriptureActivity.class);
         displayIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
+        //create pending intent to be used in the notification
         PendingIntent pending = PendingIntent.getActivity(context, 1, displayIntent,0);
 
+        //put new random scripture in shared preferences to be passed to ShowScriptureActivity
         editor = sharedPrefs.edit();
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
@@ -60,9 +83,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         editor.putString("activity", "AlarmReceiver");
         editor.apply();
 
+        //creates notificationcompat.builder so construct new notification
         mBuilder = new NotificationCompat.Builder(context.getApplicationContext());
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        //set up params of notification
          mBuilder.setSmallIcon(R.drawable.rsgicon)
                  .setContentTitle("Scripture of the Day!")
                  .setContentIntent(pending)
@@ -71,6 +96,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                  .setAutoCancel(true)
                  .setContentText("Tap to see");
 
+        //notify the user
         mNotificationManager.notify(9, mBuilder.build());
         wl.release();
     }
