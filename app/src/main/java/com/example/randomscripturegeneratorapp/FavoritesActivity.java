@@ -26,34 +26,53 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Favorites activity class
+ *
+ * This Class holds all the functionality associated with
+ * the favorites activity. It populates the favorites list,
+ * sends verses to the display, and
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
+ */
+
 public class FavoritesActivity extends AppCompatActivity {
 
-    public static ScriptureData[] favoritesArray;
+    public static ScriptureData[] favoritesArray; // This array will be in use throughout the activity
     private static Context context;
     private Boolean noFavorites = false;
     private ListView favorites;
 
+    /**
+     * Calls the Populate Favorites List function
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favorites_activity);
         context = this;
 
-
         //Populate the listView
         populateFavoritesList();
-
-        //Listen for clicks
-        //registerCallBack();
-
     }
 
+    /**
+     * This function is called from the onclick of each individual items
+     * in the list. It searches the favorites array for the scripture selected
+     * and sends all the data to the ShowScriptureActivity
+     *
+     * @param view
+     */
     public void displayFavorite(View view) {
 
         // Get the verse title
         TextView t = (TextView)view;
         String verseTitle = t.getText().toString();
-        Log.i("you selected", verseTitle);
+
+        // Log the scripture selected
+        Log.i("You selected", verseTitle);
 
         // Find the verse from the favoritesArray
         int position = 0;
@@ -63,32 +82,36 @@ public class FavoritesActivity extends AppCompatActivity {
                 break;
             }
         }
-        ScriptureData verse = favoritesArray[position];
 
+        // Highlight the verse we will be sending.
+        ScriptureData verse = favoritesArray[position];
 
         // Display the Scripture
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
+        // this calls the SharedPrefs witch sets all the preferences for the show scripture activity
         SharedPrefs.saveVerseData(verse, "FavoritesActivity");
-        /*
-        SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
-        editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
-        editor.putString("verse_title", verse.getVerse_title());
-        editor.putString("scripture_text", verse.getScripture_text());
-        editor.putString("url", GenerateURL.createURL(verse));
-        editor.putString("activity", "FavoritesActivity");
-        editor.apply();
-        */
-
         startActivity(displayIntent);
     }
 
+    /**
+     * This function creates a toolbar for the favorites activity
+     *
+     * @param menu
+     * @return true to create menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_favorites, menu);
         return true;
     }
 
+    /**
+     * This function handles all possible menu options
+     *
+     * @param item
+     * @return true to handle action
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -112,9 +135,12 @@ public class FavoritesActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
+    /**
+     * This function retrieves all of the users' saved favorites and puts them in the list view.
+     *
+     */
     private void populateFavoritesList() {
         // Get the USER_ID
         SharedPreferences prefs = getSharedPreferences(MainActivity.APP_PREFS, MODE_PRIVATE);
@@ -156,36 +182,43 @@ public class FavoritesActivity extends AppCompatActivity {
         LoadFavoritesRequest loadFavoritesRequest = new LoadFavoritesRequest(userId, responseListener);
         RequestQueue queue = Volley.newRequestQueue(FavoritesActivity.this);
         queue.add(loadFavoritesRequest);
-
     }
 
+    /**
+     * This function is called when the user selects 'randomize from all favorites'
+     * it pulls a random verse from the array and sends it to the display.
+     *
+     */
     private void randomizeFromFavorites() {
+        // Make sure that the array isn't empty
         if (favoritesArray != null) {
             ScriptureData verse = RandomizeVerse.randomizeFromFavoriteArray(favoritesArray);
 
+            // Display the Scripture
             Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
-            SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
-
-            editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
-            editor.putString("verse_title", verse.getVerse_title());
-            editor.putString("scripture_text", verse.getScripture_text());
-            editor.putString("url", GenerateURL.createURL(verse));
-            editor.putString("activity", "FavoritesActivity");
-            editor.apply();
-
+            // This calls the SharedPrefs witch sets all the preferences for the show scripture activity
+            SharedPrefs.saveVerseData(verse, "FavoritesActivity");
             startActivity(displayIntent);
+
         } else if (noFavorites) {
+            // Alert the user that there are not any favorites to display
             Toast toast = Toast.makeText(getApplicationContext(), "You have no Favorites saved.", Toast.LENGTH_SHORT);
             toast.show();
         } else {
+            // Demand patience from the user
             Toast toast = Toast.makeText(getApplicationContext(), "Please wait while Favorites load.", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
+    /**
+     * This function sends a request to deletes a single verse
+     *
+     * @param verse_title
+     */
     public static void deleteFavorite(String verse_title) {
-
+        // Create the listener for the response from volley
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -197,7 +230,7 @@ public class FavoritesActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(context, "Verse removed successfully.", Toast.LENGTH_SHORT);
                         toast.show();
                     }
-                    // for logging purposes only
+                    // For logging purposes only
                     String message = jsonResponse.getString("message");
                     Log.i("jsonResponse is ", message);
                 } catch (JSONException e) {
@@ -209,27 +242,33 @@ public class FavoritesActivity extends AppCompatActivity {
         DeleteFavoriteRequest deleteFavoriteRequest = new DeleteFavoriteRequest(MainActivity.userId, verse_title, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(deleteFavoriteRequest);
-
     }
 
+    /**
+     * This function sends a request to delete all of the favorites
+     *
+     */
     private void deleteAllFavorites() {
-
+        // Create the listener for the response.
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
+                    // Deserialize the response and get all the data.
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     String message = jsonResponse.getString("message");
                     Log.i("jsonResponse is ", message);
 
+                    // Let the user in on what happened.
                     Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
                     toast.show();
 
                     if (success) {
                         favoritesArray = null;
                         favorites.setAdapter(null);
-                        //startActivity(new Intent(context, FavoritesActivity.class));
+                        // Since there is nothing left to do in the favorites activity, we might as well take the user home.
+                        startActivity(new Intent(context, MainActivity.class));
                     }
 
                 } catch (JSONException e) {
@@ -241,32 +280,38 @@ public class FavoritesActivity extends AppCompatActivity {
         DeleteAllFavoritesRequest deleteAllFavoritesRequest = new DeleteAllFavoritesRequest(MainActivity.userId, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(deleteAllFavoritesRequest);
-
     }
 
+    /**
+     * This function Confirms weather or not the user really wants to delete all the favorites
+     * (it could have been an accidental click)
+     */
     private void confirmDeleteFavorites() {
+        // Listen for the user's response
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
+                        // Delete them all!
                         deleteAllFavorites();
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
+                        // Do nothing.
                         break;
                 }
             }
         };
 
+        // If there are favorites to delete, ask the user to confirm their decision.
         if (favoritesArray != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage("Are you sure you'd like to delete all your Favorites?").setPositiveButton("Yes", dialogClickListener)
                     .setNegativeButton("No", dialogClickListener).show();
         } else {
             Toast toast = Toast.makeText(context, "There are no Favorites to be deleted.", Toast.LENGTH_SHORT);
-            toast.show();
+            toast.show(); // Silly user.
         }
     }
-
 }
