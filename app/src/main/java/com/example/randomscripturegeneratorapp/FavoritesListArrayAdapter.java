@@ -13,34 +13,82 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by nathan on 12/1/17.
+ * Favorites List Array Adapter
+ *
+ * This class is a custom Array Adapter that lets us populate
+ * the Favorites List with our unique elements, a TextView,
+ * and a Button.
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
  */
 
 public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
 
+    /**
+     * The constructor
+     *
+     * The constructor takes in the Array list that we want to put into
+     * our view.
+     *
+     * @param list
+     * @param context
+     */
     public FavoritesListArrayAdapter(ArrayList<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+
+    /**
+     * Get Count
+     *
+     * Returns the size of the list
+     *
+     * @return size of the list
+     */
     @Override
     public int getCount() {
         return list.size();
     }
 
+    /**
+     * Get Item
+     *
+     * Takes in an integer for position and gives back the object in
+     * that position.
+     *
+     * @param pos (position)
+     * @return Object at that position
+     */
     @Override
     public Object getItem(int pos) {
         return list.get(pos);
     }
 
+    /**
+     * get ItemId
+     *
+     * This function is required, but since the items we are storing
+     * are only strings, they wont have an id. so we just return zero.
+     *
+     * @param pos
+     * @return 0
+     */
     @Override
-    public long getItemId(int pos) {
-        return 0; // list.get(pos).getId();
-        //just return 0 if your list items do not have an Id variable.
-    }
+    public long getItemId(int pos) { return 0; }
 
+    /**
+     * Get View
+     *
+     * Handles the individual elements of the favorites list
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return The view specified
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
@@ -56,6 +104,13 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
         //Handle buttons and add onClickListeners
         Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
 
+        /**
+         * Delete Button Listener
+         *
+         * Returns the size of the list
+         *
+         * @param v
+         */
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

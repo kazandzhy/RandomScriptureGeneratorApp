@@ -17,7 +17,7 @@ import java.util.Map;
  */
 
 public class DeleteFavoriteRequest extends StringRequest {
-    // URL for connecting user information with the website database
+    // URL for connecting user information with the website database (removeVerseFromFavoritesApp.php)
     private static final String REMOVE_FAVORITE_REQUEST_URL = "http://www.randomscriptureverse.com/php/removeVerseFromFavoritesApp.php";
     // create map params
     private Map<String, String> params;
