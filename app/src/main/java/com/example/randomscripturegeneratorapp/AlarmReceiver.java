@@ -11,9 +11,6 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 
-//import static com.example.randomscripturegeneratorapp.MainActivity.sharedPrefs;
-
-
 public class AlarmReceiver extends BroadcastReceiver {
 
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";

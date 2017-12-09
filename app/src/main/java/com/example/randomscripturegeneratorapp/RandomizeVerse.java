@@ -6,193 +6,183 @@ import android.util.Log;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by Vlad on 04.11.2017.
+ * Class to handle verse randomization
+ *
+ * This class contains different methods for randomizing scriptures in order to use
+ * them in other classes
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
  */
 
-
 public class RandomizeVerse {
-    //create instance of array of objects
-    ScriptureData[] scriptureArray;
-    //WorkWithJSON work;
-    //create instance of Scripture object
+
+    // create instance of array of objects
+    private ScriptureData[] scriptureArray;
+    // create instance of Scripture object
     ScriptureData verse;
 
-
-
-    //constructor
+    /**
+     * This constructor initializes the scripture array by calling WorkWithJSON class
+     */
     public RandomizeVerse() {
-        //work = new WorkWithJSON();
-        //call array of objects from WorkWithJson class
+        // call array of objects from WorkWithJson class
         scriptureArray = new WorkWithJSON().getScriptureArray();
     }
 
+    /**
+     * This function generates a random verse from all standard works. Pure means that each
+     * verse has an equal chance of being selected.
+     *
+     * @return random verse
+     */
     @TargetApi(21)
-    //function which give random verse from all standard works
     public ScriptureData pureRandomizeFromAllWorks() {
 
-        //random number in the range from 0 to the length of array of objects
+        // random number from beginning to end of array
         int number = ThreadLocalRandom.current().nextInt(0, scriptureArray.length);
 
-        //random verse from all standard works
+        // random verse from all standard works
         verse = scriptureArray[number];
 
         return verse;
     }
 
+    /**
+     * This function generates a random verse from all standard works. Weighted means that each
+     * standard work, then book, has an equal chance of being selected.
+     *
+     * @return random verse
+     */
     @TargetApi(21)
-    //function which give random verse from all standard works
     public ScriptureData weightedRandomizeFromAllWorks() {
 
+        // random number from 1 to 5 to select which standard work
         int number = ThreadLocalRandom.current().nextInt(1, 6);
+        // random verse from selected standard work
         verse = weightedRandomizeFromWork(number);
 
         return verse;
     }
 
+    /**
+     * This function generates a random verse from a specific standard work. Weighted means
+     * that each book in the standard work has an equal chance of being selected.
+     *
+     * @param input number represents standard work, chosen by user or randomly
+     * @return random verse
+     */
     @TargetApi(21)
     public ScriptureData weightedRandomizeFromWork(int input) {
-        //default range from min to max
+        // default range from min to max
         int min = -1;
         int max = -1;
 
         switch (input) {
-            case 1:
+            case 1: // books in Old Testament
                 min = 1;
                 max = 39;
                 break;
-            case 2:
+            case 2: // books in New Testament
                 min = 40;
                 max = 66;
                 break;
-            case 3:
+            case 3: // books in Book of Mormon
                 min = 67;
                 max = 81;
                 break;
-            case 4:
+            case 4: // books in Doctrine and Covenants
                 min = 82;
                 max = 82;
                 break;
-            case 5:
+            case 5: // books in Pearl of Great Price
                 min = 83;
                 max = 87;
                 break;
         }
 
+        // choose book in selected standard work
         int number = ThreadLocalRandom.current().nextInt(min, max + 1);
-        String book_title = "";
 
+        // declare book_title with default value
+        String book_title = "";
         for (ScriptureData verse : scriptureArray) {
             // find book_title for the book_id that was randomly selected
             if (verse.getBook_id() == number) {
                 book_title = verse.getBook_title();
+                // end loop once found
                 break;
             }
         }
+        // random verse from selected book
         verse = randomizeFromBook(book_title);
 
         return verse;
     }
 
+    /**
+     * This function generates a random verse from a specific book of scripture.
+     *
+     * @param book_title title of specific book, chosen by user or randomly
+     * @return random verse
+     */
     @TargetApi(21)
-    //function which give random verse from one work chosen by user
-    public ScriptureData pureRandomizeFromWork(int input) {
-        //default range from min to max
-        int min = -1;
-        int max = -1;
-
-        //smart for loop through all array objects
-        for (ScriptureData verse : scriptureArray) {
-
-            //if min not found yet and volume_id and input are the same
-            if (min == -1 && verse.getVolume_id() == input) {
-
-                //assign min to the first element of volume_id = (verse_id - 1) because 0 position in array
-                min = verse.getVerse_id() - 1;
-
-                //if max not found yet - search for  next volume_id
-            } else if (max == -1 && verse.getVolume_id() == input + 1) {
-
-                //assign max to the last element of volume_id = (verse_id - 2) because 0 position in array
-                max = verse.getVerse_id() - 2;
-
-                //stop for loop
-                break;
-            }
-        }
-
-        //last object(verse) in array
-        if (max == -1) {
-
-            //assign max to the length of array - 1
-            max = scriptureArray.length - 1;
-        }
-
-        //random number in the range from 0 to the length of volume objects
-        int number = ThreadLocalRandom.current().nextInt(min, max + 1);
-
-        //random verse from one work
-        verse = scriptureArray[number];
-
-
-        return verse;
-
-    }
-
-    @TargetApi(21)
-    //function which give random verse from one book chosen by user
     public ScriptureData randomizeFromBook(String book_title) {
-        Log.i("book_title is ", book_title);
-        //default range from min to max
+        // default range from min to max
         int min = -1;
         int max = -1;
         int book_id = -1;
 
-        //smart for loop through all array objects
+        // smart for loop through scriptures to find where selected book begins and ends
         for (ScriptureData verse : scriptureArray) {
 
-            //if min not found yet and book_id and input are the same
+            // if min not found yet and book_id and input are the same
             if (min == -1 && verse.getBook_title().equals(book_title)) {
 
+                // mark book_id of the first verse of the selected book
                 book_id = verse.getBook_id();
 
-                //assign min to the first element of book_id = (verse_id - 1) because 0 position in array
+                // assign min to the first element of book_id = (verse_id - 1) because 0 position in array
                 min = verse.getVerse_id() - 1;
 
-                //if max not found yet - search for  next book_id
+                // if max not found yet - search for  next book_id
             } else if (max == -1 && verse.getBook_id() == book_id + 1) {
 
-                //assign max to the last element of book_id = (verse_id - 2) because 0 position in array
+                // assign max to the last element of book_id = (verse_id - 2) because 0 position in array
                 max = verse.getVerse_id() - 2;
 
-                //stop for loop
+                // stop for loop once we find what we need
                 break;
             }
         }
 
-        //last object(verse) in array
+        // if last object(verse) in array
         if (max == -1) {
-
-            //assign max to the length of array - 1
+            // assign max to the length of array - 1
             max = scriptureArray.length - 1;
         }
 
-        //random number in the range from 0 to the length of book objects
+        // random number in the range from 0 to the length of book objects
         int number = ThreadLocalRandom.current().nextInt(min, max + 1);
 
-        //random verse from one book
+        // random verse from selected book
         verse = scriptureArray[number];
 
         return verse;
     }
 
+    /**
+     * This function generates a random verse from a user's Favorites.
+     *
+     * @param favoritesArray list of user's favorite verses
+     * @return random favorite verse
+     */
     @TargetApi(21)
-    //function which give random verse from user favorites
     public static ScriptureData randomizeFromFavoriteArray(ScriptureData[] favoritesArray) {
 
-        //random number in the range from 0 to the length of array of objects
+        // random number from beginning to end of array
         int number = ThreadLocalRandom.current().nextInt(0, favoritesArray.length);
 
-        //random verse from all standard works
+        // random verse from all favorites
         ScriptureData verse = favoritesArray[number];
 
         return verse;

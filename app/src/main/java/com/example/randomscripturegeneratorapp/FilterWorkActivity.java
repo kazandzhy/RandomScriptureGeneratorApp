@@ -110,6 +110,9 @@ public class FilterWorkActivity extends AppCompatActivity {
 
             Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
+            SharedPrefs.saveVerseData(verse, "FilterWorkActivity");
+
+            /*
             SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
 
             editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
@@ -118,6 +121,7 @@ public class FilterWorkActivity extends AppCompatActivity {
             editor.putString("url", GenerateURL.createURL(verse));
             editor.putString("activity", "FilterWorkActivity");
             editor.apply();
+            */
 
             startActivity(displayIntent);
         } else {

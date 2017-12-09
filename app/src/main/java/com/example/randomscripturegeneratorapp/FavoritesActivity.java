@@ -65,8 +65,12 @@ public class FavoritesActivity extends AppCompatActivity {
         }
         ScriptureData verse = favoritesArray[position];
 
+
         // Display the Scripture
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
+
+        SharedPrefs.saveVerseData(verse, "FavoritesActivity");
+        /*
         SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
         editor.putString("verse_title", verse.getVerse_title());
@@ -74,6 +78,8 @@ public class FavoritesActivity extends AppCompatActivity {
         editor.putString("url", GenerateURL.createURL(verse));
         editor.putString("activity", "FavoritesActivity");
         editor.apply();
+        */
+
         startActivity(displayIntent);
     }
 

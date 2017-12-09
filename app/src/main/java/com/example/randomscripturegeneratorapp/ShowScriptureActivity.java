@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 public class ShowScriptureActivity extends AppCompatActivity {
 
     private String verse_id;

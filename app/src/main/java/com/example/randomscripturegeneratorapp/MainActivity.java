@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
             verse = randomizeVerse.pureRandomizeFromAllWorks();
         }
 
+        SharedPrefs.saveVerseData(verse, "MainActivity");
+        /*
         // save all necessary verse attributes to use them in ShowScriptureActivity
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("url", GenerateURL.createURL(verse));
         editor.putString("activity", "MainActivity");
         editor.apply();
+        */
 
         // direct user to ShowScriptureActivity
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);

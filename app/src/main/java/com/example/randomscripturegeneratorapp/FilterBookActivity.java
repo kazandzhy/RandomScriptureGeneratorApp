@@ -88,6 +88,8 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
 
+        SharedPrefs.saveVerseData(verse, "FilterBookActivity");
+        /*
         SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
 
         editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
@@ -97,6 +99,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
         editor.putString("url", GenerateURL.createURL(verse));
         editor.putString("activity", "FilterBookActivity");
         editor.apply();
+        */
 
         startActivity(displayIntent);
     }
