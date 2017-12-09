@@ -13,12 +13,25 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+/**
+ * Settings Activity
+ *
+ * This activity has all of the functionality associated with the settings activity
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
+ */
+
 public class SettingsActivity extends AppCompatActivity {
 
     private RadioButton radio_weighted;
     private RadioButton radio_pure;
 
 
+    /**
+     * Holds the data for the radio buttons and listens for changes in text size
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +53,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    // Changes the text size of the scripture
+    /**
+     * Changes the size of the text
+     */
     private void listenForTextSize() {
 
         // Find the Views we want to mess with
@@ -75,9 +90,14 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Creates the toolbar for the activity
+     *
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        // Creates the toolbar based on weather or not the user is logged in
         if (MainActivity.userId == null) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_settings_loggedout, menu);
@@ -88,8 +108,14 @@ public class SettingsActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Starts activities from the options menu
+     *
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        // Starts the proper activity based on what the user selects from the options menu
         switch (item.getItemId()) {
             case R.id.action_home:
                 startActivity(new Intent(this, MainActivity.class));
@@ -110,10 +136,16 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Changes the randomize option from the
+     *
+     * @param view
+     */
     public void onRadioButtonClicked(View view) {
 
         SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
 
+        // Change the radio button and the preferences to reflect the change
         if (radio_weighted.isChecked()) {
             editor.putString("randomizeOption", "Weighted Random");
         } else {
@@ -123,8 +155,12 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public void onDailyScriptureClicked(View view)
-    {
+    /**
+     * Run the daily scripture alarm activity.
+     *
+     * @param view
+     */
+    public void onDailyScriptureClicked(View view) {
         startActivity(new Intent( this, AlarmClockActivity.class));
     }
 }

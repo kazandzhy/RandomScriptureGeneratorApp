@@ -31,8 +31,6 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     /**
-     * On Create
-     *
      * This Function is run at the initialization of the activity.
      * It finds the password and email fields to be used later in
      * the activity
@@ -49,8 +47,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Options Menu
-     *
      * This Function is run at the initialization of the options menu.
      * It will determine what needs to be in the menu
      *
@@ -65,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Options selected
-     *
      * This Function is run when the user selects an item from the
      * Options menu. It starts the activity associated with the
      * item that the user selected.
@@ -94,8 +88,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     /**
-     * Login
-     *
      * This function sends a LoginRequest via volley to get the userID and
      * other user information.
      *

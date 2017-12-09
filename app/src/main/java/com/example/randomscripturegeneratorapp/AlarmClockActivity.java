@@ -35,7 +35,7 @@ public class AlarmClockActivity extends AppCompatActivity {
     PendingIntent pendingintent;
 
     /**
-     * retrieves sharepreferences and sets timepicker and on/off switch to them
+     * retrieves shared preferences and sets timepicker and on/off switch to them
      *
      * @param savedInstanceState
      */

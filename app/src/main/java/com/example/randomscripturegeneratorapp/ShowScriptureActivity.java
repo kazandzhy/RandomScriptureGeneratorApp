@@ -26,7 +26,11 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-
+/**
+ * Show Scripture Activity
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
+ */
 public class ShowScriptureActivity extends AppCompatActivity {
 
     private String verse_id;
@@ -37,11 +41,18 @@ public class ShowScriptureActivity extends AppCompatActivity {
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
     private SharedPreferences sharedPrefs;
 
+    /**
+     * Grabs the Verse from the shared preferences
+     * and sends it to the display.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_scripture_activity);
 
+        // Get the Scripture from teh shared preferences
         sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         verse_id = sharedPrefs.getString("verse_id", "No verse_id");
         String verse_title = sharedPrefs.getString("verse_title", "No verse");
@@ -51,12 +62,18 @@ public class ShowScriptureActivity extends AppCompatActivity {
         randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         bookChoice = sharedPrefs.getString("book_title", "No book");
 
+        // Send the verse to the textViews
         displayScripture(scripture_text, verse_title);
-
     }
 
+    /**
+     * Creates the Options Menu, based on weather or not the user is logged in
+     *
+     * @param menu
+     * @return
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        // Check to see if the user is logged in or not
         if (MainActivity.userId == null) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.menu_other_loggedout, menu);
@@ -67,8 +84,15 @@ public class ShowScriptureActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Starts the proper activity based on the user's selection
+     * from the options menu
+     *
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        // Determine what activity the user wants to navigate to
         switch (item.getItemId()) {
             case R.id.action_home:
                 startActivity(new Intent(this, MainActivity.class));
@@ -92,12 +116,18 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Randomizes a new scripture, saves it in shared preferences, and displays it
+     *
+     * @param view
+     */
     @TargetApi(21)
     public void randomizeAgain(View view) {
-
+        // Get a new verse
         RandomizeVerse randomizeVerse = new RandomizeVerse();
         ScriptureData verse;
 
+        // Determine the parameters from witch we need to randomize the scripture
         if (activity.equals("FilterWorkActivity")) {
             List<Integer> userChoices = FilterWorkActivity.getUserChoices();
             int randomSpot = ThreadLocalRandom.current().nextInt(0, userChoices.size());
@@ -123,6 +153,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         verse_url = GenerateURL.createURL(verse);
         verse_id = Integer.toString(verse.getVerse_id());
 
+        // Save the scripture in shared preferences
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("verse_id", verse_id);
         editor.putString("verse_title", verse_title);
@@ -134,8 +165,13 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sends a request via volley to add a scripture to the favorites.
+     *
+     * @param view
+     */
     public void addToFavorites(View view) {
-
+        // Create the listener for the response
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -144,7 +180,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
                     String message = jsonResponse.getString("message");
                     Log.i("jsonResponse is ", message);
 
-                    // user will see different type of message depending on if the verse was successfully added or not
+                    // Show the user the message from the database
                     Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
                     toast.show();
                 } catch (JSONException e) {
@@ -153,6 +189,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
             }
         };
 
+        // Determine if we should to send the request based on weather or not the user is logged in or not.
         if (MainActivity.userId == null) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please log in to save Favorites.", Toast.LENGTH_SHORT);
             toast.show();
@@ -163,21 +200,35 @@ public class ShowScriptureActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Populates the textView's with the passed information
+     *
+     * @param scripture_text
+     * @param verse_title
+     */
     private void displayScripture(String scripture_text, String verse_title) {
+        // Identify the text views we need to populate
         TextView scripture_verse_view = (TextView) findViewById(R.id.scripture_text_view);
         TextView scripture_title_view = (TextView) findViewById(R.id.scripture_title_view);
 
         // Get the size of the text from the Shared Preferences
         scripture_verse_view.setTextSize(sharedPrefs.getInt("text_size", 15));
 
+        // Set the textView's
         scripture_verse_view.setMovementMethod(new ScrollingMovementMethod());
         scripture_verse_view.setText(scripture_text);
         scripture_title_view.setText(verse_title);
         scripture_verse_view.scrollTo(0,0);
     }
 
+    /**
+     * Opens to the scripture in lds.org to continue reading
+     *
+     * @param view
+     */
     public void openBrowser(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(verse_url));
+        // Start Chrome
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(verse_url));// Constructs the URL based on the Scripture
         startActivity(browserIntent);
     }
 }

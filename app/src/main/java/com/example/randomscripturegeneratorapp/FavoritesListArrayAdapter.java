@@ -27,8 +27,6 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
     private Context context;
 
     /**
-     * The constructor
-     *
      * The constructor takes in the Array list that we want to put into
      * our view.
      *
@@ -42,8 +40,6 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
 
 
     /**
-     * Get Count
-     *
      * Returns the size of the list
      *
      * @return size of the list
@@ -54,8 +50,6 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
     }
 
     /**
-     * Get Item
-     *
      * Takes in an integer for position and gives back the object in
      * that position.
      *
@@ -68,8 +62,6 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
     }
 
     /**
-     * get ItemId
-     *
      * This function is required, but since the items we are storing
      * are only strings, they wont have an id. so we just return zero.
      *
@@ -80,8 +72,6 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
     public long getItemId(int pos) { return 0; }
 
     /**
-     * Get View
-     *
      * Handles the individual elements of the favorites list
      *
      * @param position
@@ -105,8 +95,6 @@ public class FavoritesListArrayAdapter extends BaseAdapter implements ListAdapte
         Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
 
         /**
-         * Delete Button Listener
-         *
          * Returns the size of the list
          *
          * @param v

@@ -8,15 +8,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by nathan on 11/13 /17.
+ * Class for requesting Login
+ *
+ * This Class holds all the data for sending a volley request for logging in
+ *
+ * @author Vlad Kazandzhy, Nathan Tagg, Tyler Braithwaite
  */
 
 public class LoginRequest extends StringRequest{
 
+    // Here is the URL for the databases' PHP file
     private static final String LOGIN_REQUEST_URL = "http://www.randomscriptureverse.com/php/loginApp.php";
     // create map params
     private Map<String, String> params;
 
+    /**
+     * This function holds all the data necessary for sending a volley request to the database
+     *
+     * @param email
+     * @param password
+     * @param listener
+     */
     public LoginRequest(String email, String password, Response.Listener<String> listener) {
         super(Request.Method.POST, LOGIN_REQUEST_URL, listener, null);
         // this map allows volley to pass information from SignupRequest to registerApp.php
