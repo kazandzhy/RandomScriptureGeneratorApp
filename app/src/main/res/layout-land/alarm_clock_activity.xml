@@ -8,38 +8,39 @@
     tools:context="com.example.randomscripturegeneratorapp.AlarmClockActivity">
 
     <TimePicker
-        android:theme="@style/TimePickerStyle"
         android:id="@+id/timePicker"
-        android:layout_width="442dp"
-        android:layout_height="348dp"
-        android:layout_marginBottom="-15dp"
+        android:layout_width="436dp"
+        android:layout_height="288dp"
+        android:theme="@style/TimePickerStyle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:showText="true"
+        android:switchTextAppearance="@style/SwitchTextAppearance"
         android:text="Alarm"
         android:textColor="#542919"
         android:textSize="18sp"
         android:textStyle="bold"
         android:theme="@style/switchStyle"
-        android:switchTextAppearance="@style/SwitchTextAppearance"
         app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button2" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="150dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="86dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="55dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/button_selector_brown"
         android:onClick="alarmSet"
         android:text="Set New Alarm"
