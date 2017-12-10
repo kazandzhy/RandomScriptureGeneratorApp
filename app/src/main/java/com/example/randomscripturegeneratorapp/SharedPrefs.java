@@ -10,7 +10,12 @@ import android.content.SharedPreferences;
  */
 
 public class SharedPrefs {
-
+    /**
+     * Saves a verse to the shared preferences, to be used in different parts of the app
+     *
+     * @param verse
+     * @param activity
+     */
     public static void saveVerseData(ScriptureData verse, String activity) {
         // save all necessary verse attributes to use them in ShowScriptureActivity
         SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
