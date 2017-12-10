@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="pure_weighted_random">
-        <item>Weighted Random</item>
-        <item>Pure Random</item>
-    </string-array>
-</resources>

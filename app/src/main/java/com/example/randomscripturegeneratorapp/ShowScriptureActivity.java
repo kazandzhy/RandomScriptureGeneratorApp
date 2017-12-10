@@ -45,7 +45,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
      * Grabs the Verse from the shared preferences
      * and sends it to the display.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState saved current state for unpredictable circumstances
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,8 @@ public class ShowScriptureActivity extends AppCompatActivity {
     /**
      * Creates the Options Menu, based on weather or not the user is logged in
      *
-     * @param menu
-     * @return
+     * @param menu menu that is created on the toolbar
+     * @return true to create menu
      */
     public boolean onCreateOptionsMenu(Menu menu) {
         // Check to see if the user is logged in or not
@@ -88,8 +88,8 @@ public class ShowScriptureActivity extends AppCompatActivity {
      * Starts the proper activity based on the user's selection
      * from the options menu
      *
-     * @param item
-     * @return
+     * @param item selected menu item
+     * @return true to handle action
      */
     public boolean onOptionsItemSelected(MenuItem item) {
         // Determine what activity the user wants to navigate to
@@ -119,7 +119,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
     /**
      * Randomizes a new scripture, saves it in shared preferences, and displays it
      *
-     * @param view
+     * @param view base class for widgets
      */
     @TargetApi(21)
     public void randomizeAgain(View view) {
@@ -135,6 +135,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
 
             verse = randomizeVerse.weightedRandomizeFromWork(volume_id);
         } else if (activity.equals("FilterBookActivity")) {
+
             verse = randomizeVerse.randomizeFromBook(bookChoice);
         } else if (activity.equals("FavoritesActivity")) {
             verse = RandomizeVerse.randomizeFromFavoriteArray(FavoritesActivity.favoritesArray);
@@ -168,7 +169,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
     /**
      * Sends a request via volley to add a scripture to the favorites.
      *
-     * @param view
+     * @param view base class for widgets
      */
     public void addToFavorites(View view) {
         // Create the listener for the response
@@ -203,13 +204,13 @@ public class ShowScriptureActivity extends AppCompatActivity {
     /**
      * Populates the textView's with the passed information
      *
-     * @param scripture_text
-     * @param verse_title
+     * @param scripture_text the full text of the verse
+     * @param verse_title the title of the verse
      */
     private void displayScripture(String scripture_text, String verse_title) {
         // Identify the text views we need to populate
-        TextView scripture_verse_view = (TextView) findViewById(R.id.scripture_text_view);
-        TextView scripture_title_view = (TextView) findViewById(R.id.scripture_title_view);
+        TextView scripture_verse_view = findViewById(R.id.scripture_text_view);
+        TextView scripture_title_view = findViewById(R.id.scripture_title_view);
 
         // Get the size of the text from the Shared Preferences
         scripture_verse_view.setTextSize(sharedPrefs.getInt("text_size", 15));
@@ -224,7 +225,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
     /**
      * Opens to the scripture in lds.org to continue reading
      *
-     * @param view
+     * @param view base class for widgets
      */
     public void openBrowser(View view) {
         // Start Chrome

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
      * This function shows the layout on the screen and retrieves SharedPreferences
      * to know if a user is logged in and retrieves userId to identify the user.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState saved current state for unpredictable circumstances
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function creates a toolbar menu depending on user's status (logged in or logged out)
      *
-     * @param menu
+     * @param menu menu that is created on the toolbar
      * @return true to create menu
      */
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function handles all possible menu options
      *
-     * @param item
+     * @param item selected menu item
      * @return true to handle action
      */
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
      * This function directs user from MainActivity to ShowScriptureActivity. Depending on
      * pure or weighted randomizing option, it shows a random scripture from all standard works.
      *
-     * @param view
+     * @param view base class for widgets
      */
     public void sendVerseToDisplay(View view) {
 
@@ -108,16 +108,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SharedPrefs.saveVerseData(verse, "MainActivity");
-        /*
-        // save all necessary verse attributes to use them in ShowScriptureActivity
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
-        editor.putString("verse_title", verse.getVerse_title());
-        editor.putString("scripture_text", verse.getScripture_text());
-        editor.putString("url", GenerateURL.createURL(verse));
-        editor.putString("activity", "MainActivity");
-        editor.apply();
-        */
 
         // direct user to ShowScriptureActivity
         Intent displayIntent = new Intent(this, ShowScriptureActivity.class);
@@ -127,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Direct user from MainActivity to FilterWorkActivity
      *
-     * @param view
+     * @param view base class for widgets
      */
     public void goToFilterWorkActivity(View view) {
         Intent goToFilterWorkIntent = new Intent(this, FilterWorkActivity.class);
@@ -137,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Direct user from MainActivity to FilterBookActivity
      *
-     * @param view
+     * @param view base class for widgets
      */
     public void goToFilterBookActivity(View view) {
         Intent goToFilterBookIntent = new Intent(this, FilterBookActivity.class);
@@ -148,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
      * If user logged in, direct user from MainActivity to FavoritesActivity
      * If user logged out, display toast inviting user to log in to use feature
      *
-     * @param view
+     * @param view base class for widgets
      */
     public void goToFavoritesActivity(View view) {
         // If user logged out, display toast inviting user to log in to use feature

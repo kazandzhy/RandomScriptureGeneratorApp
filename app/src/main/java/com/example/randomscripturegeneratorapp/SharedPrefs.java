@@ -13,8 +13,8 @@ public class SharedPrefs {
     /**
      * Saves a verse to the shared preferences, to be used in different parts of the app
      *
-     * @param verse
-     * @param activity
+     * @param verse the ScriptureData object containing all data for a verse
+     * @param activity the activity from which the function is called
      */
     public static void saveVerseData(ScriptureData verse, String activity) {
         // save all necessary verse attributes to use them in ShowScriptureActivity

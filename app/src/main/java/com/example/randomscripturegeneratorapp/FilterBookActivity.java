@@ -117,17 +117,6 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
         //Save verse in shared preferences
         SharedPrefs.saveVerseData(verse, "FilterBookActivity");
-        /*
-        SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
-
-        editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
-        editor.putString("verse_title", verse.getVerse_title());
-        editor.putString("scripture_text", verse.getScripture_text());
-        editor.putString("book_title", verse.getBook_title());
-        editor.putString("url", GenerateURL.createURL(verse));
-        editor.putString("activity", "FilterBookActivity");
-        editor.apply();
-        */
 
         //start intent
         startActivity(displayIntent);
@@ -175,19 +164,6 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
     {
         Spinner books = (Spinner) findViewById(R.id.dropDown_books);
         books.setOnItemSelectedListener(this);
-        /*ArrayAdapter<CharSequence> bookAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item) {
-            public View getView(int position, View convertView,ViewGroup parent) {
-                View v = super.getView(position, convertView, parent);
-                ((TextView) v).setTextSize(26);
-                return v;
-            }
-
-            public View getDropDownView(int position, View convertView,ViewGroup parent) {
-                View v = super.getDropDownView(position, convertView,parent);
-                ((TextView) v).setGravity(Gravity.CENTER);
-                return v;
-            }
-        };*/
 
         //BookSpinner will update it's array adapter based on which standard work is selected
         switch(position)

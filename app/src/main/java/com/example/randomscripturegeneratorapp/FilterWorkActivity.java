@@ -145,17 +145,6 @@ public class FilterWorkActivity extends AppCompatActivity {
             //set new verse to shared prefs
             SharedPrefs.saveVerseData(verse, "FilterWorkActivity");
 
-            /*
-            SharedPreferences.Editor editor = MainActivity.sharedPrefs.edit();
-
-            editor.putString("verse_id", Integer.toString(verse.getVerse_id()));
-            editor.putString("verse_title", verse.getVerse_title());
-            editor.putString("scripture_text", verse.getScripture_text());
-            editor.putString("url", GenerateURL.createURL(verse));
-            editor.putString("activity", "FilterWorkActivity");
-            editor.apply();
-            */
-
             startActivity(displayIntent);
 
         //if user hasn't selected any works display Toast
