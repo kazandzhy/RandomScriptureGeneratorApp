@@ -22,6 +22,20 @@
         app:layout_constraintTop_toBottomOf="@+id/etPassword_login" />
 
     <EditText
+        android:id="@+id/etEmail_login"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_selector_white2"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/etPassword_login"
         android:layout_width="230dp"
         android:layout_height="45dp"
@@ -36,17 +50,4 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail_login" />
 
-    <EditText
-        android:id="@+id/etEmail_login"
-        android:layout_width="230dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/button_selector_white2"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

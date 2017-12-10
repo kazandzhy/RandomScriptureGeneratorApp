@@ -29,10 +29,8 @@
         android:layout_width="230dp"
         android:layout_height="60dp"
         android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/button_selector_white"
-        android:entries="@drawable/bg"
+        android:background="@drawable/button_selector_white_4dp"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +42,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/button_selector_white"
+        android:background="@drawable/button_selector_white_4dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

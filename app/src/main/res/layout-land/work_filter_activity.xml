@@ -30,8 +30,6 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
         android:checked="false"
         android:onClick="onCheckboxClicked"
         android:text="Old Testament"
@@ -39,6 +37,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/NT_check"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,6 +52,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/BOM_check"
         app:layout_constraintStart_toStartOf="@+id/OT_check"
         app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
@@ -67,6 +67,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/DC_check"
         app:layout_constraintStart_toStartOf="@+id/NT_check"
         app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
@@ -81,6 +82,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/POGP_check"
         app:layout_constraintStart_toStartOf="@+id/BOM_check"
         app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
 
@@ -95,6 +97,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/DC_check"
         app:layout_constraintTop_toBottomOf="@+id/DC_check" />
 </android.support.constraint.ConstraintLayout>
