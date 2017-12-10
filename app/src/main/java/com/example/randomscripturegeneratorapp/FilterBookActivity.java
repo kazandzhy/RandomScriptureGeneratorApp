@@ -51,7 +51,7 @@ public class FilterBookActivity extends AppCompatActivity implements AdapterView
 
 
     /**
-     * Determine if user is logged in or not
+     * Determine if user is logged in or not, and populate the options menu accordingly.
      *
      * @param menu
      * @return
