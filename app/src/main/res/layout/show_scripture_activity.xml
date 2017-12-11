@@ -7,70 +7,78 @@
     android:background="@drawable/bg"
     tools:context="com.example.randomscripturegeneratorapp.ShowScriptureActivity">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/showscripture_buttons"
-        android:onClick="addToFavorites"
-        app:layout_constraintEnd_toEndOf="@+id/scripture_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/showscripture_buttons"
-        android:onClick="randomizeAgain"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/showscripture_buttons"
-        android:onClick="openBrowser"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
-        app:srcCompat="@android:drawable/ic_menu_info_details" />
-
-
-    <TextView
-        android:id="@+id/scripture_title_view"
-        android:layout_width="117dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Scripture Title"
-        android:textColor="#542919"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/scripture_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/scripture_text_view" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/scripture_text_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="80dp"
-        android:fontFamily="@font/andada"
-        android:lineSpacingExtra="4sp"
-        android:scrollbars="vertical"
-        android:text="TextView"
-        android:textColor="#542919"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/scripture_text_view"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:fontFamily="@font/andada"
+            android:lineSpacingExtra="4sp"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textColor="#542919"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/showscripture_buttons"
+            android:onClick="openBrowser"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+            app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/showscripture_buttons"
+            android:onClick="randomizeAgain"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
+            app:srcCompat="@android:drawable/ic_popup_sync" />
+
+        <TextView
+            android:id="@+id/scripture_title_view"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Scripture Title"
+            android:textColor="#542919"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/scripture_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/scripture_text_view" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/showscripture_buttons"
+            android:onClick="addToFavorites"
+            app:layout_constraintEnd_toEndOf="@+id/scripture_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/scripture_text_view"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -7,92 +7,115 @@
     android:background="@drawable/bg"
     tools:context="com.example.randomscripturegeneratorapp.SettingsActivity">
 
-    <TextView
-        android:id="@+id/TextSizeView"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/top_constraint"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
-        android:text="Scripture Text Size"
-        android:textAlignment="center"
-        android:textColor="#542919"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="60dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <SeekBar
-        android:theme="@style/checkBoxStyle"
-        android:id="@+id/textSize"
-        android:layout_width="217dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/TextSizeView"
-        app:layout_constraintTop_toBottomOf="@+id/TextSizeView" />
-
-    <TextView
-        android:id="@+id/ABC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="ABC"
-        android:textAlignment="center"
-        android:textColor="#542919"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textSize"
-        app:layout_constraintStart_toStartOf="@+id/textSize"
-        app:layout_constraintTop_toBottomOf="@+id/textSize" />
-
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="90dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <RadioButton
-            android:id="@+id/radio_weighted"
-            android:layout_width="160dp"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/textSize_constraint"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Weighted Random"
-            android:textColor="#542919"
-            android:theme="@style/checkBoxStyle" />
+            app:layout_constraintEnd_toStartOf="@+id/randomize_constraint"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <RadioButton
-            android:id="@+id/radio_pure"
-            android:layout_width="160dp"
+            <TextView
+                android:id="@+id/TextSizeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scripture Text Size"
+                android:textAlignment="center"
+                android:textColor="#542919"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/textSize"
+                android:layout_width="217dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="16dp"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintStart_toStartOf="@+id/TextSizeView"
+                app:layout_constraintTop_toBottomOf="@+id/TextSizeView" />
+
+            <TextView
+                android:id="@+id/ABC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="ABC"
+                android:textAlignment="center"
+                android:textColor="#542919"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/textSize"
+                app:layout_constraintStart_toStartOf="@+id/textSize"
+                app:layout_constraintTop_toBottomOf="@+id/textSize" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/randomize_constraint"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Pure Random"
-            android:textColor="#542919"
-            android:theme="@style/checkBoxStyle" />
-    </RadioGroup>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textSize_constraint">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:text="Randomize Method"
-        android:textColor="#542919"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/TextSizeView"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="60dp" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Randomize Method"
+                android:textColor="#542919"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <RadioButton
+                    android:id="@+id/radio_weighted"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Weighted Random"
+                    android:textColor="#542919"
+                    android:theme="@style/checkBoxStyle" />
+
+                <RadioButton
+                    android:id="@+id/radio_pure"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Pure Random"
+                    android:textColor="#542919"
+                    android:theme="@style/checkBoxStyle" />
+            </RadioGroup>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/button3"
         android:layout_width="230dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/button_selector_brown"
@@ -103,7 +126,8 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_constraint" />
 
 </android.support.constraint.ConstraintLayout>

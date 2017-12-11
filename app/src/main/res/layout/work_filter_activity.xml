@@ -11,7 +11,6 @@
         android:id="@+id/RandomWork_button"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="95dp"
         android:background="@drawable/button_selector_brown"
         android:onClick="sendVerseToDisplay"
         android:text="Random Scripture"
@@ -19,80 +18,86 @@
         android:textColor="#F4F0EF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/POGP_check" />
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-    <CheckBox
-        android:theme="@style/checkBoxStyle"
-        android:id="@+id/OT_check"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-        android:checked="false"
-        android:onClick="onCheckboxClicked"
-        android:text="Old Testament"
-        android:textColor="#542919"
-        android:textSize="18sp"
-        android:textStyle="bold"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/RandomWork_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <CheckBox
-        android:theme="@style/checkBoxStyle"
-        android:id="@+id/NT_check"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:onClick="onCheckboxClicked"
-        android:text="New Testament"
-        android:textColor="#542919"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/OT_check"
-        app:layout_constraintTop_toBottomOf="@+id/OT_check" />
+        <CheckBox
+            android:id="@+id/BOM_check"
+            android:layout_width="230dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg"
+            android:onClick="onCheckboxClicked"
+            android:text="Book of Mormon"
+            android:textColor="#542919"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/checkBoxStyle"
+            app:layout_constraintStart_toStartOf="@+id/NT_check"
+            app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
-    <CheckBox
-        android:theme="@style/checkBoxStyle"
-        android:id="@+id/BOM_check"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bg"
-        android:onClick="onCheckboxClicked"
-        android:text="Book of Mormon"
-        android:textColor="#542919"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/NT_check"
-        app:layout_constraintTop_toBottomOf="@+id/NT_check" />
+        <CheckBox
+            android:id="@+id/DC_check"
+            android:layout_width="230dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:onClick="onCheckboxClicked"
+            android:text="Doctrine and Covenants"
+            android:textColor="#542919"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/checkBoxStyle"
+            app:layout_constraintStart_toStartOf="@+id/BOM_check"
+            app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
 
-    <CheckBox
-        android:theme="@style/checkBoxStyle"
-        android:id="@+id/DC_check"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:onClick="onCheckboxClicked"
-        android:text="Doctrine and Covenants"
-        android:textColor="#542919"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/BOM_check"
-        app:layout_constraintTop_toBottomOf="@+id/BOM_check" />
+        <CheckBox
+            android:id="@+id/NT_check"
+            android:layout_width="230dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:onClick="onCheckboxClicked"
+            android:text="New Testament"
+            android:textColor="#542919"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/checkBoxStyle"
+            app:layout_constraintStart_toStartOf="@+id/OT_check"
+            app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
-    <CheckBox
-        android:theme="@style/checkBoxStyle"
-        android:id="@+id/POGP_check"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:onClick="onCheckboxClicked"
-        android:text="Pearl of Great Price"
-        android:textColor="#542919"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/DC_check"
-        app:layout_constraintTop_toBottomOf="@+id/DC_check" />
+        <CheckBox
+            android:id="@+id/OT_check"
+            android:layout_width="230dp"
+            android:layout_height="48dp"
+            android:checked="false"
+            android:onClick="onCheckboxClicked"
+            android:text="Old Testament"
+            android:textColor="#542919"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/checkBoxStyle" />
+
+        <CheckBox
+            android:id="@+id/POGP_check"
+            android:layout_width="230dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:onClick="onCheckboxClicked"
+            android:text="Pearl of Great Price"
+            android:textColor="#542919"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/checkBoxStyle"
+            app:layout_constraintStart_toStartOf="@+id/DC_check"
+            app:layout_constraintTop_toBottomOf="@+id/DC_check" />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

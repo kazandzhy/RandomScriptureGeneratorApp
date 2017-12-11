@@ -12,8 +12,6 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button_selector_brown"
         android:onClick="sendVerseToDisplay"
@@ -23,13 +21,14 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/BOM_check"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/OT_check"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
         android:checked="false"
         android:onClick="onCheckboxClicked"
         android:text="Old Testament"
@@ -38,7 +37,7 @@
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
         app:layout_constraintBottom_toTopOf="@+id/NT_check"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/NT_check"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
@@ -53,7 +52,7 @@
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
         app:layout_constraintBottom_toTopOf="@+id/BOM_check"
-        app:layout_constraintStart_toStartOf="@+id/OT_check"
+        app:layout_constraintStart_toStartOf="@+id/BOM_check"
         app:layout_constraintTop_toBottomOf="@+id/OT_check" />
 
     <CheckBox
@@ -68,7 +67,9 @@
         android:textStyle="bold"
         android:theme="@style/checkBoxStyle"
         app:layout_constraintBottom_toTopOf="@+id/DC_check"
-        app:layout_constraintStart_toStartOf="@+id/NT_check"
+        app:layout_constraintEnd_toStartOf="@+id/RandomWork_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NT_check" />
 
     <CheckBox

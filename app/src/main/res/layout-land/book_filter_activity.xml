@@ -11,7 +11,6 @@
         android:id="@+id/randomWork_button"
         android:layout_width="230dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/button_selector_brown"
@@ -22,29 +21,39 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/dropDown_works"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/button_selector_white_4dp"
-        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
-    <Spinner
-        android:id="@+id/dropDown_books"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/button_selector_white_4dp"
-        android:textAlignment="center"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/randomWork_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Spinner
+            android:id="@+id/dropDown_books"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector_white_4dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/dropDown_works"/>
+
+        <Spinner
+            android:id="@+id/dropDown_works"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector_white_4dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/dropDown_books"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
