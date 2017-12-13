@@ -40,6 +40,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
     private String activity;
     public static final String APP_PREFS = "APPLICATION_PREFERENCES";
     private SharedPreferences sharedPrefs;
+    public static String userId;
 
     /**
      * Grabs the Verse from the shared preferences
@@ -52,7 +53,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_scripture_activity);
 
-        // Get the Scripture from teh shared preferences
+        // Get the Scripture from the shared preferences
         sharedPrefs = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         verse_id = sharedPrefs.getString("verse_id", "No verse_id");
         String verse_title = sharedPrefs.getString("verse_title", "No verse");
@@ -61,6 +62,7 @@ public class ShowScriptureActivity extends AppCompatActivity {
         activity = sharedPrefs.getString("activity", "No activity");
         randomizeOption = sharedPrefs.getString("randomizeOption", "Weighted Random");
         bookChoice = sharedPrefs.getString("book_title", "No book");
+        userId = sharedPrefs.getString("userId", null);
 
         // Send the verse to the textViews
         displayScripture(scripture_text, verse_title);
@@ -73,13 +75,19 @@ public class ShowScriptureActivity extends AppCompatActivity {
      * @return true to create menu
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Check to see if the user is logged in or not
-        if (MainActivity.userId == null) {
+        if (activity.equals("AlarmReceiver")) {
+            // show special menu that only has home option
             MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_other_loggedout, menu);
+            inflater.inflate(R.menu.menu_home_only, menu);
         } else {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_other_loggedin, menu);
+            // Check to see if the user is logged in or not
+            if (userId == null) {
+                MenuInflater inflater = getMenuInflater();
+                inflater.inflate(R.menu.menu_other_loggedout, menu);
+            } else {
+                MenuInflater inflater = getMenuInflater();
+                inflater.inflate(R.menu.menu_other_loggedin, menu);
+            }
         }
         return true;
     }
@@ -191,11 +199,11 @@ public class ShowScriptureActivity extends AppCompatActivity {
         };
 
         // Determine if we should to send the request based on weather or not the user is logged in or not.
-        if (MainActivity.userId == null) {
+        if (userId == null) {
             Toast toast = Toast.makeText(getApplicationContext(), "Please log in to save Favorites.", Toast.LENGTH_SHORT);
             toast.show();
         } else {
-            AddToFavoritesRequest addToFavoritesRequest = new AddToFavoritesRequest(MainActivity.userId, verse_id, responseListener);
+            AddToFavoritesRequest addToFavoritesRequest = new AddToFavoritesRequest(userId, verse_id, responseListener);
             RequestQueue queue = Volley.newRequestQueue(ShowScriptureActivity.this);
             queue.add(addToFavoritesRequest);
         }
