@@ -2,4 +2,6 @@
     <string name="app_name">Random Scripture Generator App</string>
     <string name="title_activity_login">activity_login</string>
     <string name="AlarmTest">This is the Alarm</string>
+    <string name="linkToWebsite"><a href="https://www.randomscriptureverse.com/">www.RandomScriptureVerse.com</a></string>
+    <string name="linkToWebsiteLong">Visit the website at\n<a href="https://www.randomscriptureverse.com/">www.RandomScriptureVerse.com</a></string>
 </resources>

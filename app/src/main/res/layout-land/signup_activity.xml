@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context="com.example.randomscripturegeneratorapp.SignupActivity">
+    tools:context="com.kazandzhy.randomscripture.SignupActivity">
 
     <EditText
         android:id="@+id/etEmail_signup"

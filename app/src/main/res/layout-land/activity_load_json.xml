@@ -5,18 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgmain"
-    tools:context="com.example.randomscripturegeneratorapp.LoadJSONActivity">
+    tools:context="com.kazandzhy.randomscripture.LoadJSONActivity">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="114dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvLoadingApp"
+        app:layout_constraintBottom_toTopOf="@+id/linkToWebsite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/openbook" />
+
+    <TextView
+        android:id="@+id/linkToWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/linkToWebsite"
+        android:textColor="#f1e0d6"
+        android:autoLink="web"
+        android:textColorLink="#f1e0d6"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoadingApp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/tvLoadingApp"
@@ -33,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/linkToWebsite" />
 
     <TextView
         android:id="@+id/tvMessage"
@@ -65,4 +79,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLoadingApp" />
+
 </android.support.constraint.ConstraintLayout>

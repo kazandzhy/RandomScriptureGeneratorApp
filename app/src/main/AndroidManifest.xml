@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.randomscripturegeneratorapp">
+    package="com.kazandzhy.randomscripture">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -14,36 +14,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name="com.kazandzhy.randomscripture.MainActivity"></activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.kazandzhy.randomscripture.SettingsActivity"
             android:label="Settings"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.kazandzhy.randomscripture.MainActivity" />
         <activity
-            android:name=".FilterWorkActivity"
+            android:name="com.kazandzhy.randomscripture.FilterWorkActivity"
             android:label="Filter By Work"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.kazandzhy.randomscripture.MainActivity" />
         <activity
-            android:name=".FilterBookActivity"
+            android:name="com.kazandzhy.randomscripture.FilterBookActivity"
             android:label="Filter By Book"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.kazandzhy.randomscripture.MainActivity" />
         <activity
-            android:name=".ShowScriptureActivity"
+            android:name="com.kazandzhy.randomscripture.ShowScriptureActivity"
             android:label="Show Random Scripture" />
         <activity
-            android:name=".FavoritesActivity"
+            android:name="com.kazandzhy.randomscripture.FavoritesActivity"
             android:label="Favorites"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.kazandzhy.randomscripture.MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.kazandzhy.randomscripture.LoginActivity"
             android:label="Log In"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.kazandzhy.randomscripture.MainActivity" />
         <activity
-            android:name=".SignupActivity"
+            android:name="com.kazandzhy.randomscripture.SignupActivity"
             android:label="Sign Up"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.kazandzhy.randomscripture.MainActivity" />
         <activity
-            android:name=".LoadJSONActivity"
+            android:name="com.kazandzhy.randomscripture.LoadJSONActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,11 +56,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".AlarmClockActivity"
+        <activity android:name="com.kazandzhy.randomscripture.AlarmClockActivity"
             android:label="Daily Scripture"
-            android:parentActivityName=".SettingsActivity"></activity>
+            android:parentActivityName="com.kazandzhy.randomscripture.SettingsActivity"></activity>
 
-        <receiver android:name=".AlarmReceiver"
+        <receiver android:name="com.kazandzhy.randomscripture.AlarmReceiver"
             android:enabled ="true"
             android:exported="true">
         </receiver>

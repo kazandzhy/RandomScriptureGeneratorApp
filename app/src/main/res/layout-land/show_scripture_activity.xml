@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:backgroundTintMode="screen"
-    tools:context="com.example.randomscripturegeneratorapp.ShowScriptureActivity">
+    tools:context="com.kazandzhy.randomscripture.ShowScriptureActivity">
 
     <ImageButton
         android:id="@+id/imageButton3"

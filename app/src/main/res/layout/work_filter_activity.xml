@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context="com.example.randomscripturegeneratorapp.FilterWorkActivity">
+    tools:context="com.kazandzhy.randomscripture.FilterWorkActivity">
 
     <Button
         android:id="@+id/RandomWork_button"
